@@ -1,0 +1,20 @@
+
+<style>
+    .input-group-btn:last-child > .form-control {
+        margin-left: -1px;
+        width: auto;
+    }
+</style>
+<div class="form-group">
+    <label  class="control-label"><cr  ng-if="required"></cr>{{label}} ({{model?model+' bytes':'0 bytes'}} ) </label>
+    <div class="input-group">
+        
+        <input class="form-control" ng-focus="focusedInput = true" ng-blur="focusedInput = false" ng-model="value" type="text" placeholder="{{placeholder}}">
+        <div class="input-group-btn">
+            <select class="form-control" ng-focus="focusedSelect = true" ng-blur="focusedSelect = false" required ng-model="um" ng-change="onChangeUnidad()">
+                <option ng-repeat="u in unidades" value="{{u.value}}"> {{u.label}}</option>
+            </select>
+        </div>
+
+    </div>
+</div>

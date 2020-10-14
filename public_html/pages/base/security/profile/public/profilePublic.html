@@ -1,0 +1,71 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa  fa-user"></i>
+                Perfil
+                <i class="fa fa-angle-double-right"></i>
+                <small>
+                    <span>Datos del perfil</span>
+                </small>
+                <button type="button" class="btn btn-default pull-right " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atrás
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <div class="row">
+                        <div class="col-sm-6 margin-bottom">
+                            <h1 class="profile-username text-center">{{usuario.persona.nombreCompleto}}</h2>
+                                <!--<p class="text-muted text-center"> <i class="fa fa-user"></i> {{usuario.name}}</p>-->
+                                <img profile-img user="usuario" ng-src="img/user.png" class="profile-user-img img-responsive img-circle" alt="User Image" style="
+                                     width: 200px;
+                                     height: 200px;
+                                     ">
+                                </div>
+                                <div class="col-sm-6">
+                                    <div  class="margin-bottom" style="font-style: italic; color: #666;">
+                                        {{usuario.descripcion}}
+                                    </div>
+                                    <ul class="list-group list-group-unbordered">
+                                        <li class="list-group-item">
+                                            <b class="color-facebook"> Facebook </b>
+                                            <a ng-if="usuario.facebook" href="{{usuario.facebook}}" target="_blank" class="pull-right color-facebook"><i class="fa fa-facebook"></i>/{{usuario.facebook}}</a>
+                                            <span ng-if="!usuario.facebook" class="pull-right grey">No tiene facebook</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b class="color-instagram"> Instagram </b>
+                                            <a ng-if="usuario.instagram" href="{{usuario.instagram}}" target="_blank" class="pull-right color-instagram"><i class="fa fa-instagram"></i>/{{usuario.instagram}}</a>
+                                            <span ng-if="!usuario.instagram" class="pull-right grey">No tiene instagram</span>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b class="color-twitter"> Twitter </b>
+                                            <a ng-if="usuario.twitter" href="{{usuario.twitter}}" target="_blank" class="pull-right color-twitter"><i class="fa fa-twitter"></i>/{{usuario.twitter}}</a>
+                                            <span ng-if="!usuario.twitter" class="pull-right grey">No tiene twitter</span>
+                                        </li>
+<!--                                        <li class="list-group-item">
+                                            <b class="color-gmail"> Email </b>
+                                            <a ng-if="usuario.correo" href="mailto:{{usuario.correo}}" target="_blank" class="pull-right color-gmail"><i class="fa fa-envelope-o"></i>/{{usuario.correo}}</a>
+                                            <span ng-if="!usuario.correo" class="pull-right grey">No tiene email</span>
+                                        </li>-->
+                                    </ul>
+                                </div>
+                        </div>
+
+
+                        <a ui-sref="perfil"ng-if="user.id == usuario.id" class="btn btn-primary btn-block">
+                            <i class="fa fa-edit"></i>
+                            <b>Modificar mi perfil</b>
+                        </a>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+</section>
+

@@ -1,0 +1,106 @@
+<!-- 
+   Cicha Created: 2016/03/28 
+-->
+<div >
+    
+    <article class="container-login center-block">
+		<section>
+			<ul id="top-bar" class="nav nav-tabs nav-justified">
+				<li><a ui-sref="login">Accesso</a></li>
+				<li class="active"><a ui-sref="registro">¿Eres nuevo? <strong>Registrarme</strong></a></li>
+			</ul>
+			<div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+				<div id="login-access" class="tab-pane fade active in">
+					<h2>Registrarme a
+                    <b>{{nombreVisual}}</b></h2>						
+					<div class="login-logo">
+                    
+                </div>
+
+<!--                <div class="col-md-12 col-xs-12">
+                    <p ng-if="hasLoginFacebook || hasLoginGoogle" class="login-box-msg">Iniciar sesi&oacuten v&iacutea</p>
+                   <div class="col-md-6 col-xs-6"><a  ng-if="hasLoginFacebook" class="btn btn-block btn-social btn-facebook" ng-click="loginFacebook()">
+                        <span class="fa fa-facebook"></span> Iniciar sesión con Facebook
+                    </a></div><div class="col-md-6 col-xs-6">
+                    <a ng-if="hasLoginGoogle" class="btn btn-block btn-social btn-google" ng-click="loginGoogle()">
+                        <span class="fa fa-google"></span> Iniciar sesión con Google
+                    </a></div>
+
+                </div>-->
+                <div class="col-xs-12 col-md-12" style="margin-top: 20px;">
+<!--                    <p ng-if="hasLoginFacebook || hasLoginGoogle" class="login-box-msg">O ingresá tus datos para registrarte</p>
+                    <p ng-if="!(hasLoginFacebook || hasLoginGoogle)" class="login-box-msg">Ingresá tus datos para registrarte</p>-->
+
+                    <form class="form col-md-12 center-block">
+        <div class="form-group">
+
+
+
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="user.name" placeholder="Nombre de perfil" required="">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-font"></span><i class="fa fa-info-circle blue" uib-tooltip="Ingresa el nombre que se visualizara cada vez que inicies sesión" tooltip-placement="top"></i></span>
+            </div>
+        </div>
+        <div class="form-group">
+            
+            <div class="input-group">
+                <input type="email" class="form-control" ng-model="user.correo" placeholder="Correo" required="">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> </span>
+            </div>
+        </div>
+        <div class="form-group">
+           
+            <div class="input-group">
+                <input type="email" class="form-control" ng-model="user.correo2" placeholder="Repetir correo" required="">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            
+            <div class="input-group">
+                <input type="password" class="form-control" ng-model="user.password" placeholder="Contraseña" required="">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+            </div>
+        </div>
+        <div class="form-group">
+            
+            <div class="input-group">
+                <input type="password" class="form-control" ng-model="user.password2" placeholder="Repetir contraseña" required="">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="">
+                <div class="checkbox-inline">
+                    <label class="control-label"> 
+                        <input type="checkbox"  ng-model="termAndCond">
+                        <b>Acepto los  <a href="resources/TermAndCond.html" target="_BLANK" class="pull-right terminos">Terminos y Condiciones</a></b>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+                   <div
+                vc-recaptcha
+                ng-model="myRecaptchaResponse"
+                key="code" 
+                size="normal"
+            ></div>
+            <button type="submit" ng-disabled="proccess" class="btn btn-primary btn-lg btn-block" ng-click="register()">
+                <icon-loading visible="proccess"></icon-loading>
+                Registrarme
+            </button>
+        </div>
+    </form>
+                </div>			
+				</div><div class="clearfix"></div>
+			</div><div class="clearfix"></div>
+		</section>
+		<div><a ui-sref="home" class="pull-left volver"> <i class="fa fa-arrow-left"></i> Volver a la pantalla principal</a></div>
+	</article>
+   
+   
+    
+</div>

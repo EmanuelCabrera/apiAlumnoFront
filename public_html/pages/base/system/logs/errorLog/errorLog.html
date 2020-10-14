@@ -1,0 +1,251 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-users"></i>
+                Logs
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>Logs de errores </small>
+                <button type="button" class="btn btn-danger pull-right" ng-click="genError()">
+                    <i class="fa fa-exclamation-triangle red"></i>
+                    Generar Error
+                </button>
+                <button type="button" class="btn btn-default pull-right" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary" st-table="errorlogs" st-pipe="paginate" expose-state="tableState">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Listado de errores</h3>
+                    <div class="box-tools pull-right">
+                        <div class="form-inline">
+                            <ipp-table ipp="pagination.ipp" ></ipp-table>
+                            <div class="input-group input-group-sm" style="width: 200px;">
+                                <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                                <span  class="input-group-addon">
+                                    <i class="fa fa-search"></i>
+                                </span>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div ng-if="checkeSel()">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    ¿Desea eliminar el/los <b>{{cantSel()}}</b> elemento/s  seleccionado/s?
+                                </div>
+                                <div class="col-xs-12 text-center">
+                                    <button  class="btn btn-danger" ng-disabled="deleted" ng-click="removeSelected()">
+                                        <i class="glyphicon glyphicon-refresh spinning" ng-show="deleted"></i>
+                                        <i class="fa fa-trash" ng-hide="deleted"></i>
+                                        Eliminar seleccionados
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-condensed" >
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 25px;">
+                                        <input ng-change="onCheck()" type="checkbox" ng-model="selTodos">
+                                    </th>
+                                    <th>Código</th>
+                                    <th>Usuario</th>
+                                    <th>Mensaje</th>
+                                    <th>Fecha y Hora</th>
+                                    <th>Accion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="resquest in errorlogs" ng-click="showDetail(resquest, resquest.code)"  ng-class="{'st-selected':resquest.id === logSel.id}">
+                                    <td class="text-center">
+                                        <input type="checkbox" ng-model="resquest.selected">
+                                    </td>
+                                    <td>{{resquest.code}}</td>
+                                    <td>{{resquest.user}}</td>
+                                    <td> <div ng-bind-html="stringToHtml(resquest.sms)"></div></td>
+                                    <td>{{resquest.fechaHora| date:"dd/MM/yyyy HH:mm:ss "}}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm pull-right">
+                                            <a  uib-tooltip="Eliminar" tooltip-append-to-body="true" class="btn btn-default"
+                                                ng-bootbox-title="Eliminar log"
+                                                ng-bootbox-confirm="¿Está seguro de eliminar el log?"
+                                                ng-bootbox-confirm-action="remove(resquest.id)">
+                                                <i class="fa fa-trash blue"></i>  
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6" class="text-center">  
+                            <count-rows table-state="tableState"  items="errorlogs.length" total="count"></count-rows>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="text-center">
+                            <custom-pagination display-pages="10">
+                            </custom-pagination>
+                            </td>
+                            </tr>
+                            </tfoot>
+                        </table>   
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row" ng-if="statusDetail" >
+        <div class="col-md-12">
+            <div class="box-header with-border">
+                <h3 class="box-title">Detalles del error</h3>
+            </div>
+            <div class="box-body">
+                <table class="table table-hover table-bordered table-condensed" >
+
+                    <tbody>
+                        <tr>
+                            <th>Code</th>
+                            <td>{{log.code}}</td>                          
+                        </tr>
+                        <tr>
+                            <th>User</th>
+                            <td>{{log.user}}</td>                          
+                        </tr>
+                        <tr>
+                            <th>Sms</th>
+                            <td>
+
+                                <div ng-bind-html="stringToHtml(log.sms)"></div>
+
+                            </td>                          
+                        </tr>
+                        <tr>
+                            <th>Resumen</th>
+                            <td>
+
+                                <div ng-bind-html="stringToHtml(log.resumen)"></div>
+
+                            </td>                          
+                        </tr>
+                        <tr>
+                            <th>detalle</th>
+                            <td>
+                                <div ng-bind-html="stringToHtml(log.detalle)"></div>
+                            </td>                          
+                        </tr>   
+                        <tr>
+                            <th>Fecha y Hora</th>
+                            <td>{{log.fechaHora| date:"dd/MM/yyyy HH:mm:ss "}}</td>                          
+                        </tr> 
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <button  class="btn btn-primary" ng-click="verSolicitud(log.requestLogId)" ng-if="!requestDetail && log.requestLogId">
+                                    <i class="fa fa-eye"></i>
+                                    Mostrar detalle de la solicitud
+                                </button>
+                                <button  class="btn btn-danger" ng-click="ocultarSolicitud()" ng-if="requestDetail">
+                                    <i class="fa fa-eye-slash"></i>
+                                    Ocultar detalle de la solicitud
+                                </button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="requestDetail" >
+        <div class="col-md-12">
+            <div class="box-header with-border">
+                <h3 class="box-title">Detalles de la solicitud</h3>
+            </div>
+            <div class="box-body">
+                <table class="table table-hover table-bordered table-condensed" >
+
+                    <tbody>
+                        <tr>
+                            <th>Method</th>
+                            <td>{{request.method}}</td>                          
+                        </tr>
+                        <tr>
+                            <th>queryParams</th>
+                            <td>{{request.queryParams}}</td>
+                        </tr>
+                        <tr>
+                            <th>formParams</th>
+                            <td>{{request.formParams}}</td>
+                        </tr>
+                        <tr>
+                            <th>patchParams</th>
+                            <td>{{request.patchParams}}</td>
+                        </tr>
+                        <tr>
+                            <th>jsonParams</th>
+                            <td>{{request.jsonParams}}</td>         
+                        </tr>
+                        <tr>
+                            <th>headersParams</th>
+                            <td>{{request.headersParams}}</td>
+                        </tr>
+                        <tr>
+                            <th>absolutePatch</th>
+                            <td>{{request.absolutePatch}}</td>
+                        </tr>
+                        <tr>
+                            <th>datetime</th>
+                            <td>{{request.datetime| date:"dd/MM/yyyy HH:mm ' hs'"}}</td>
+                        </tr>                
+                        <tr>
+                            <th>time</th>
+                            <td>{{request.time}}</td>
+                        </tr>
+                        <tr>
+                            <th>remoteAddr</th>
+                            <td>{{request.remoteAddr}}</td>
+                        </tr>
+                        <tr>
+                            <th>remoteHost</th>
+                            <td>{{request.remoteHost}}</td>
+                        </tr>                        
+                        <tr>
+                            <th>remoteUser</th>
+                            <td>{{request.remoteUser}}</td>
+                        </tr>    
+                        <tr>
+                            <th>remotePort</th>
+                            <td>{{request.remotePort}}</td>
+                        </tr>      
+                        <tr>
+                            <th>characterEncoding</th>
+                            <td>{{request.characterEncoding}}</td>
+                        </tr> 
+                        <tr>
+                            <th>user</th>
+                            <td>{{request.user}}</td>
+                        </tr> 
+                    </tbody>
+                </table>   
+            </div>
+
+        </div>
+    </div>
+</section>

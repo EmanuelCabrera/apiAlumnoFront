@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-md-7 " novalidate>
+        <direccion dir="direccion" required-fields='requiredFields' pais-id="paisId" provincia-id="provinciaId" departamento-id="departamentoId" localidad-id="localidadId"></direccion>
+    </div>
+    <div class="margin-bottom hidden-lg hidden-md hidden-sm"></div>
+    <div class="col-md-5">
+        <div>
+            <div>
+                <button type="button" class="btn btn-default" ng-click="geoDecode()"
+                        uib-tooltip="Localizar" tooltip-append-to-body="true">
+                    <i class="fa fa-location-arrow blue"></i> 
+                </button>
+                <button type="button" class="btn btn-default" ng-click="geoDecodeMaps()"
+                        uib-tooltip="Relocalizar" tooltip-append-to-body="true">
+                    <i class="fa fa-map-marker blue"></i> 
+                </button>
+                <button type="button" class="btn btn-default" ng-click="eliminarCoordenadas()"
+                        uib-tooltip="Eliminar localización" tooltip-append-to-body="true">
+                    <i class="fa fa-ban red"></i> 
+                </button>
+                <input id='auto' type='checkbox' name='auto' checked ng-model="auto"
+                       class="checkbox-inline" style="width: 20px; height: 20px; margin: 5px;" 
+                       uib-tooltip="Localizar automaticamente" tooltip-append-to-body="true">
+                
+                <div class="pull-right">
+                    <!--<input id='tipo' type='checkbox' name='tipo'>-->
+                </div>
+            </div>
+            
+            <div id='map'></div>
+
+        </div>
+    </div>
+</div>

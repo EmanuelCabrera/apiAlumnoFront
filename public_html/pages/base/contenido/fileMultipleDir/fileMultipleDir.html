@@ -1,0 +1,19 @@
+<div  class="form-group col-xs-12">
+    <div class="row">
+        <div ng-class="layoutContenido">
+            <div ng-show="allowEdit" class="form-group">        
+                <div  ng-disabled="cantMax && contenidos.length >= cantMax" class="btn btn-default btn-file">
+                    <i class="fa fa-plus-circle"></i> {{labelButton}}
+                    <input  type="file" accept="{{accept}}" ng-file-select="" ng-model="inputFiles" ng-change="onFileChange()" multiple  /> 
+                </div> 
+            </div>
+            <h3  ng-show="text">
+                {{text}}
+            </h3>
+        </div>
+        <div ng-repeat="(index, contenido) in contenidos" ng-class="layoutContenido">
+            <contenido-thumbnail-dir contenido="contenido" config="contenidoConfig" first="$first" last="$last"> 
+            </contenido-thumbnail-dir>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header rol-hidden">
+            <div class="h3">
+                <i class="fa  fa-user"></i>
+                Perfil
+                <button type="button" class="btn btn-default pull-right " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atrás
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="box box-primary">
+                <div class="box-body text-center">
+                    <img profile-img  class="img-circle pointer " alt="User Image" style="width: 200px;height: 200px;">
+                    <h3 class="widget-user-username">{{persona.nombreCompleto}}</h3>
+                    <h5 class="widget-user-desc">usuario: {{user.name}}</h5>
+                    <h5 class="widget-user-desc">CUIT: {{user.cuit}}</h5>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="row"> 
+        <div class="col-md-12 text-center">
+            <a to-ciudadano next-state="ciudadanoOptions.uriPerfil " extra-params="extraParamsCiudadano" class="btn btn-default btn-lg" >
+                <img src="img/ciudadanomisiones-icono.png" width="35px">
+                <b>Modificar mis datos</b>
+            </a>
+        </div>
+        <div class="col-md-12"><hr/></div>
+        <div class="col-md-12">
+            <div class="alert alert-info bigger-120">
+                Tu información y tu foto de perfil estan vinculadas a tu cuenta de Ciudadan@ Misiones. al cambiar tus datos en Ciudadan@ Misiones, estos se actualizan automáticamente en los sistemas vinculados.
+            </div>
+        </div>
+    </div>
+</section>
+

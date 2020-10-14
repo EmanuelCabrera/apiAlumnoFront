@@ -1,0 +1,140 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-users"></i>Personas
+            </div>
+            <div class="breadcrumb">
+                <button class="btn btn-primary" ui-sref="rrhh/persona/add">Crear <i class="fa fa-plus-circle"></i></button>
+                <button ng-click="exportar()" class="btn btn-success" ><span class="hidden-xs">Exportar</span> <i class="fa fa-file-excel-o"></i></button>
+                <button ui-sref="rrhh/persona/importar" class="btn btn-github" >Importar <i class="fa fa-database"></i></button>
+                <button permission-hide="['ACTION_LOG_LIST']" uib-tooltip="Ver acciones" tooltip-append-to-body="true" ui-sref="actionLog/class ({clazz:'Persona'})" class="btn btn-soundcloud" > 
+                    <span class="hidden-xs">Ver acciones</span> <i class="fa fa-list-ol"></i>
+                </button>
+                <button type="button" class="btn btn-default " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary " st-table="personas" st-pipe="paginate" expose-state="tableState" >
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="pull-left"> 
+                                <select class="form-control input-sm" ng-model="jconfFiltro.op" ng-change="paginate()">
+                                    <option value="NOT_FILTER">Todos</option>
+                                    <option value="NULL">Normal</option>
+                                    <option value="NOT_NULL">Eliminados</option>
+                                </select> 
+                            </span>
+                            <div class="box-tools pull-right">
+                                <div class="form-inline">
+                                    <ipp-table></ipp-table>
+                                    <div class="input-group input-group-sm" style="width: 200px;">
+                                        <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                                        <span  class="input-group-addon">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-hover table-striped table-condensed" >
+                                <thead>
+                                    <tr>
+                                        <th style="width: 45px;"> Perfil </th>
+                                        <th st-sort="apellido" st-sort-default="true">Apellidos</th>
+                                        <th st-sort="nombres">Nombres</th>
+                                        <!--<th st-sort="depto.nombre">Depto <i class="fa fa-angle-double-right"></i> Área</th>-->
+                                        <th>Documento</th>                       
+                                        <th>Cuit</th>                       
+                                        <th st-sort="user.name">Usuario</th>
+                                        <th st-sort="contacto.correo">Correo</th>
+                                        <!--<th st-sort="user.nombre" class="text-center"><i class="fa fa-shield" tooltip="La persona posee o no usuario y pass para acceder al sistema"></i></th>-->
+                                        <th style="width: 150px;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="persona in personas">
+                                        <td style="width: 45px;">
+                                            <span>
+                                                <img profile-img user="persona.user" 
+                                                     ui-sref="security/profilePublic({id:persona.user.id})" 
+                                                     class="img-circle pointer" 
+                                                     alt="Person Image" 
+                                                     style="width: 45px;height: 45px">
+                                            </span>
+                                        </td>
+                                        <td>{{persona.apellido}}</td>
+                                        <td>{{persona.nombres}}</td>
+                                        <td>
+                                            {{persona.documento}}
+                                        </td>
+                                        <td>
+                                            {{persona.cuit}}
+                                        </td>
+                                        <td>
+                                            <span ng-if="persona.user.id">
+                                                {{persona.user.name}}
+                                                <a  uib-tooltip="Editar datos del usuario" 
+                                                    tooltip-append-to-body="true"  
+                                                    permission-hide="['USER_CM_UPD']" 
+                                                    ui-sref="security/usuario-cm/edit({id:persona.user.id})" class="btn btn-default">
+                                                    <i class="fa fa-pencil blue"></i>
+                                                </a> 
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {{persona.contactoCorreo}}
+                                        </td>
+                                        <td style="width: 150px; display: flex;">
+                                            <div class="btn-group btn-group-sm">
+                                                <button ui-sref="rrhh/persona/edit({id:persona.id})" permission-hide="['PERSONA_UPD']" 
+                                                        class="btn btn-default"
+                                                        uib-tooltip="Editar" tooltip-append-to-body="true">
+                                                    <i class="fa fa-pencil blue" ></i>
+                                                </button> 
+                                                <button ui-sref="rrhh/persona/show({id:persona.id})"  class="btn btn-default">
+                                                    <i class="fa fa-eye blue" uib-tooltip="Ver" tooltip-append-to-body="true"></i>
+                                                </button>
+
+                                            </div>
+                                            <a  permission-hide="['PERSONA_REM']" >
+                                                <c-btnremoveview  
+                                                    c-callback="onAction" 
+                                                    c-obj="persona" 
+                                                    c-service="PersonaServ" 
+                                                    c-name="{{persona.nombreCompleto}}">
+                                                </c-btnremoveview>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="6" class="text-center">  
+                                <count-rows table-state="tableState" items="personas.length" total="count"></count-rows>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" class="text-center">
+                                <custom-pagination display-pages="10"></custom-pagination>
+                                </td>
+                                </tr>
+                                </tfoot>
+                            </table>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

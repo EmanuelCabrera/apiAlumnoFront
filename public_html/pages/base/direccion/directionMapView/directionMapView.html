@@ -1,0 +1,13 @@
+<div class="row height-inherit">
+    <div class="col-md-12" novalidate ng-if="!direccion.latitud && showDetail">
+        <direccion-detail dir="direccion" required-fields='requiredFields'></direccion-detail>
+    </div>
+    <div class="col-md-7" novalidate ng-if="direccion.latitud && showDetail">
+        <direccion-detail dir="direccion" required-fields='requiredFields'></direccion-detail>
+    </div>
+    <div ng-class="mapaClass" class="height-inherit" >
+        <div class="row height-inherit">
+            <div id='map'></div>
+        </div>
+    </div>
+</div>

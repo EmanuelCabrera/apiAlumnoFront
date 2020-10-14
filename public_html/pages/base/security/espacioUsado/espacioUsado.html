@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-lock"></i>
+                Seguridad
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>Espacios usados</small>
+            </div>
+            <div class="breadcrumb">
+                <button type="button" class="btn btn-default " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <!--  st-safe-src="espacios"   st-safe-src="espacios" st-table="personas" st-pipe="paginate" expose-state="tableState"  -->
+            <div class="box box-primary" st-table="espaciosTbl" st-pipe="paginate" expose-state="tableState">
+                <div class="box-header">
+                    <div class="box-tools pull-right hidden-xs">             
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <span class="input-group-addon">
+                                <i class="fa fa-filter"></i>
+                            </span>
+                            <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                        </div>
+                    </div> 
+                    <div class="col-md-4">
+                        <label class="control-label">Usuario</label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <ui-select  ng-model="userSelected.id" >
+                                    <ui-select-match allow-clear="true">{{$select.selected.name}} </ui-select-match>
+                                    <ui-select-choices 
+                                        refresh="fetch($select)" 
+                                        refresh-delay="100" 
+                                        repeat="e.id as e in users | filter: $select.search">
+                                        {{e.name}} <br>
+
+                                        <div ng-if="$index == $select.items.length - 1">
+                                            <button 
+                                                ng-if="!useNgMouseover && userHashNext" 
+                                                class="btn btn-xs btn-success" 
+                                                style="width: 100%; margin-top: 5px;" 
+                                                ng-click="fetch($select, $event);"
+                                                ng-disabled="loading">Cargar mas resultados...</button>                 
+                                            <button 
+                                                ng-if="useNgMouseover && userHashNext" 
+                                                class="btn btn-xs btn-danger" 
+                                                style="width: 100%; margin-top: 5px;" 
+                                                ng-mouseover="fetch($select, $event);"
+                                                ng-disabled="loading">Mouse over load more...</button>                 
+                                        </div>
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default " ng-click="filtrar()"><i class="fa fa-filter"></i> Filtrar</button>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="box-body">
+
+                    <table class="table table-responsive table-hover table-striped table-condensed" >
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th st-sort="capacidadUsada" st-sort-default="true">Capacidad usada</th>
+                                <th >Capacidad de archivo max.</th>
+                                <th >Capacidad total max.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="espacio in espaciosTbl">
+                                <td>{{espacio.userName}} </td>
+                                <td>{{espacio.capacidadUsada| bytes}}</td>
+                                <td>{{espacio.capacidadArchivoMax| bytes}} </td>
+                                <td>{{espacio.capacidadTotalMax| bytes }} </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="text-center">  
+                                     <count-rows table-state="tableState" items="espaciosTbl.length" total="count"></count-rows>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                <custom-pagination display-pages="10"></custom-pagination>
+                            </td>
+                            </tr>
+                            
+                            
+                        </tfoot>
+                    </table>   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

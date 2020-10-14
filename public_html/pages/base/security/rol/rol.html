@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-lock"></i>
+                Seguridad
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>Roles</small>
+            </div>
+            <div class="breadcrumb">
+                <button permission-hide="['ACTION_LOG_LIST']" uib-tooltip="Ver acciones" tooltip-append-to-body="true" ui-sref="actionLog/class ({clazz:'Rol'})" class="btn bg-olive" > 
+                    <i class="fa fa-list-ol"></i>
+                    <span class="hidden-xs">Ver acciones</span> 
+                </button>
+                <button class="btn btn-primary" ui-sref="security/rol/add">
+                    <i class="fa fa-plus-circle"></i>
+                    Crear 
+                </button>
+                <button type="button" class="btn btn-default " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary" st-table="roles" st-pipe="paginate" expose-state="tableState">
+                <div class="box-body">
+                    <span class="pull-right">               
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <span class="input-group-addon">
+                                <i class="fa fa-filter"></i>
+                            </span>
+                            <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                        </div>
+                    </span> 
+                    <table class="table table-responsive table-hover table-striped table-condensed" >
+                        <thead>
+                            <tr>
+                                <th st-sort="roles">Rol</th>
+                                <th style="width: 200px">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="rol in roles">
+                                <td>{{rol.name}}</td>
+                                <td style="width: 200px; display: flex;">
+                                    <div class="btn-group btn-group-sm">
+                                        <a ui-sref="security/rol/show({id:rol.id})" uib-tooltip="Ver Detalle" tooltip-append-to-body="true" class="btn btn-default">
+                                            <i class="fa fa-eye blue"></i>
+                                        </a> 
+                                        <a ui-sref="security/rol/edit({id:rol.id})" uib-tooltip="Editar" tooltip-append-to-body="true" class="btn btn-default">
+                                            <i class="fa fa-pencil blue"></i>
+                                        </a> 
+
+                                    </div> 
+                                    <span permission-hide="['ROL_REM']">
+                                        <button 
+                                            class="btn btn-sm btn-default"
+                                            c-btnremove="rol"
+                                            c-action="remove"
+                                            c-service="RolServ" 
+                                            c-callback="onAction" 
+                                            c-name="{{rol.name}}">
+                                            <i class="fa fa-remove blue"></i>
+                                        </button>
+                                    </span>
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="10" ></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

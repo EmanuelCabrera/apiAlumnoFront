@@ -1,0 +1,11 @@
+<div ng-if="contenidolistThumbnailId"  contenidolist-img-dir contenidolist-img-id="contenidolistThumbnailId"  class="thumbnail contenido-thumbnail text-center" ng-click="onClickEvent()">
+    <div>
+        <div  class="btn-group btn-group-xs">
+            <button ng-if="btn.copy"class="btn btn-default btn-xs" type="button" ng-click="$event.stopPropagation(); copy(item)" tooltip-append-to-body="true" uib-tooltip="Copiar URL de archivo" ng-copy="getVisorUrl(contenido.id)">
+                <i class="fa fa-copy"></i>
+            </button>
+
+        </div>
+    </div>
+</div>
+

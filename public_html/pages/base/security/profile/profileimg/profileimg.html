@@ -1,0 +1,81 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa  fa-user"></i>
+                Usuario
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>
+                    <span>Foto de perfil</span>
+                </small>
+                <button type="button" class="btn btn-default pull-right" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atrás
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <p class="help-block"><i class="fa fa-info-circle"></i>
+                        Elegí una de las formas de cargar tu foto de perfil </p>
+                </div>
+                <form ng-submit="submit()">
+                    <div class="box-body " >
+                        <uib-tabset type="pills" active="usuario.tipo">
+                            <uib-tab >
+                                <uib-tab-heading>
+                                    <i class="fa fa-upload"></i> Subir un archivo
+                                </uib-tab-heading>
+                                <div class="row margin text-center callout callout-default">
+                                    <div class="form-group">
+                                        <div class="col-md-6 text-center botones-perfil">
+                                            <label ng-disabled="uploadProgress > 0"  ng-if="!tipo.fileUpload" class="btn btn-primary btn-lg"  for="file">
+                                                <i class="fa fa-file"></i> <span class="hidden-xs">Elegir archivo</span>
+                                            </label>
+                                            <input  ng-model="usuario.file" id="file" class="hidden" ng-file-select="" ng-file-change="onFileChange()" accept="image/*" type="file" >
+                                            <p class="help-block">Puede ser en formato png, jpg o gif.</p>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <img ng-if="usuario.url" class="img-responsive text-center img-perfil" ng-src="{{usuario.url}}" >
+                                        </div>
+                                    </div>
+                                </div>
+                            </uib-tab>
+<!--                            <uib-tab index="1"> 
+                                <uib-tab-heading>
+                                    <i class="fa fa-link" aria-hidden="true"></i>
+                                    Utilizar URL externa
+                                </uib-tab-heading>
+                                <div class="row margin text-center callout callout-default">
+
+                                    <div class="col-md-6 botones-perfil">
+                                        <div  class="form-group">
+                                            <label class="control-label"><cr/>URL de la imagen</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control"   ng-model="usuario.profileimg" >
+                                                <span class="input-group-addon"><i class="fa fa-link"></i></span>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div  class="col-md-6">
+                                        <img  class="img-responsive text-center img-perfil" ng-src="{{usuario.profileimg}}" >
+                                    </div>
+                                </div>
+                            </uib-tab>-->
+                        </uib-tabset>
+                    </div>
+                    <div class="box-footer text-center">
+                        <button type="submit" class="btn btn-primary">Guardar <i class="fa fa-save"></i></button>
+                        <button type="button" class="btn btn-default" back-button > <i class="fa fa-arrow-left"></i> Atras</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,193 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header rol-hidden">
+            <div class="h3">
+                <i class="fa  fa-user"></i>
+                Perfil
+                <i class="fa fa-angle-double-right"></i>
+                <small>
+                    <span>Datos del perfil</span>
+                </small>
+                <button ng-if="!backUrl" type="button" class="btn btn-default pull-right " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atrás
+                </button>
+                <button ng-if="backUrl" type="button" class="btn btn-default pull-right " ng-click="doBackUrl()">
+                    <i class="fa fa-arrow-left"></i>
+                    Atrás
+                </button>
+            </div>
+
+        </section>
+    </div>
+    <div ng-if="!backUrl" class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="box box-primary">
+                <div class="box-body text-center">
+                    <img ui-sref="security/profileimg" 
+                         profile-img user="user" ng-src="img/user.png" class="img-circle pointer " alt="User Image" style="
+                         width: 200px;
+                         height: 200px;
+                         " uib-tooltip="Cambiar mi foto de perfil" tooltip-append-to-body="true">
+                    <h3 class="widget-user-username">{{persona.nombreCompleto}}</h3>
+                    <h5 class="widget-user-desc">{{user.name}}</h5>
+                </div>
+                <div class="box-footer text-center">
+                    <button ui-sref="security/profileimg" type="button" class="btn btn-primary"> 
+                        <i class=" fa fa-picture-o"></i>  Cambiar mi foto de perfil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div ng-if="backUrl" class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-body text-center">
+                    <img ui-sref="security/profileimg" 
+                         profile-img user="user" ng-src="img/user.png" class="img-circle pointer " alt="User Image" style="
+                         width: 200px;
+                         height: 200px;
+                         " uib-tooltip="Cambiar mi foto de perfil" tooltip-append-to-body="true">
+                    <h3 class="widget-user-username">{{persona.nombreCompleto}}</h3>
+                    <h5 class="widget-user-desc">{{user.name}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <p class="help-block"><i class="fa fa-info-circle"></i>
+                        Elegí una de las formas de cargar tu foto de perfil </p>
+                </div>
+                <form ng-submit="subirImg()">
+
+                    <div class="box-body " >
+                        <div class="row margin text-center callout callout-default">
+                            <div class="form-group">
+                                <div class="col-md-6 text-center botones-perfil">
+                                    <label ng-disabled="uploadProgress > 0"  ng-if="!tipo.fileUpload" class="btn btn-primary btn-lg"  for="file">
+                                        <i class="fa fa-file"></i> <span class="hidden-xs">Elegir archivo</span>
+                                    </label>
+                                    <input  ng-model="usuario.file" id="file" class="hidden" ng-file-select="" ng-file-change="onFileChange()" accept="image/*" type="file" >
+                                    <p class="help-block">Puede ser en formato png, jpg o gif.</p>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <img ng-if="usuario.url" class="img-responsive text-center img-perfil" ng-src="{{usuario.url}}" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer text-center">
+                        <button type="submit" class="btn btn-primary">Guardar <i class="fa fa-save"></i></button>
+                        <button type="button" class="btn btn-default" back-button > <i class="fa fa-arrow-left"></i> Atras</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+  
+    <div class="row" >
+        <div class="col-sm-6" ng-if="profileSocialNetworkShow">
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Perfil de redes sociales</h3>
+                </div>
+                <form ng-submit="updateProfile()" name="curso">
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <label class="control-label">Perfil de Facebook</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control"  ng-model="changeProfile.facebook">
+                                <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Perfil de Instagram</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control"  ng-model="changeProfile.instagram">
+                                <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Perfil de Twitter</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control"  ng-model="changeProfile.twitter">
+                                <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>Breve descripción tuya</label>
+                            <textarea class="form-control" ng-model="changeProfile.descripcion" rows="3" placeholder="Ingrese un texto"></textarea>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-default rol-show" back-button="">
+                            <i class="fa fa-arrow-left"></i>
+                            Atrás
+                        </button>
+                        <button class="btn btn-success"> 
+                            <i class=" fa fa-save"></i>  Guardar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-6 ">
+            <form ng-submit="passChange()" name="curso">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Cambiar mi contraseña</h3>
+                    </div>
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <label class="control-label">Contrase&ntilde;a Actual</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" required="" ng-model="pass.actualPass">
+                                <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Contrase&ntilde;a Nueva</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" ng-model="pass.newPass1" required="">
+                                <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': pass.newPass1 != pass.newPass2,'has-success': pass.newPass1 == pass.newPass2}">
+                            <label class="control-label">
+                                <i class="fa fa-warning" ng-show="pass.newPass1 != pass.newPass2" tooltip="Las contraseñas ingresadas no concuerdan"></i>
+                                Repetir Contrase&ntilde;a Nueva
+                            </label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" ng-model="pass.newPass2" required="">
+                                <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-default rol-show" back-button="">
+                            <i class="fa fa-arrow-left"></i>
+                            Atrás
+                        </button>
+                        <button class="btn btn-success"> 
+                            <i class=" fa fa-save"></i>  Guardar
+                        </button>
+
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+

@@ -1,0 +1,120 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-database"></i>
+                Imporar personas desde CSV
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default " back-button="">
+                        <i class="fa fa-arrow-left"></i>
+                        Atras
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="box box-primary"  >
+            <div class="box-body">
+                <div class="col-md-12">
+                    <div class="callout callout-info">
+                        <p>Importa las personas desde un archivo CSV. Elegí el archivo y comenzá el proceso.</p>
+                        <a href="resources/personas.csv">Descargar archivo csv de ejemplo</a>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <label ng-disabled="uploadProgress > 0 && submit"  class="btn btn-success btn-lg"  for="file">
+                        <i class="fa fa-file-excel-o"></i> 
+                        <span ng-if="!success" >Buscar archivo e importar</span>
+                        <span ng-if="success">Importar otro archivo</span>
+                        <icon-loading visible="uploadProgress > 0 && submit"></icon-loading>
+                    </label>
+
+                    <input  ng-disabled="uploadProgress > 0 && submit" accept=".csv" id="file" type="file" class="hidden" ng-file-select=""  ng-model="file" name="file" ng-file-change="importar()">
+                    <p class="help-block hidden-xs no-break font-small">Se permite sólo archivos con las extensión .csv</p>
+                    <div ng-if="uploadProgress > 0"  class="progress">
+                        <div class="progress-bar progress-bar-success" ng-style="{width:uploadProgress + '%'}">
+                            Importado {{uploadProgress}}% 
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="success">
+                    <div class="col-md-6">
+                        <div class="info-box bg-green">
+                            <span class="info-box-icon"><i class="fa fa-database"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Registros importados</span>
+                                <span class="info-box-number">{{response.registrosImportados}}</span>
+                                <span class="progress-description">
+                                    {{response.porcentajeOk | number : 2}}% del total
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-box bg-red">
+                            <span class="info-box-icon"><i class="fa fa-warning"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Registros erroneos</span>
+                                <span class="info-box-number">{{response.errores.length}}</span>
+                                <span class="progress-description">
+                                    {{response.porcentajeError | number : 2}}% del total
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="response.errores.length > 0" class="col-md-12">
+                        <div class="box box-primary" st-table="response.erroresTbl"  st-safe-src="response.errores">
+                            <div class="box-header with-border">
+                                <h3 class="box-title text-danger">
+                                    <i class="fa fa-warning"></i> Registros no importados
+                                </h3>
+                                <div class="box-tools">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                        <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table class="table no-margin">
+                                        <thead>
+                                            <tr>
+                                                <th>Apellido</th>
+                                                <th>Nombre</th>
+                                                <th>DNI</th>
+                                                <th>Correo</th>
+                                                <th>Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="r in response.erroresTbl">
+                                                <td>{{r.obj.apellido}}</td>
+                                                <td>{{r.obj.nombres}}</td>
+                                                <td>{{r.obj.tipoDoc}}: {{r.obj.documento}}</td>
+                                                <td>{{r.obj.contacto ? r.obj.contacto.correo : ''}}</td>
+                                                <td class="text-center">
+                                                    <span class="label label-danger">{{r.sms}}</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="box-footer text-center">
+                                <div st-pagination="" st-items-by-page="10" st-displayed-pages="15"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>

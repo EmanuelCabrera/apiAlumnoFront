@@ -1,0 +1,145 @@
+<div class="col-xs-12">
+    <!-- 
+   Cicha Created: 2016/03/24 
+    -->
+    <div class="row">
+        <div class="form-group col-xs-12 col-sm-6 col-md-6">
+            <label  class="control-label"><cr visible='rf.tipoDoc'/>Tipo de Documento</label>
+            <div class="input-group">
+                <select class="form-control" ng-model="persona.tipoDoc" ng-required="rf.tipoDoc">
+                    <option value="DNI">DNI</option>
+                    <option value="CI">CI</option>
+                    <option value="LC">LC</option>
+                    <option value="LE">LE</option>
+                </select>
+                <span class="input-group-addon"><i class="fa fa-list"></i></span>
+            </div>        
+        </div>
+
+        <div class="form-group col-xs-12 col-sm-6  col-md-6">
+            <label class="control-label"><cr visible='rf.documento'/>Número Documento</label>
+            <div class="input-group">
+                <input ng-blur="calcularCUIT()" ng-model-options="{debounce: 1100}"  type="text" name="documento"  ng-maxlength="255" class="form-control" ng-model="persona.documento" ng-required="rf.documento">
+                <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+            </div>
+        </div>
+        
+        <div class="form-group col-xs-12 col-sm-6  col-md-6">
+            <label class="control-label">Cuit</label>
+            <div class="input-group">
+                <input  ng-model-options="{debounce: 1100}"  type="text" name="cuit"  ng-maxlength="255" class="form-control" ng-model="persona.cuit" >
+                <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+            </div>
+        </div>
+
+        <div class="col-xs-12 no-padding" ng-if="personaFounded && !findNumDocCanceled && personaFounded.id != persona.id">
+            <h4 style="margin-bottom: 10px; margin-top: 5px;" class="text-center text-danger " ng-if="personaFounded.deletedAt">
+                <i class="fa fa-user"></i> Persona dada de baja
+            </h4>
+            <h4 style="margin-bottom: 10px; margin-top: 5px;" class="text-center text-info " ng-if="!personaFounded.deletedAt">
+                <i class="fa fa-user"></i> Persona encontrada
+            </h4>
+            <div class="col-xs-12 col-md-6 col-lg-4">
+                <strong><i class="fa   fa-user margin-r-5"></i> Nombre y apellidos</strong>
+                <p class="text-muted no-margin" > {{personaFounded.nombres}}&nbsp&nbsp{{ personaFounded.apellido}}</p>
+                <br class="margin">
+            </div>
+
+            <div  class="col-xs-6 col-md-3 col-lg-4">
+                <strong>
+                    <i class="fa fa-calendar"></i>   
+                    Fecha de Nacimiento
+                </strong>
+                <p  class="text-muted no-margin">{{personaFounded.fechaNac| date:"dd/MM/yyyy"}}</p>
+                <br class="margin">
+            </div>
+
+            <div class="col-xs-6 col-md-3 col-lg-4">
+                <strong><i class="fa  fa-hashtag margin-r-5"></i> Tipo y Nº Documento</strong>
+                <p class="text-muted no-margin">{{personaFounded.tipoDoc}} {{personaFounded.documento}}</p>
+                <br class="margin">
+            </div>
+            <div class="col-xs-12 text-center margin-bottom">
+                <button  class="btn btn-default text-red"  type="button" ng-click="cancelSetPersona()">
+                    <i class="fa fa-remove" ></i>
+                    Cancelar
+                </button>
+                <button  class="btn btn-default text-blue"  type="button" ng-if="personaFounded.deletedAt" ng-click="restaurarSetPersona()">
+                    <i class="fa fa-refresh" ></i>
+                    Restaurar y cargar
+                </button>
+                <button  type="button" ng-click="setPersonaFounded()"  ng-if="!personaFounded.deletedAt" style="color: #3c763d;" class="btn btn-default text-success" >
+                    <i class="fa fa-check"></i> Cargar datos
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label class="control-label"><cr visible='rf.apellido'/>Apellidos</label>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="persona.apellido" name="apellido"  maxlength="255" restrict-input="{type: 'lettersOnly'}" ng-required="rf.apellido">
+                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+
+            </div>
+        </div>
+        <div class="form-group  col-md-6">
+            <label class="control-label"><cr visible='rf.nombres'/>Nombres</label>
+            <div class="input-group">
+                <input type="text" class="form-control" required="" maxlength="255" name="nombre" ng-model="persona.nombres" restrict-input="{type: 'lettersOnly'}" ng-required="rf.nombres">
+                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+            </div>
+        </div>
+
+        <div class="form-group col-xs-12   col-md-6">
+            <label class="control-label"><cr visible='rf.fechaNac'/>Fecha de Nacimiento</label>
+            <div class="input-group">
+                <div class="col-xs-4 col-condensed">
+                    <label class="control-label hidden-xs">Día</label>
+                    <input type="number" placeholder="Día" max="{{maxDay}}" class="form-control" ng-model="fechaNac.day" min="1"  ng-required="rf.fechaNac" ng-change="onChangeFechaNac()">
+                </div>
+                <div class="col-xs-4 col-condensed">
+                    <label class="control-label hidden-xs">Mes</label>
+                    <select class="form-control"  ng-model="fechaNac.month" ng-required="rf.fechaNac" ng-change="onChangeFechaNac()">
+                        <option value="" selected="">-- Seleccionar --</option>
+                        <option ng-repeat="mes in meses" value="{{$index}}">{{mes}}</option>
+                    </select>
+                </div>
+                <div class="col-xs-4 col-condensed">
+                    <label class="control-label hidden-xs">Año</label>
+                    <div class="input-group"><input type="number" placeholder="año" class="form-control" ng-model="fechaNac.year" min="1800" ng-required="rf.fechaNac" ng-change="onChangeFechaNac()">
+                        <span class="input-group-addon">
+                            <!--<span ng-show="focused">{{persona.edad}}</span>-->
+                            <i class="fa fa-calendar"></i>
+                        </span></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group  col-md-6">
+            <label  class="control-label"><cr visible='rf.sexo'/>Sexo</label>
+            <div class="input-group">
+                <select class="form-control" ng-model="persona.sexo" ng-required="rf.sexo">
+                    <option value="" selected="">-- Seleccionar --</option>
+                    <option value="F">Femenino</option>
+                    <option value="M">Masculino</option>
+                    <option value="O">Otro</option>
+                </select>
+                <span class="input-group-addon"><i class="fa fa-intersex"></i></span>
+            </div>        
+        </div>
+        <div class="form-group  col-md-6">
+            <label  class="control-label"><cr visible='rf.estadoCivil'/>Estado Civil</label>
+            <div class="input-group">
+                <select class="form-control" ng-model="persona.estadoCivil" ng-required="rf.estadoCivil">
+                    <option value="" selected="">-- Seleccionar --</option>
+                    <option value="Casado">Casado/a</option>
+                    <option value="Divorciado">Divorciado/a</option>
+                    <option value="Soltero">Soltero/a</option>
+                    <option value="Viudo">Viudo/a</option>
+                </select>
+                <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>
+            </div>        
+        </div>
+    </div>
+</div>

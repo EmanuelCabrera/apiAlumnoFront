@@ -1,0 +1,135 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                Methodname
+                <i class="fa  fa-angle-double-right"></i>
+                <small>
+                    <span>Invocador de methodoname</span>
+                </small>
+            </div>
+            <div class="breadcrumb">
+                <button type="button" class="btn btn-default " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary" >
+                <div class="box-body">
+                    <ui-select ng-model="method.name" theme="bootstrap" sortable="true" close-on-select="true" >
+                        <ui-select-match placeholder="Seleccion un methodname">{{$select.selected}}</ui-select-match>
+                        <ui-select-choices repeat="method in methods| orderBy: 'toString()'| filter:$select.search">
+                            <div ng-bind-html="method | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        <ui-select-no-choice>
+                            No se ha encontrado el methodname
+                        </ui-select-no-choice>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Navegación de par&aacute;metros del servidor</h3>
+                </div>
+                <div class="box-body">
+                    <div class="col-md-6" style="height: 250px;overflow-y: scroll;">
+                        <angular-jsoneditor ng-model="obj" options="modes.options1" style="width: 100%"></angular-jsoneditor>
+                    </div>
+                    <div class="col-md-6" style="height: 250px;overflow-y: scroll;">
+                        <angular-jsoneditor ng-model="obj" options="modes.options2" style="width: 100%"></angular-jsoneditor>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" ng-model="multiaction">
+                                Ejecutar en modo lista
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="button" class="btn btn-default" back-button="">
+                        <i class="fa fa-arrow-left"></i>
+                        Atrás
+                    </button>
+                    <button class="btn btn-primary" ng-click="update(obj, method)"> 
+                        <i class="fa fa-cog"></i>
+                        Ejecutar
+                    </button>
+                </div>
+            </div>
+            <div ng-if="success">
+                <div class="col-md-6">
+                    <div class="info-box bg-green">
+                        <span class="info-box-icon"><i class="fa fa-database"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Invocaciones correctas</span>
+                            <span class="info-box-number">{{response.registrosImportados}}</span>
+                            <span class="progress-description">
+                                {{response.porcentajeOk| number : 2}}% del total
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box bg-red">
+                        <span class="info-box-icon"><i class="fa fa-warning"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Invocaciones erroneas</span>
+                            <span class="info-box-number">{{response.errores.length}}</span>
+                            <span class="progress-description">
+                                {{response.porcentajeError| number : 2}}% del total
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="response.errores.length > 0" class="col-md-12">
+                    <div class="box box-primary" st-table="response.erroresTbl"  st-safe-src="response.errores">
+                        <div class="box-header with-border">
+                            <h3 class="box-title text-danger">
+                                <i class="fa fa-warning"></i> Invocaciones erroneas
+                            </h3>
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table class="table no-margin">
+                                    <thead>
+                                        <tr>
+                                            <th>objeto</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="r in response.erroresTbl">
+                                            <td>{{r.obj}}</td>
+                                            <td class="text-center">
+                                                <span class="label label-danger">{{r.sms}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="box-footer text-center">
+                            <div st-pagination="" st-items-by-page="10" st-displayed-pages="15"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

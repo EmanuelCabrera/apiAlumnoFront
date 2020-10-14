@@ -1,0 +1,37 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-map"></i>
+                Test de Map View
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default pull-right" back-button="">
+                        <i class="fa fa-arrow-left"></i>
+                        Atras
+                    </button>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    <i class="fa fa-map-marker"></i>
+                    Dirección 
+                </h3>
+                <div class="box-tools pull-right">
+                    <!-- Buttons, labels, and many other things can be placed here! -->
+                    <button type="button" class="btn btn-default" ng-click="cambiarMarcadores()">
+                       Cambiar marcadores
+                    </button>
+                </div>
+            </div>
+            <div class="box-body" novalidate style="height: 500px;">
+                <direction-map-view points="points"></direction-map-view>
+            </div>
+        </div>
+    </div>
+</section>

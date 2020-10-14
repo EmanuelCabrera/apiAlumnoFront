@@ -1,0 +1,21 @@
+/*IMAGE-ZOOM*/
+
+.zoomPanFrame{
+    /*display:inline-block;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto ;*/
+    overflow: auto;
+   
+}
+
+.zoomPanImage{
+    /*width: 100%;*/
+    
+    /*display: block;*/
+    transition: transform .5s ease-out;
+    transform: scale(1);
+    transform-origin: 0 0 0px;
+}
+zoom{
+    cursor: zoom-in;
+}

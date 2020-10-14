@@ -1,0 +1,79 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-lock"></i>
+                Seguridad
+                <i class="fa  fa-angle-double-right"></i>
+                Grupo de Usuarios
+                <i class="fa  fa-angle-double-right"></i>
+                <small>
+                    <span ng-if="!usergroup.id">Crear</span>
+                    <span ng-if="usergroup.id">Modificar ({{usergroup.nombre}})</span>
+                </small>
+            </div>
+            <div class="breadcrumb">
+                <button type="button" class="btn btn-default" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+                <open-modal-action-log id="usergroup.id">
+                </open-modal-action-log>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <form ng-submit=" usergroup.id ? update() : create()">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Datos del grupo de usuarios</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Nombre del grupo de usuarios</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="usergroup.nombre" ng-required="rf.nombre">
+                                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6" >
+                            <label class="control-label">Usuarios</label>
+                            <ui-select  multiple ng-model="usergroup.usersId" theme="bootstrap" sortable="true" close-on-select="true"  >
+                                <ui-select-match placeholder="Ingrese un usuario" style="padding-left: 4px;"> {{ $item.name}}</ui-select-match>
+                                <ui-select-choices repeat="e.id as e in users | filter:$select.search">
+                                    <div ng-bind-html="e.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                                <ui-select-no-choice>
+                                    No se han encontrado usuarios
+                                </ui-select-no-choice>
+                            </ui-select>
+                        </div>
+<!--                        <div class="form-group col-md-6 col-xs-12">
+                            <label class="control-label  hidden-xs">Usuarios</label>
+                            <select-paginated  config="selectUsuario"  
+                                               selected-id="usergroup.usersId">  
+                            </select-paginated>
+                        </div>-->
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="form-group col-md-6" >
+
+                                <button  class="btn btn-success" ng-disabled="saving">
+                                    <i class="glyphicon glyphicon-refresh spinning" ng-show="saving"></i>
+                                    <i class="fa fa-save" ng-hide="saving"></i>
+                                    Guardar
+                                </button>
+                                <button type="button" class="btn btn-default" back-button="">
+                                    <i class="fa fa-arrow-left"></i> Volver
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

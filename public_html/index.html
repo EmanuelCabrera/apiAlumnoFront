@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ApiAlumno System</title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <meta name="Author" content="Marandu  Comunicaciones SE"> 
+        <!--<meta name="description" content="">-->
+        <!--<meta name="keywords" content="Marandu,Software Development,Desarrollo de software,Internet,Conectividad,Data Center,Misiones">-->
+
+        <link rel="icon" type="image/png" href="img/icon.png">
+        <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="libs/adminLTE/AdminLTE.min.css" rel="stylesheet">
+        <link  href="libs/adminLTE/skins/_all-skins.min.css" rel="stylesheet">
+        <link href="libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="libs/pnotify/pnotify.custom.min.css" rel="stylesheet">
+        <link href="libs/loadingBar/loading-bar.css" rel="stylesheet">
+        <link href="libs/ionicons.min.css" rel="stylesheet">
+        <link href="libs/select2/select.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/iCheck/skins/all.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/accordeon/v-accordion.min.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/ngWYSIWYG/editor.min.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/zoom-pan/css/zoomPan.css" rel="stylesheet" type="text/css"/>
+        <link href="pages/base/contenido/_css/css.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/calendar/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/css.css" rel="stylesheet">
+        <!--DATETIMEPICKER-->
+        <link href="libs/datetimepicker/bootstrap-datetimepicker.min.css"/>
+
+
+
+        <!--Maps-->
+        <link href="libs/mapbox-gl-0.42.0/mapbox-gl.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/leaflet-1.5.1/leaflet.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/leaflet-locatecontrol/L.Control.Locate.min.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/leaflet-fullscreen-1.0.1/leaflet.fullscreen.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/leaflet-markercluster-1.4.1/MarkerCluster.css" rel="stylesheet" type="text/css"/>
+        <link href="libs/leaflet-markercluster-1.4.1/MarkerCluster.Default.css" rel="stylesheet" type="text/css"/>
+
+        <!--Switch Buttons-->
+        <link href="libs/bootstrap-switch-3.3.4/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
+
+    </head>
+    <body ng-app="app" class="{{bodylayout}}" ng-controller="IndexCont">
+
+        <div class="wrapper" ng-if="!inConstruction.active">
+            <button id="btn-pnotify" title="Ver todas las notificaciones" style="display: none;" onclick="$(this).trigger('pnotify.history-last');" class="btn btn-danger flat float-btn-stack-noti"><i class="fa fa-warning"></i></button>
+            <div ng-if="!user" ng-include="'sections/Public/public.html'" ng-controller="PublicCont"></div>
+            <div ng-if="user" ng-include="'sections/Private/private.html'" ng-controller="PrivateCont" id="menu"></div>
+        </div>
+        <div class="wrapper" ng-if="inConstruction.active">
+            <div  ng-include="'sections/InConstruction/inConstruction.html'" ng-controller="InConstructionCont"></div>
+        </div>
+
+        <!--<script src="libs/momentjs/moment.js" ></script>-->
+        <script src="libs/momentjs/moment-with-locales.min.js"></script>
+        <script src="libs/momentjs/moment-duration-format.js"></script>
+        <script src="libs/momentjs/moment-timezone-with-data.min.js"></script>
+        <script src="libs/jQuery/jquery-1.11.0.min.js"></script>
+        <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+        <script src="libs/adminLTE/app.min.js"></script>
+        <!--https://github.com/eligrey/FileSaver.js/-->
+        <script src="libs/FileSaver.min.js"></script>
+
+        <script src="libs/angular-1.5.2/angular.min.js"></script>
+        <script src="libs/angular-1.5.2/i18n/angular-locale_es-ar.js"></script>
+        <script src="libs/angular-1.5.2/angular-animate.min.js"></script>
+        <script src="libs/ui.router/angular-ui-router.min.js"></script>
+        <script src="libs/loadingBar/loading-bar.js"></script>
+        <script src="libs/ui.bootstrap/ui-bootstrap-tpls-1.2.5.min.js"></script>
+        <script src="libs/pnotify/pnotify.custom.min.js"></script>
+        <script src="libs/satellizer/satellizer.min.js"></script>
+        <script src="libs/smart-table/smart-table.min.js"></script>
+
+        <script src="libs/sanitize/angular-sanitize.min.js"></script>
+        <script src="libs/ngWYSIWYG/wysiwyg.min.js"></script>
+
+        <script src="libs/select2/select.min.js"></script>
+        <script src="libs/iCheck/icheck.min.js"></script>
+        <script src="libs/jquery.slimscroll.js"></script>
+        <script src="libs/jsoneditor/angular-jsoneditor.js"></script>
+        <script src="libs/ng-bootbox/bootbox.min.js"></script>
+        <script src="libs/ng-bootbox/ng-bootbox.js"></script>
+        <script src="libs/accordeon/v-accordion.js"></script>
+        <script src="libs/angular-session-storage/swx-session-storage.min.js"></script>
+        <script src="libs/angular-recaptcha.js"></script>
+        <script src="libs/zoom-pan/js/zoomPan.js" ></script>
+
+        <!--Maps-->
+        <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyC8CzTRcP3PmJk6QTUu41yS0d21p8sLhSs'></script>
+        <script src="libs/mapbox-gl-0.42.0/mapbox-gl.js"></script>
+        <script src="libs/leaflet-1.5.1/leaflet.js" type="text/javascript"></script>
+        <script src="libs/leaflet-locatecontrol/L.Control.Locate.min.js" type="text/javascript"></script>
+        <script src="libs/leaflet-fullscreen-1.0.1/Leaflet.fullscreen.min.js" type="text/javascript"></script>
+        <script src="libs/leaflet-markercluster-1.4.1/leaflet.markercluster.js" type="text/javascript"></script>
+        <!--Date Time Picker-->
+        <script src="libs/datetimepicker/bootstrap-datetimepicker.min.js" ></script>
+        <!--Calendar-->
+        <script src="libs/calendar/fullcalendar.min.js" ></script>
+        <script src="libs/calendar/gcal.min.js" ></script>
+        <script src="libs/calendar/calendar.js" ></script>
+        <!--Switch Buttons-->
+        <script src="libs/bootstrap-switch-3.3.4/bootstrap-switch.min.js" ></script>
+
+
+        <!--        <script type="text/javascript" src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+                <script type="text/javascript" src="bower_components/angular/angular.js"></script>-->
+        <script type="text/javascript" src="libs/acecode/ace.js"></script>
+        <script type="text/javascript" src="libs/acecode/mode-javascript.js"></script>
+        <script type="text/javascript" src="libs/acecode/worker-javascript.js"></script>
+        <!--<script type="text/javascript" src="libs/acecode/mode-json.js"></script>-->
+        <script type="text/javascript" src="libs/acecode/mode-html.js"></script>
+        <script type="text/javascript" src="libs/acecode/worker-html.js"></script>
+        <!--<script type="text/javascript" src="libs/ext-language_tools.js"></script>-->
+        <script type="text/javascript" src="libs/acecode/theme-textmate.js"></script>
+
+        <!-- build:js -->
+
+        <script src="config/parameters.js"></script>
+        <script src="config/config.js"></script>
+        <script src="js/global.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/JSErrorLogModule.js"></script>
+        <script src="js/genericDirectives.js"></script>
+        <script src="js/genericFilters.js"></script>
+        <script src="js/genericFactory.js"></script>
+        <script src="js/genericServ.js"></script>
+        <script src="js/jconfUtils.js"></script>
+        <script src="js/LogicalRemoveServ.js"></script>
+        <script src="js/AlertRestoreCont.js"></script>
+        <script src="indexCont.js"></script>
+
+        <script src="directives/pagination/paginationDir.js"></script>
+        <script src="directives/pagination/pagination.js" ></script>
+        <script src="directives/checkLabelDir/checkLabelDir.js"></script>
+        <script src="directives/booleanShowDir/booleanShowDir.js"></script>
+        <script src="directives/cBtnremove.js"></script>
+        <script src="directives/countRowsDir.js"></script>
+        <script src="directives/unidadMedida/unidadMedida.js"></script>
+        <script src="directives/codeDir/codeDir.js"></script>
+        <script src="directives/selectPaginated/SelectPaginated.js"></script>
+        <script src="directives/selectmPaginated/SelectmPaginated.js"></script>
+        <script src="directives/toCiudadanoDir.js"></script>
+
+        <!--------------------------------------- BASE------------------------------------------>
+        <script src="pages/base/_js/ruteo.js"></script>
+        <script src="pages/base/_js/security.js"></script>
+
+        <!--ACTION LOG-->
+        <script src="pages/base/actionLog/actionLogDir/actionLogServ.js"></script>
+        <script src="pages/base/actionLog/actionLogDir/actionLogView/actionLogView.js"></script>
+        <script src="pages/base/actionLog/actionLogDir/actionLogModal/actionLogModal.js"></script>
+        <script src="pages/base/actionLog/actionLogDir/actionLogModal/openModalActionLogDir/openModalActionLog.js"></script>
+        <script src="pages/base/actionLog/actionLogClass/actionLogClassCont.js"></script>
+        <script src="pages/base/actionLog/actionLogList/actionLogListCont.js"></script>
+
+        <!--SECTION-->
+
+        <script src="sections/ruteo.js"></script>
+        <script src="sections/Public/publicCont.js"></script>
+        <script src="sections/Private/privateCont.js"></script>
+        <script src="sections/InConstruction/inConstructionCont.js"></script>
+
+        <!--SYSTEM-->
+        <script src="pages/base/system/_js/ruteo.js"></script>
+        <script src="pages/base/system/_js/jconf.js"></script>
+        <script src="pages/base/system/_js/security.js"></script>
+        <script src="pages/base/system/_js/services.js"></script>
+
+        <script src="pages/base/system/serverconfig/serverconfCont.js"></script>
+        <script src="pages/base/system/serverconfig/serverconfServ.js"></script>     
+
+        <script src="pages/base/system/timers/scheduleEntity/scheduleEntityServ.js"></script>
+        <script src="pages/base/system/timers/scheduleEntity/scheduleServ.js"></script>
+        <script src="pages/base/system/timers/scheduleEntity/scheduleEntityCont.js"></script>
+        <script src="pages/base/system/timers/scheduleEntity/act/scheduleEntityActCont.js"></script>
+        <script src="pages/base/system/timers/timerSheduleDir/timerSheduleDir.js"></script>
+
+        <script src="pages/base/system/methodname/methodnameCont.js"></script>
+        <script src="pages/base/system/methodname/methodnameServ.js"></script>
+        <script src="pages/base/system/logs/requestLog/requestLogCont.js"></script>
+        <script src="pages/base/system/logs/requestLog/requestLogServ.js"></script>
+        <script src="pages/base/system/logs/errorLog/errorLogCont.js"></script>
+        <script src="pages/base/system/logs/errorLog/errorLogServ.js"></script>
+        <script src="pages/base/system/logs/errorLog/notificationCase/errorLogNotificationCaseServ.js"></script>
+        <script src="pages/base/system/logs/errorLog/notificationCase/notificationCaseCont.js" ></script>
+        <script src="pages/base/system/logs/errorLog/notificationAccount/errorLogNotificationAccountServ.js"></script>
+        <script src="pages/base/system/logs/errorLog/notificationAccount/notificationAccountCont.js"></script>
+        <script src="pages/base/system/template/templateServ.js"></script>
+        <script src="pages/base/system/template/templateCont.js"></script>
+        <script src="pages/base/system/eventbus/eventbusServ.js"></script>
+        <script src="pages/base/system/eventbus/eventbusCont.js"></script>
+        <script src="pages/base/system/classinfo/classinfoServ.js"></script>
+        <script src="pages/base/system/classinfo/classinfoCont.js"></script>
+
+        <script src="pages/base/system/mail/mailCont.js"></script>
+        <script src="pages/base/system/mail/mailServ.js"></script>
+
+        <script src="pages/base/system/backup/backupServ.js"></script>
+        <script src="pages/base/system/backup/backupCont.js"></script>
+        <script src="pages/base/system/apirest/apirest.js"></script>
+
+        <!--ERROR REPORT-->
+        <script src="pages/base/errorReport/_js/ruteo.js"></script>
+        <script src="pages/base/errorReport/_js/services.js"></script>
+        <script src="pages/base/errorReport/errorReportServ.js"></script>
+        <script src="pages/base/errorReport/errorReportCont.js"></script>
+
+        <!--SECURITY-->
+        <script src="pages/base/security/securityManagment.js"></script>
+        <script src="pages/base/security/permissionHideDir.js"></script>
+        <script src="pages/base/security/_js/jconf.js"></script>
+        <script src="pages/base/security/_js/ruteo.js"></script>
+        <script src="pages/base/security/_js/services.js"></script>
+        <script src="pages/base/security/_js/templates.js"></script>
+        <script src="pages/base/security/_js/security.js"></script>
+
+        <script src="pages/base/security/stateHideDir.js"></script>
+        <script src="pages/base/security/loginTradicional/loginCont.js"></script>
+        <script src="pages/base/security/loginCiudadanoMisiones/loginCont.js"></script>
+
+        <script src="pages/base/security/loginSSO/redirect/interceptor.js"></script>
+        <script src="pages/base/security/loginSSO/redirect/redirectCont.js"></script>
+
+        <script src="pages/base/security/loginSSO/login.js"></script>
+
+        <script src="pages/base/security/passChange/passChangeCont.js"></script>
+        <script src="pages/base/security/passReset/passResetCont.js"></script>
+        <script src="pages/base/security/passReset/passResetConfirmCont.js"></script>
+        <script src="pages/base/security/confirmationEmail/confirmationEmail.js"></script>
+        <script src="pages/base/security/registro/registroCont.js"></script>
+        <script src="pages/base/security/sessionServ.js"></script>
+        <script src="pages/base/security/usuario/userServ.js"></script>        
+        <script src="pages/base/security/usuario/userCont.js"></script>
+        <script src="pages/base/security/usuario/act/userAct.js"></script>
+        <script src="pages/base/security/usuario/changePassword/changePasswordCont.js"></script>
+        <script src="pages/base/security/usuarioCiudadanoMisiones/userCont.js"></script>
+        <script src="pages/base/security/usuarioCiudadanoMisiones/act/userAct.js"></script>
+        <script src="pages/base/security/rol/rolServ.js"></script>
+        <script src="pages/base/security/rol/rolpermissionServ.js"></script>
+        <script src="pages/base/security/rol/act/rolAct.js"></script>
+        <script src="pages/base/security/rol/rolCont.js"></script>
+        <script src="pages/base/security/rol/showDetailRol/showDetailRolCont.js"></script>
+        <script src="pages/base/security/rol/detailRol/detailRolCont.js"></script>
+        <script src="pages/base/security/rol/detailGroupPermission/detailGroupPermission.js"></script>
+        <script src="pages/base/security/usergroup/usergroupServ.js"></script>        
+        <script src="pages/base/security/usergroup/usergroupCont.js"></script>
+        <script src="pages/base/security/usergroup/act/usergroupAct.js"></script>
+        <script src="pages/base/security/profile/ProfileCont.js"></script>
+        <script src="pages/base/security/profileCiudadanoMisiones/ProfileCont.js"></script>
+        <script src="pages/base/security/profile/profileimg/profileImgDir.js"></script>
+        <script src="pages/base/security/profile/profileimg/profileimgCont.js"></script>
+        <script src="pages/base/security/profile/public/profilePublicCont.js"></script>
+        <script src="pages/base/security/espacioUsado/espacioUsadoServ.js"></script>
+        <script src="pages/base/security/espacioUsado/espacioUsadoCont.js"></script>
+
+        <!--CONTACTO-->
+        <script src="pages/base/contacto/_js/jconf.js"></script>
+        <script src="pages/base/contacto/_js/services.js"></script>
+        <script src="pages/base/contacto/_js/templates.js"></script>
+        <script src="pages/base/contacto/contactoForm/contactoForm.js"></script>
+        <script src="pages/base/contacto/details/contactoDetail.js"></script>
+
+        <!--DIRECCION-->
+        <script src="pages/base/direccion/_js/jconf.js"></script>
+        <script src="pages/base/direccion/_js/ruteo.js"></script>
+        <script src="pages/base/direccion/_js/services.js"></script>
+        <script src="pages/base/direccion/_js/templates.js"></script>
+        <script src="pages/base/direccion/_js/security.js"></script>
+        <script src="pages/base/direccion/pais/paisServ.js"></script>
+        <script src="pages/base/direccion/pais/paisCont.js"></script>
+        <script src="pages/base/direccion/provincia/provinciaServ.js"></script>
+        <script src="pages/base/direccion/provincia/provinciaCont.js"></script>
+        <script src="pages/base/direccion/departamento/departamentoServ.js"></script>
+        <script src="pages/base/direccion/departamento/departamentoCont.js"></script>
+        <script src="pages/base/direccion/departamento/act/departamentoActCont.js"></script>
+        <script src="pages/base/direccion/localidad/localidadServ.js"></script>
+        <script src="pages/base/direccion/localidad/localidadCont.js"></script>
+        <script src="pages/base/direccion/localidad/act/localidadActCont.js"></script>
+        <script src="pages/base/direccion/direccionForm/direccionForm.js"></script>
+        <script src="pages/base/direccion/details/direccionDetail.js"></script>
+        <script src="pages/base/direccion/directionMap/directionMap.js"></script>
+        <script src="pages/base/direccion/directionMapView/directionMapView.js"></script>
+
+        <!--RRHH-->
+        <script src="pages/base/rrhh/_js/jconf.js"></script>
+        <script src="pages/base/rrhh/_js/ruteo.js"></script>
+        <script src="pages/base/rrhh/_js/services.js"></script>
+        <script src="pages/base/rrhh/_js/templates.js"></script>
+        <script src="pages/base/rrhh/_js/security.js"></script>
+        <script src="pages/base/rrhh/persona/personaServ.js"></script>
+        <script src="pages/base/rrhh/persona/personaCont.js"></script>
+        <script src="pages/base/rrhh/persona/act/personaAct.js"></script>
+        <script src="pages/base/rrhh/persona/details/personaDetail.js"></script>
+        <script src="pages/base/rrhh/persona/personaForm/personaForm.js"></script>
+        <script src="pages/base/rrhh/persona/modal/modalPersonaCont.js" ></script>
+        <script src="pages/base/rrhh/persona/importar/importarPersonaCont.js"></script>
+        <script src="pages/base/rrhh/persona/me/personaMe.js"></script>
+        <script src="pages/base/rrhh/persona/personaItemDir/personaItem.js"></script>
+
+        <!--CONTENIDO-->
+        <script src="pages/base/contenido/_js/services.js" ></script>
+        <script src="pages/base/contenido/_js/jconf.js"></script>
+        <script src="pages/base/contenido/contenidoManager.js"></script>
+
+        <script src="pages/base/contenido/contenidoServ.js"></script>
+        <script src="pages/base/contenido/contenidoDir/contenidoDir.js"></script>
+        <script src="pages/base/contenido/contenidoModal/contenidoModal.js"></script>
+        <script src="pages/base/contenido/fileMultipleDir/fileMultipleDir.js"></script>
+        <script src="pages/base/contenido/fileDir/fileDir.js"></script>
+
+
+        <script src="pages/base/contenido/contenidoImgDir/contenidoImgDir.js"></script>
+        <script src="pages/base/contenido/contenidoThumbnailDir/contenidoThumbnailDir.js"></script>
+        <script src="pages/base/contenido/contenidoModalInfo/contenidoModalInfo.js"></script>
+        <script src="pages/base/contenido/contenidolistImgDir/contenidolistImgDir.js" ></script>
+        <script src="pages/base/contenido/contenidolistThumbnailDir/contenidolistThumbnailDir.js"></script>
+
+
+        <!--TEST-->
+        <script src="pages/base/test/_js/services.js"></script>
+        <script src="pages/base/test/_js/ruteo.js"></script>
+        <script src="pages/base/test/contenido/contenidoTestServ.js"></script>
+        <script src="pages/base/test/contenido/contenidoTestAct.js"></script>
+        <script src="pages/base/test/mapView/mapViewTestCont.js" type="text/javascript"></script>
+        <script src="pages/base/test/selectPaginated/selectPaginated.js"></script>
+
+
+        <!--COMENTARIO-->
+        <script src="pages/base/comment/commentPlainForm/commentPlainForm.js"></script>
+        <script src="pages/base/comment/commentPlainForm/commentPlainServ.js"></script>
+        <script src="pages/base/comment/_js/jconf.js"></script>
+        <script src="pages/base/comment/_js/security.js"></script>
+        <script src="pages/base/comment/_js/services.js"></script>
+        <script src="pages/base/comment/_js/templates.js"></script>
+
+        <!--CALENDARIO-->
+        <script src="pages/base/calendario/_js/ruteo.js"></script>
+        <script src="pages/base/calendario/_js/jconf.js"></script>
+        <script src="pages/base/calendario/_js/security.js"></script>
+        <script src="pages/base/calendario/_js/services.js"></script>
+        <script src="pages/base/calendario/calendarioCont.js"></script>
+        <script src="pages/base/calendario/calendarioServ.js"></script>
+        <!--CALENDARIO EVENTO-->
+        <script src="pages/base/calendario/calendarioEvento/calendarioEventoCont.js"></script>
+        <script src="pages/base/calendario/calendarioEvento/calendarioEventoServ.js"></script>
+
+        <!--API ALUMNO-->
+        <script src="pages/alumno/_js/jconf.js"></script>
+        <script src="pages/alumno/_js/ruteo.js"></script>
+        <script src="pages/alumno/_js/security.js"></script>
+        <script src="pages/alumno/_js/services.js"></script>
+
+        <!--MATERIA-->
+        <script src="pages/alumno/materia/materiaCont.js"></script>
+        <script src="pages/alumno/materia/materiaServ.js"></script>
+
+        <!-- endbuild --> 
+    </body>
+</html>

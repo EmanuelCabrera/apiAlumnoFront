@@ -1,0 +1,179 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-file"></i>
+                FileDir
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default pull-right" back-button="">
+                        <i class="fa fa-arrow-left"></i>
+                        Atras
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Documentación</h4>
+                        <a href="https://docs.google.com/document/d/1V60_kmi8eWA1wb42HyMexFSoqtGKhznlRmKc1__8ZGA/edit" target="_BLANK">https://docs.google.com/document/d/1V60_kmi8eWA1wb42HyMexFSoqtGKhznlRmKc1__8ZGA/edit</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <form ng-submit="contenido.id? update() : create()">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label"><cr/>Nombre Contenido</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="nombre" ng-model="contenido.nombre" >
+                                    <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="box-body" st-table="contenidosTbl" st-safe-src="contenidos">
+                                    <span class="pull-right">
+                                        <i class="fa fa-filter"></i>
+                                        <input type="text" ng-model="filtro.$" placeholder="Filtro">
+                                    </span>
+                                    <table class="table table-hover table-striped table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="d in contenidosTbl| filter:filtro" ng-click="onSelectContenido(d.id)" ng-class="{'st-selected':d.id === contenido.id}">
+                                                <td>{{d.nombre}}</td>
+                                                <td>
+                                        <c-btnremoveview  
+                                            c-callback="onAction" 
+                                            c-obj="d" 
+                                            c-service="ContenidoTestServ" 
+                                            c-name="{{d.nombre}}">
+                                        </c-btnremoveview>
+                                        </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="2" class="text-center">
+                                                    <div st-pagination="" st-items-by-page="3" st-displayed-pages="7"></div>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button  class="btn btn-success" type="submit">
+                                <i class="fa fa-save" ></i>
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            <a href="https://docs.google.com/document/d/1V60_kmi8eWA1wb42HyMexFSoqtGKhznlRmKc1__8ZGA/edit#bookmark=id.pocnevmxrcyb" target="_BLANK">
+                                <i class="fa fa-link"></i>
+                                FileDir
+                            </a>
+                        </h1>
+                    </div>
+                    <code-dir  html="fileDirHTml">
+                        <js>
+                            $scope.configFileDir = {
+                            show: {
+                            name: true,
+                            type: true,
+                            size: false
+                            },
+                            btn: {
+                            info: true,
+                            download: true,
+                            copy: true,
+                            modal: true
+                            },
+                            action: {
+                            //onRemove: false,
+                            }
+                            };
+                        </js>
+                    </code-dir>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            <a href="https://docs.google.com/document/d/1V60_kmi8eWA1wb42HyMexFSoqtGKhznlRmKc1__8ZGA/edit#bookmark=id.pocnevmxrcyb" target="_BLANK">
+                                <i class="fa fa-link"></i>
+                                FileMultipleDir
+                            </a>
+                        </h1>
+                    </div>
+                    <code-dir js="fileMultipleDirJs" html="fileMultipleDirHtml"></code-dir>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            <a href="https://docs.google.com/document/d/1V60_kmi8eWA1wb42HyMexFSoqtGKhznlRmKc1__8ZGA/edit#bookmark=id.9f257bry05r8" target="_BLANK">
+                                <i class="fa fa-link"></i>
+                                contenido-thumbnail-dir
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="col-md-12">
+                        <code-dir>
+                            <htmlcode>
+                                <contenido-thumbnail-dir class="col-md-4" contenido-id="contenido.portada.id" config="configContenidoThumbnailDir">
+                                </contenido-thumbnail-dir>
+                            </htmlcode>
+                            <js>
+                                $scope.configContenidoThumbnailDir = {
+                                show: {
+                                name: true,
+                                type: true,
+                                size: false
+                                },
+                                btn: {
+                                info: true,
+                                download: true,
+                                copy: true,
+                                modal: true,
+                                order: false
+                                },
+                                action: {
+                                onSelect: function () {
+                                alert("holassss");
+                                }
+                                }
+                                };
+                            </js>
+                        </code-dir>
+                    </div>
+                </div> 
+            </div> 
+        </div>
+    </div>
+</section>

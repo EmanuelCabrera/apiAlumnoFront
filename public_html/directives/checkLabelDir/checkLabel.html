@@ -1,0 +1,8 @@
+<div>
+    <input type="checkbox" ng-checked="value" ng-click="onCheck()" ng-disabled="!editable">
+    <label class="label label-default {{lblClass}}" 
+           ng-click="onCheck()" 
+           ng-class="{'label-default':!value, 'label-success':value}">
+        {{text}}
+    </label>
+</div>

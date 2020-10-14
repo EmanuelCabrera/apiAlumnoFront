@@ -1,0 +1,4 @@
+Nombre,Apellido,Tipo de documento,Numero,Fecha de nacimiento,Sexo,Estado civil,correo,tel1,tel2,localidadCP,barrio,calle,altura,piso,depto
+Miguel,Cichanowski,DNI,555555,05/05/1990,M,Soltero,miguel@correo.com,34,34,3300,Los aguacates,San Martin,15,1,10
+Fernando Martin,Herrera,DNI,110000,17/08/89,M,Soltero,martin@correo.com,34,34,3300,Los quiris,,,,
+Sergio Javier ,Sanabria,DNI,100001,05/05/1990,M,Soltero,sergio@correo.com,385265,1516516,3305,El solar,198,1500,,

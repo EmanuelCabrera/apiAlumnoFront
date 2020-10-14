@@ -1,0 +1,69 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-list-ol"></i>
+                Acciones registradas en la clase <b>{{clazz}}</b>
+            </div>
+            <div class="breadcrumb">
+                <button type="button" class="btn btn-default " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary"  st-table="actionLogsTbl"  st-safe-src="actionLogs" expose-state="tableState">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box-tools pull-right">
+                                <div class="form-inline">
+                                    <ipp-table></ipp-table>
+                                    <div class="input-group input-group-sm" style="width: 200px;">
+                                        <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                                        <span  class="input-group-addon">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="actionLogs.length > 0" style="margin-top: 10px;" class="col-md-12">
+                        <ul class="todo-list action-log">
+                            <li ng-repeat="a in actionLogsTbl">
+                                <span>
+                                    {{a.sms}}
+                                </span>
+                                <span class="pull-right hidden-xs">
+                                    <i class="fa fa-calendar"></i> 
+                                    {{a.time| date:"dd-MM-yyyy HH:mm:ss ' hs'"}}
+                                </span>
+                                <span class="hidden-sm hidden-lg hidden-md padding-left">
+                                    |
+                                    <i class="fa fa-calendar"></i> 
+                                    {{a.time| date:"dd-MM-yyyy HH:mm:ss ' hs'"}}
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-if="actionLogsTbl.length == 0" class="row margin text-info text-center">
+                        <h4>No se encontraron acciones</h4> 
+                    </div>
+                </div>
+                <div class="box-footer text-center">
+                    <div class="text-center">  
+                        <count-rows table-state="tableState"  items="actionLogsTbl.length" total="actionLogs.length"></count-rows>
+                    </div>
+                    <custom-pagination display-pages="10"></custom-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

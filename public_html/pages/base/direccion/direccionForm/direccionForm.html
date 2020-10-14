@@ -1,0 +1,143 @@
+
+<div class="row">
+    <!-- 
+       Cicha Created: 2015/12/03 
+    -->
+    <div class="form-group  col-md-4">
+        <label  class="control-label"><cr visible='rf.localidadDepartamentoProvinciaPaisId'/>País</label>
+        <ui-select ng-model="dir.localidadDepartamentoProvinciaPaisId" ng-change="onChangePais()" 
+                   ng-required='rf.localidadDepartamentoProvinciaPaisId'>
+            <ui-select-match allow-clear="true" placeholder="-- Seleccionar --">
+                <span>
+                    {{$select.selected.nombre}}
+                    <small ng-if="$select.selected.deletedAt" class="orange">
+                        <i  class="fa fa-warning"></i>
+                        Eliminado
+                    </small>
+                </span>
+            </ui-select-match>
+            <ui-select-choices repeat="pais.id as pais in paises | orderBy:'nombre' | filter: $select.search">
+                <div ng-bind-html="pais.nombre | highlight: $select.search"></div>
+                <small ng-if="pais.deletedAt">
+                    <i class="fa fa-warning orange"></i>
+                    País eliminado el {{pais.deletedAt| date:"dd/MM/yyyy"}}
+                </small>
+            </ui-select-choices>
+            <ui-select-no-choice>
+                Debe existir al menos un país creado...
+            </ui-select-no-choice>
+        </ui-select>
+    </div>
+
+    <div class="form-group  col-md-4">
+        <label  class="control-label"><cr visible='rf.localidadDepartamentoProvinciaId'/>Provincia</label>
+        <ui-select ng-model="dir.localidadDepartamentoProvinciaId" ng-change="onChangeProvincia()" 
+                   ng-required='rf.localidadDepartamentoProvinciaId' ng-disabled="loadingDireccion.provincia">
+            <ui-select-match allow-clear="true" placeholder="-- Seleccionar --">
+                <span>
+                    {{$select.selected.nombre}}
+                    <small ng-if="$select.selected.deletedAt" class="orange">
+                        <i  class="fa fa-warning"></i>
+                        Eliminada
+                    </small>
+                </span>
+            </ui-select-match>
+            <ui-select-choices repeat="provincia.id as provincia in paisSel.provincias | orderBy:'nombre' | filter: $select.search">
+                <div ng-bind-html="provincia.nombre | highlight: $select.search"></div>
+                <small ng-if="provincia.deletedAt">
+                    <i class="fa fa-warning orange"></i>
+                    Provincia eliminada el {{provincia.deletedAt| date:"dd/MM/yyyy"}}
+                </small>
+            </ui-select-choices>
+            <ui-select-no-choice>
+                Debe seleccionar el país o no tiene provincias cargadas...
+            </ui-select-no-choice>
+        </ui-select>
+    </div>
+
+    <div class="form-group  col-md-4">
+        <label  class="control-label"><cr visible='rf.localidadDepartamentoId'/>Departamento</label>
+        <ui-select ng-model="dir.localidadDepartamentoId" ng-change="onChangeDepartamento()" 
+                   ng-required='rf.localidadDepartamentoId' ng-disabled="loadingDireccion.departamento">
+            <ui-select-match allow-clear="true" placeholder="-- Seleccionar --">
+                <span>
+                    {{$select.selected.nombre}}
+                    <small ng-if="$select.selected.deletedAt" class="orange">
+                        <i  class="fa fa-warning"></i>
+                        Eliminado
+                    </small>
+                </span>
+            </ui-select-match>
+            <ui-select-choices repeat="depto.id as depto in provinciaSel.departamentos | orderBy:'nombre' | filter: $select.search">
+                <div ng-bind-html="depto.nombre | highlight: $select.search"></div>
+                <small ng-if="depto.deletedAt">
+                    <i class="fa fa-warning orange"></i>
+                    Departamento eliminado el {{depto.deletedAt| date:"dd/MM/yyyy"}}
+                </small>
+            </ui-select-choices>
+            <ui-select-no-choice>
+                Debe seleccionar la provincia o no tiene departamentos cargados...
+            </ui-select-no-choice>
+        </ui-select>
+    </div>
+
+    <div class="form-group  col-md-4">
+        
+        <label  class="control-label"><cr visible='rf.localidadId'/>Localidad</label>
+        <ui-select ng-model="dir.localidadId" ng-change="onChangeLoc()" ng-required='rf.localidadId' ng-disabled="loadingDireccion.localidad">
+            <ui-select-match allow-clear="true" placeholder="-- Seleccionar --">
+                <span>
+                    {{$select.selected.nombre}}
+                    <small ng-if="$select.selected.deletedAt" class="orange">
+                        <i  class="fa fa-warning"></i>
+                        Eliminada
+                    </small>
+                </span>
+            </ui-select-match>
+            <ui-select-choices repeat="localidad.id as localidad in departamentoSel.localidades | orderBy:'nombre' | filter: $select.search">
+                <div ng-bind-html="localidad.nombre | highlight: $select.search"></div>
+                <small ng-if="localidad.deletedAt">
+                    <i class="fa fa-warning orange"></i>
+                    Localidad eliminada el {{localidad.deletedAt| date:"dd/MM/yyyy"}}
+                </small>
+            </ui-select-choices>
+            <ui-select-no-choice>
+                Debe seleccionar el departamento o no tiene localidades cargadas...
+            </ui-select-no-choice>
+        </ui-select>
+    </div>
+
+    <div class="form-group col-md-4 ">
+        <label class="control-label"><cr visible='rf.barrio'/>Barrio</label>
+        <input type="text" class="form-control"  ng-model="dir.barrio"> 
+    </div>
+
+    <div class="form-group col-md-4 hidden-xs hidden-sm">
+        <label class="control-label">Acci&oacute;n</label><br>
+        <button  type="button"  class="btn btn-default pull-left" ng-click="resetFieldsDir(dir)">
+            <i class="fa fa-eraser"></i> Limpiar Direcci&oacute;n
+        </button>
+    </div>   
+    <div class="form-group  col-md-12">
+        <label class="control-label"><cr visible='rf.calle'/>Calle</label>
+        <input type="text" class="form-control"  ng-model="dir.calle" ng-required='rf.calle'> 
+    </div>
+    <div class="form-group  col-md-4">
+        <label class="control-label"><cr visible='rf.altura'/>Altura</label>
+        <input type="number" min="0" step="1" class="form-control" ng-model="dir.altura" ng-required='rf.altura'> 
+    </div>
+    <div class="form-group  col-md-4">
+        <label class="control-label"><cr visible='rf.piso'/>Piso</label>
+        <input type="number" step="1" class="form-control" ng-model="dir.piso" ng-required='rf.piso'> 
+    </div>
+    <div class="form-group  col-md-4">
+        <label class="control-label"><cr visible='rf.depto'/>Depto</label>
+        <input type="text"  class="form-control" ng-model="dir.depto" ng-required='rf.depto'> 
+    </div>
+    <div class="form-group col-md-4 hidden-md hidden-lg hidden-sm">
+        <label class="control-label">Acci&oacute;n</label><br>
+        <button  type="button"  class="btn btn-default pull-left" ng-click="resetFieldsDir(dir)">
+            <i class="fa fa-eraser"></i> Limpiar Direcci&oacute;n
+        </button>
+    </div>   
+</div>

@@ -1,0 +1,94 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-lock"></i>
+                Seguridad
+                <i class="fa  fa-angle-double-right"></i>
+                Roles
+                <i class="fa  fa-angle-double-right"></i>
+                <small>
+                    <span ng-if="!rol.id">Crear</span>
+                    <span ng-if="rol.id">Modificar ({{rol.name}})</span>
+                </small>
+            </div>
+            <div class="breadcrumb">
+                <open-modal-action-log id="rol.id">
+                </open-modal-action-log>
+                <button type="button" class="btn btn-default" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <form ng-submit=" rol.id ? update() : create()">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Datos del rol</h3>
+                    </div>
+                    <div class="box-body">            
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label class="control-label">Nombre de rol</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" ng-model="rol.name" ng-required="rf.name">
+                                    <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <!-- add `multiple` attribute to allow multiple sections to open at once -->
+                                <v-accordion class="vAccordion--default"    >
+
+                                    <v-pane class="col-md-12" ng-repeat="group in group_permissions">
+                                        <v-pane-header>
+                                            <input type="checkbox" ng-checked="selectedGroup(group)" ng-model="valor" ng-click="checkboxClick(group, $event, valor)"/>
+                                            <span>
+                                                <i class="fa fa-sitemap" 
+                                                   ng-show="groupContainSelected(group)"
+                                                   uib-tooltip="El grupo posee algunos permisos seleccionados"
+                                                   tooltip-append-to-body="true"></i>
+                                                {{group.name}}
+                                            </span>
+                                        </v-pane-header>
+
+                                        <v-pane-content>
+
+                                            <!-- accordions can be nested :) -->
+                                            <ul ng-if="group.permisos.length > 0">
+                                                <div class="col-md-4"ng-repeat="permiso in group.permisos">
+                                                    <c-check  name="cursossel"  on-check="onCheck(permiso)" value="isCheck(permiso)"  text="permiso.name" editable="editable"></c-check> 
+                                                </div>
+                                            </ul>
+                                        </v-pane-content>
+                                    </v-pane>
+
+                                </v-accordion>
+                            </div>
+                        </div>
+                        <br>    
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="form-group col-md-6" >
+                                <button  class="btn btn-success" ng-disabled="saving">
+                                    <i class="glyphicon glyphicon-refresh spinning" ng-show="saving"></i>
+                                    <i class="fa fa-save" ng-hide="saving"></i>
+                                    Guardar
+                                </button>
+                                <button  type="button"  class="btn btn-default" back-button="">
+                                    <i class="fa fa-arrow-left"></i> Volver
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</section>

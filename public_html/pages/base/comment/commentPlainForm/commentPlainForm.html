@@ -1,0 +1,70 @@
+
+<div>
+    <h3>
+        <strong><i class="fa fa-list"></i> Comentarios</strong>
+                <button class="btn btn-default pull-right" ng-click="enableComment()">
+                    <i class="fa fa-comments"></i>&nbsp;
+                    Comentar
+                </button>
+    </h3>
+    <div class="col-md-12">
+        <hr>
+    </div>
+    <form ng-submit=" comment.id ? update() : create()" ng-show="comentar">
+        <div class="form-group col-md-12">
+            <label class="control-label">
+                <!--<cr/>-->
+                Nuevo Comentario
+            </label>
+            <div class="input-group">
+                <wysiwyg-edit content="commentPlain.comment" config="editorConfig"></wysiwyg-edit>
+            </div>
+        </div>
+
+        <div class="form-group col-md-12">
+            <label class="control-label">
+                <!--<cr/>-->
+                Archivos Adjuntos
+            </label>
+            <file-multiple-dir contenidos="commentPlain.attachments.contenidos" config="config"></file-multiple-dir>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="box-footer">
+            <div class="row">
+                <div class="form-group col-md-6 form-inline" >
+                    <button  class="btn btn-success" ng-disabled="saving" ng-click="btnCreateClick()">
+                        <i class="glyphicon glyphicon-refresh spinning" ng-show="saving"></i>
+                        <i class="fa fa-save" ng-hide="saving"></i>
+                        Comentar
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+    <div class="col-xs-12 bordeo" style="border: 1px; border-color: #286090;padding: 10px; background-color: #f0f0f0;margin-top: 16px"  ng-repeat="commentPlain in comments">
+        <div >
+            <div>
+                <strong><i class="fa fa-user"></i> {{commentPlain.createdByUserName}}</strong>
+                <div class="text-muted" ng-bind-html="stringToHtml(commentPlain.comment)"></div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"  ng-repeat="attachment in commentPlain.attachments.contenidos" ng-class="layoutContenido">
+                    <contenido-thumbnail-dir contenido-id="attachment.id" config="config" ></contenido-thumbnail-dir>
+                </div>
+            </div>
+            <div>
+                <strong><i class="fa fa-calendar"> {{commentPlain.createdAt| date:'dd/MM/yyyy HH:mm'}}</i></strong>
+            </div>
+            <div  style="float: right" >
+                <button  permission-hide="['COMMENTPLAIN_REM']"  class="btn btn-primary btn-sm" ng-click="borrar(commentPlain.id)" ng-if="commentPlain.createdBy == user.id" uib-tooltip="Elmininar Comentario" tooltip-append-to-body="true"><i class="fa fa-trash"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

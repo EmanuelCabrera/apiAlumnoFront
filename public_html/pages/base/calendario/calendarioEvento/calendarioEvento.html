@@ -1,0 +1,144 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>
+                    <span>Calendario Evento</span>
+                </small>
+            </div>
+            <div class="breadcrumb">
+                <button permission-hide="['ACTION_LOG_LIST']" uib-tooltip="Ver acciones" tooltip-append-to-body="true" ui-sref="actionLog/class ({clazz:'CalendarioEvento'})" class="btn bg-olive" > 
+                    <span class="hidden-xs">Ver acciones</span> <i class="fa fa-list-ol"></i>
+                </button>
+                <button type="button" class="btn btn-default" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    <span class="hidden-xs">Atrás</span>
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="{{!event.form ? 'col-md-12':'col-md-6'}}" ui-calendar="uiConfig.calendar" ng-model="eventSources" ></div>
+        <div class="col-md-6" ng-if="event.form">
+            <div class="callout callout-default">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Gestión de Eventos</h3>
+                        <open-modal-action-log id="event.id">
+                        </open-modal-action-log>
+                    </div>
+                    <div class="box-body">
+                        <form ng-submit="!event.id ? create() : update()" name="events">
+                            <div class="form-group col-md-4 ">
+                                <label class="control-label">
+                                    <cr/>Titulo</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="title" required="" ng-model="event.title" ng-maxlength="{{validations.title.maxlength}}" maxlength="{{validations.title.maxlength}}">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-font"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <label class="control-label">
+                                    Descripción</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="descripcion" ng-model="event.descripcion" >
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-font"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3" >
+                                <label class="control-label">Fecha de Inicio</label>
+                                <div class="input-group">
+                                    <input type="text" placeholder="dd/MM/yyyy" datepicker-options="dateOptions" class="form-control" 
+                                           uib-datepicker-popup='dd/MM/yyyy'  ng-model="event.start" is-open="datepicker.opened" 
+                                           ng-required="true" close-text="Cerrar" clear-text="Borrar" current-text="Hoy"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" ng-click="openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3" ng-if="!event.allDay" >
+                                <label class="control-label">Horario Inicio </label>
+                                <div class="input-group">
+                                    <div uib-timepicker ng-model="event.start" ng-disabled="!event.start" hour-step="timepicker.hstep" minute-step="timepicker.mstep" show-meridian="ismeridian"></div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3" >
+                                <label class="control-label">Fecha de Fin</label>
+                                <div class="input-group">
+                                    <input type="text" placeholder="dd/MM/yyyy" datepicker-options="dateOptions" class="form-control" 
+                                           uib-datepicker-popup='dd/MM/yyyy'  ng-model="event.end" is-open="datepickerHasta.opened" 
+                                           ng-required="true" close-text="Cerrar" clear-text="Borrar" current-text="Hoy"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" ng-click="openDatepickerHasta()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3" ng-if="!event.allDay" >
+                                <label class="control-label">Horario Fin </label>
+                                <div class="input-group">
+                                    <div uib-timepicker ng-model="event.end" ng-disabled="!event.end" hour-step="timepicker.hstep" minute-step="timepicker.mstep" show-meridian="ismeridian"></div>
+
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3" >
+                                <label class="control-label">Todo el dia</label>
+                                <div class="input-group">
+                                    <input type="checkbox" ng-model="event.allDay"/>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <file-multiple-dir contenidos="event.adjuntos.contenidos">
+
+                                </file-multiple-dir>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="btn-group">
+                                <button class="btn btn-default addPais" c-class-hover="dark-green" ng-class="{'c-highlight-default': !event.id}" ng-disabled="event.id">
+                                    <i class="fa fa-plus-circle"></i> Guardar
+                                </button>
+                                <button class="btn btn-default " c-class-hover="dark-green" ng-class="{'c-highlight-default': event.id}" ng-disabled="!event.id">
+                                    <i class="fa fa-edit"></i> Modificar
+                                </button>
+                                <!--                                                                <span permission-hide="[ 'CALENDARIOEVENTO_REM']" >
+                                                                                                    <button c-btnremove="event" c-service="CalendarioEventoServ" c-name="{{event.title}}"  c-callback="onAction"
+                                                                                                            class="btn btn-default" type="button"  c-class-hover="red" ng-disabled="!event.id"  >
+                                                                                                        <i ng-class="!event.deletedAt ? 'fa fa-trash-o' : 'fa fa-check-circle blue'"></i> <span ng-if="!event.deletedAt" > Eliminar</span><span ng-if="event.deletedAt"> Restaurar</span>
+                                                                                                    </button>
+                                                                                                </span>
+                                                                <button  type="button" class="btn btn-default text-red" 
+                                                                         ng-click="$event.stopPropagation()"
+                                                                         ng-disabled="!event.id"
+                                                                         uib-tooltip="Eliminar Permanentemente" tooltip-append-to-body="true"
+                                                                         c-btnremove="event"
+                                                                         c-service="CalendarioEventoServ"
+                                                                         c-name="{{event.title}}"
+                                                                         c-callback="onAction"
+                                                                         c-action="remove">
+                                                                    <i class="fa fa-remove"></i> Eliminar
+                                                                </button>-->
+                                
+                                    <!--<i ng-if="evetnt.id" class="fa fa-eye" uib-tooltip="Eliminar" tooltip-append-to-body="true" style="margin-right: 10px"></i>-->
+                                    <button type="button" ng-disabled="!event.id"  permission-hide="['CALENDARIOEVENTO_REM']"  class="btn btn-default text-red" ng-click="borrar(event.id)" uib-tooltip="Elmininar Evento" tooltip-append-to-body="true"><i class="fa fa-trash">&nbsp;Eliminar</i></button>
+                               
+                                <button class="btn btn-default" type="button" ng-click="onClear()">
+                                    <i class="fa fa-eraser"></i> Limpiar campos
+                                </button>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

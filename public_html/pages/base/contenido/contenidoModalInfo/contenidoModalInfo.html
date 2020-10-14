@@ -1,0 +1,61 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click=" close()"><span aria-hidden="true">&times;</span></button>
+    <div class="h3 modal-title">
+        Información completa
+    </div>
+</div>
+<div class="modal-body col-xs-12 text-center" >
+    <div  class="col-sm-6 col-md-6">
+        <b>Nombre</b>
+        <p class="text-muted cortar-parrafo-2em no-margin">{{contenido.name}}</p>
+        <hr>
+    </div>
+    <div ng-if="contenido.size" class="col-sm-6 col-md-6">
+        <b>Tamaño</b>
+        <p class="text-muted cortar-parrafo-2em no-margin">{{contenido.size| bytes}}</p>
+        <hr>
+    </div>
+    <div ng-if="contenido.extension" class="col-sm-6 col-md-6">
+        <b>Extensión</b>
+        <p class="text-muted cortar-parrafo-2em no-margin">{{contenido.extension}}</p>
+        <hr>
+    </div>
+    <div ng-if="contenido.contentType" class="col-sm-6 col-md-6">
+        <b>Content type</b>
+        <p class="text-muted cortar-parrafo-2em no-margin">{{contenido.contentType}}</p>
+        <hr>
+    </div>    
+    <div ng-if="contenido.createdAt" class="col-sm-6 col-md-6">
+        <b>Fecha de creación</b>
+        <p class="text-muted cortar-parrafo-2em no-margin">{{contenido.createdAt| date:"dd/MM/yyyy H:mm"}}</p>
+        <hr>
+    </div>
+    <div ng-if="contenido.createdByUserName" class="col-sm-6 col-md-6">
+        <b>Creado por</b>
+        <p class="text-muted cortar-parrafo-2em no-margin">{{contenido.createdByUserName}}</p>
+        <hr>
+    </div>
+    <div ng-if="contenido.updatedAt" class="col-sm-6 col-md-6">
+        <b>Fecha de última actualización</b>
+        <p class="text-muted cortar-parrafo-2em no-margin">{{contenido.updatedAt| date:"dd/MM/yyyy H:mm"}}</p>
+        <hr>
+    </div>
+    <div ng-if="contenido.updatedByUserName" class="col-sm-6 col-md-6">
+        <b>Creado por</b>
+        <p class="text-muted cortar-parrafo-2em no-margin">{{contenido.createdByUserName}}</p>
+        <hr>
+    </div>
+    <div ng-if="contenido.deletedAt" class="col-sm-6 col-md-6">
+        <b>Fecha de eliminación</b>
+        <p class="text-muted cortar-parrafo-2em no-margin">{{contenido.deletedAt| date:"dd/MM/yyyy H:mm"}}</p>
+        <hr>
+    </div>
+    <div ng-if="contenido.deletedByUserName" class="col-sm-6 col-md-6">
+        <b>Creado por</b>
+        <p class="text-muted cortar-parrafo-2em no-margin">{{contenido.createdByUserName}}</p>
+        <hr>
+    </div>
+</div>
+<div class="modal-footer">
+
+</div>

@@ -1,0 +1,65 @@
+<div  contenido-img-dir contenido-img="contenido"  class="thumbnail contenido-thumbnail text-center" ng-click="onClickEvent()">
+    <div ng-if="contenido">
+        <div>
+            <div ng-if="contenidoConfig.show.extension && getExtension()" class="label-top-left-corner">
+                {{getExtension() | strReplace: '.':''}} 
+            </div>
+            <div ng-if="!contenido.id" class="label-bottom-right-corner">
+                Nuevo
+            </div>
+            <p class="cortar-parrafo-1" ng-if="contenidoConfig.show.size || contenidoConfig.show.type" >
+                <span ng-if="contenidoConfig.show.size">
+                    {{ contenido.size | bytes}} 
+                </span>
+                <span ng-if="contenidoConfig.show.type">
+                    {{contenido.type ?contenido.type:contenido.contentType }}
+                </span>
+            </p> 
+            <div ng-class="{'fondo-transparente':contenidoConfig.show.name}">
+                <p   uib-tooltip="{{contenido.name}}" class="cortar-parrafo text-black">
+                    {{contenidoConfig.show.name ? contenido.name:'' }}
+                </p>
+
+                <div ng-if="contenidoConfig.btn.order" class="btn-group btn-group-xs">
+                    <button ng-if="!first"class="btn btn-default btn-xs" type="button" ng-click="$event.stopPropagation();onLeft()" tooltip-append-to-body="true" uib-tooltip="Mover hacia la izquierda" >
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <button ng-if="!last" class="btn btn-default btn-xs" type="button" ng-click="$event.stopPropagation();onRight()" tooltip-append-to-body="true" uib-tooltip="Mover hacia la derecha" >
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div  class="btn-group btn-group-xs">
+                    <button ng-if="contenido.id && contenidoConfig.btn.info" type="button" class="btn btn-xs btn-default" tooltip-append-to-body="true"   uib-tooltip="Información del contenido" ng-click="$event.stopPropagation();getInfo()">
+                        <i class="fa fa-info-circle blue"></i>
+                    </button>
+                    <button ng-if="contenido.id && contenido.exist != false && contenidoConfig.btn.download" ng-click="$event.stopPropagation(); download()" type="button" tooltip-append-to-body="true"   uib-tooltip="Descargar"  class="btn btn-default btn-xs" ng-if="contenido.exist">
+                        <i class="fa fa-download"></i> 
+                    </button>
+                    <button ng-if="contenido.id && contenido.exist != false && contenidoConfig.btn.copy"class="btn btn-default btn-xs" type="button" ng-click="$event.stopPropagation(); copy(item)" tooltip-append-to-body="true" uib-tooltip="Copiar URL de archivo" ng-copy="getVisorUrl(contenido.id)">
+                        <i class="fa fa-copy"></i>
+                    </button>
+                    <button ng-if="contenidoConfig.action.onSelect && contenidoConfig.btn.modal" ng-click="$event.stopPropagation(); openModal()"
+                            tooltip-append-to-body="true"  uib-tooltip="Ver contenido" type="button"  class="btn btn-default btn-xs" >
+                        <i  class="fa fa-eye"></i>
+                    </button>
+                    <button ng-if="contenidoConfig.action.onRemove"  ng-click="$event.stopPropagation(); onRemove();"
+                            tooltip-append-to-body="true"  uib-tooltip="Eliminar" type="button"  class="btn btn-xs btn-default" >
+                        <i  class="fa fa-remove red"></i>  
+                    </button>
+                    <button ng-if="contenidoConfig.action.onDisable && contenido.id && !contenido.deletedAt" ng-bootbox-confirm="¿Estás seguro de querer eliminar el contenido <b>{{contenido.name}}</b>?" ng-bootbox-confirm-action="onDisable();" ng-click="$event.stopPropagation();"
+                            tooltip-append-to-body="true"  uib-tooltip="Dar de baja" type="button"  class="btn btn-default btn-xs" >
+                        <i  class="fa fa-trash-o red"></i>
+                    </button>
+                    <button ng-if="contenidoConfig.action.onRestore && contenido.deletedAt"  tooltip-append-to-body="true"  uib-tooltip="Restaurar" type="button" ng-click="$event.stopPropagation();onRestore()" class="btn btn-xs btn-success" ng-show="contenido.deletedAt">
+                        <i  class="fa fa-check-circle"></i> 
+                    </button>
+                    <button ng-if="contenidoConfig.action.onUpdate"  tooltip-append-to-body="true"  uib-tooltip="Editar" type="button" ng-click="$event.stopPropagation();onUpdate()" class="btn btn-xs btn-default">
+                        <i  class="fa fa-edit"></i> 
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

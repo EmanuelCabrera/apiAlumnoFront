@@ -1,0 +1,39 @@
+
+<div ng-if="actionLogsTbl.length > 0" class="row" st-table="actionLogsTbl"  st-safe-src="actionLogs" expose-state="tableState">
+    <div class="col-md-12 text-center">
+        <div class="input-group input-group-sm" style="width: 80%;">
+            <input class="form-control" type="search" st-search="" placeholder="Filtro">
+            <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
+    <div style="margin-top: 10px;" class="col-md-12">
+        <ul class="todo-list">
+            <li ng-repeat="a in actionLogsTbl">
+                <span>
+                    {{a.sms}}
+                </span>
+                <span class="pull-right hidden-xs">
+                    <i class="fa fa-calendar"></i> 
+                    {{a.time| date:"dd-MM-yyyy HH:mm:ss ' hs'"}}
+                </span>
+                <span class="hidden-sm hidden-lg hidden-md padding-left">
+                    |
+                    <i class="fa fa-calendar"></i> 
+                    {{a.time| date:"dd-MM-yyyy HH:mm:ss ' hs'"}}
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="text-center">  
+        <count-rows table-state="tableState"  items="actionLogsTbl.length" total="actionLogs.length"></count-rows>
+    </div>
+    <div class="text-center">
+        <div st-pagination="" st-items-by-page="10" st-displayed-pages="15"></div>
+    </div>
+</div>
+
+<div ng-if="actionLogsTbl.length == 0" class="row margin text-info center-block">
+    <h4>No hay acciones registradas</h4> 
+</div>

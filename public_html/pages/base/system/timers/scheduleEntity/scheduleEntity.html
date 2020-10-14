@@ -1,0 +1,138 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-clock-o"></i>
+                Timers
+                <i class="fa  fa-angle-double-right"></i>
+                <small>Schedule Entity</small>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default " back-button="">
+                        <i class="fa fa-arrow-left"></i>
+                        Atras
+                    </button>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary"  st-table="schedulesTbl"  st-safe-src="schedules">
+                <div class="box-header ">
+                    <span class="pull-left"> 
+                        <!--                        <select class="form-control input-sm margin-r-5" ng-model="jconfFiltro.op" ng-change="init()">
+                                                    <option value="NOT_FILTER">Todos</option>
+                                                    <option value="NULL">Normal</option>
+                                                    <option value="NOT_NULL">Eliminados</option>
+                                                </select> -->
+                        <select class="form-control input-sm margin-r-5" ng-model="estado" ng-change="init()">
+                            <option value="todos">Todos</option>
+                            <option value="activos">Activos</option>
+                            <option value="inactivos">Inactivos</option>
+                        </select> 
+                    </span>
+                    <!--<h3 class="box-title " style="margin: 5px;">Listado de schedules</h3>-->
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;margin-top:7px;">
+                            <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                            <span class="input-group-addon">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover table-bordered table-condensed" >
+                        <thead>
+                            <tr>
+                                <th st-sort="name">Nombre</th>
+                                <th>Tiempo</th>
+                                <th st-sort="className">Clase</th>
+                                <th>Persistente</th>
+                                <th >Autostart</th>
+                                <th >Próxima ejecución</th>
+                                <th >Tiempo restante</th>
+                                <th >Estado</th>
+                                <th style="width: 175px">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="s in schedules">
+                                <td>{{s.name}}</td>
+                                <td style="font-size: 16px;">
+                                    <span class="pointer label label-default" title="Día de la semana">{{s.dayOfWeek}}</span>
+                                    |
+                                    <span class="pointer label label-default" title="Día del mes">{{s.dayOfMonth}}</span>/
+                                    <span  class="pointer label label-default" title="Mes">{{s.month}}</span>/
+                                    <span  class="pointer label label-default" title="Año">{{s.year}}</span>
+                                    <span class="pointer label label-default"  title="Hora">{{s.hour}}</span>:
+                                    <span class="pointer label label-default" title="Minuto">{{s.minute}}</span>:
+                                    <span class="pointer label label-default" title="Segundo">{{s.second}}</span>
+                                </td>
+                                <td>{{s.className}}</td>
+
+                                <td>
+                        <boolean-show model="s.persistent" true-text=" 'Sí'" false-text=" 'No'"></boolean-show>
+                        </td>
+                        <td> 
+                        <boolean-show model="s.autostart"  true-text=" 'Sí'" false-text=" 'No'"></boolean-show>
+                        </td>
+                        <td>
+                            <span ng-if="s.info">{{s.info.nextTimeout| date:"dd/MM/yyyy HH:mm:ss"}}</span>
+                        </td>
+                        <td>
+                            <span ng-if="s.info">{{s.info.timeRemaining| millSecondsToTimeStringES}}</span>
+                        </td>
+                        <td>
+                            <button type="button" ng-if="s.info" style="cursor: default;"  class="btn btn-sm" ng-class="s.info ? 'parpadeo-online active  btn-success' : 'btn-disabled'" >
+                                <span class="hidden-xs " ng-class="s.info ? 'bold' : ''">Activo</span>
+                                <i class="fa fa-square" ng-class="s.info ? 'text-green' : ''"></i>
+                            </button>
+                            <button type="button" ng-if="!s.info" style="cursor: default;"  class="btn btn-sm" ng-class="!s.info ? 'parpadeo-offline active  btn-danger' : 'btn-disabled'">
+                                <span class="hidden-xs" ng-class="!s.info ? 'bold' : ''" >Inactivo</span>
+                                <i class="fa fa-square " ng-class="!s.info ? 'text-red' : ''"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <div style="width: 165px" class="btn-group" data-toggle="btn-toggle">
+                                <div class="btn-group btn-group-sm pull-right">
+                                    <button ui-sref="timers/scheduleEntity/act({id:s.id})" uib-tooltip="Editar" tooltip-append-to-body="true" class="btn btn-default">
+                                        <i class="fa fa-pencil blue" ></i>
+                                    </button>
+
+                                    <button type="button" ng-click="start(s)" ng-if="!s.info" uib-tooltip="Inicar proceso" tooltip-append-to-body="true"  class="btn btn-success  btn-sm"  >
+                                        <span class="hidden-xs">START</span>
+                                        <i class="fa fa-play" ></i>
+                                    </button>
+
+                                    <button type="button" ng-click="stop(s)" uib-tooltip="Detener proceso" tooltip-append-to-body="true" ng-if="s.info" class="btn btn-danger  btn-sm">
+                                        <span class="hidden-xs "  >STOP</span>
+                                        <i class="fa fa-square " ></i>
+                                    </button>
+                                    <button type="button" ng-click="force(s)" uib-tooltip="Forzar proceso" tooltip-append-to-body="true" class="btn btn-primary  btn-sm">
+                                        <span class="hidden-xs "  >Force</span>
+                                        <i class="fa fa-legal " ></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="9" class="text-center">
+                                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="10" ></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>   
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>

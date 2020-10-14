@@ -1,0 +1,81 @@
+<style>
+    .btn-registrate {
+        background-color: #2053a5;
+        border-color: #0c4396;
+        /*border-radius: 3rem;*/
+        color: #FFF !important;
+        /*font-weight: 700;*/
+    }
+
+    .btn-registrate:hover {
+        background-color: #0c4396 !important;
+    }
+
+
+    .btn-ingresar {
+        background-color: #B80F16;
+        border-color: #a00c11;
+        /*border-radius: 3rem;*/
+        color: #FFF !important;
+        /*font-weight: 700;*/
+    }
+
+    .btn-ingresar {
+        background-color: #a00c11 !important;
+    }
+
+    .p-msg{
+        padding: 0 15px 15px 15px;
+    }
+</style>
+
+<div class="login-box" ng-if="!user">
+    <div class="login-box-body no-padding" >
+        <div class="login-logo no-margin"  >
+            <a href="" target="_blank">
+                <img src="img/logo_marandu_transparente.png" style="max-height: 220px; margin: auto;" class="img-responsive"> 
+            </a>
+        </div>
+        <div class="login-box " style="margin: 3% auto; height: 100%;" >
+            <p ng-if="fromRegister" class="login-box-msg" style="word-break: normal">
+                <b>¡Ya te registraste a Ciudadan@ Misiones!</b>
+                <br>
+                De ahora en adelante, podrás ingresar con tu CUIL y contraseña registradas en Ciudadan@ Misiones
+            </p>
+
+            <div ng-if="noUser" class="margin-bottom">
+
+                <div class="h2 text-center margin-bottom" >
+                    Hola, {{noUser.nombre}} {{noUser.apellido}}
+                </div>
+                <div style="margin-top: 10px; border: solid #a94442 1px;">
+
+                    <p class="login-box-msg text-danger h4" style="word-break: normal; padding-top: 15px;"> 
+
+                        <i class="fa fa-exclamation-circle"></i> ¡Atención!
+                    </p>
+                    <p class="login-box-msg p-msg" style="word-break: normal">  
+                        Tienes una sesión iniciada en <b>Ciudadan@ Misiones</b> con la cuenta <b>{{noUser.cuit}}</b> que no se ha habilitado en <b>{{nombreVisual}}</b>.
+                    </p>
+                    <p class="login-box-msg p-msg" style="word-break: normal">  
+                        Para habilitar tu cuenta debes contactarte con personal administrativo.
+                    </p>
+                    <p class="login-box-msg p-msg" style="word-break: normal">  
+                        Para ingresar con otra cuenta presiona nuevamente <b>Ingresar</b>
+                    </p>
+                </div>
+            </div>
+
+            <button ng-click="loginCiudadano()" class="btn btn-lg btn-ingresar btn-block">
+                <span class="h2">Ingresar <i class="fa fa-sign-in"></i></span><br>
+                Con Ciudadan@ Misiones
+            </button>
+            <a ng-href="{{registerMD}}" target="_self" class="btn btn-lg btn-registrate btn-block">
+                <span class="h2">Registrate   <i class="fa fa-list-alt"></i>
+                </span>
+            </a>
+            <a href="https://ciudadano.misiones.gob.ar/#/passreset" target="_blank"> <strong>Recuperar contraseña</strong> </a>
+        </div>
+
+    </div>
+</div>

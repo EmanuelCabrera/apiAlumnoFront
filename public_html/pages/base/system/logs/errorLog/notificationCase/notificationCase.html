@@ -1,0 +1,121 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-info-circle"></i>
+                Error Log
+                <i class="fa  fa-angle-double-right"></i>
+                <small>
+                    <span>Notification Case</span>
+                </small>
+                <button type="button" class="btn btn-default pull-right" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atrás
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Gestión de Notification Case</h3>
+                </div>
+                <form ng-submit="!notificationSel.id ? create() : update()" name="asignatura">
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <label class="control-label"><cr/>Nombre</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="name" required="" ng-model="notificationSel.name" >
+                                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><cr/>Regexp</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="name" required="" ng-model="notificationSel.regexp" >
+                                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button  class="btn btn-default" c-class-hover="dark-green" ng-class="{'c-highlight-default': !notificationSel.id}" ng-disabled="notificationSel.id">
+                            Agregar <i class="fa fa-plus-circle"></i> 
+                        </button>
+                        <button  class="btn btn-default "  c-class-hover="dark-green" ng-class="{'c-highlight-default': notificationSel.id}" ng-disabled="!notificationSel.id">
+                            Editar <i class="fa fa-edit"></i> 
+                        </button>
+
+                        <button class="btn btn-default" type="button" ng-click="onClear()"> Limpiar campos <i class="fa fa-eraser"> </i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="box box-primary" st-table="notificationsTbl"  st-safe-src="notifications">
+                <div class="box-header ">
+                    <span class="pull-left"> 
+                        <select class="form-control input-sm" ng-model="jconfFiltro.op" ng-change="init()">
+                            <option value="NOT_FILTER">Todos</option>
+                            <option value="NULL">Normal</option>
+                            <option value="NOT_NULL">Eliminados</option>
+                        </select> 
+                    </span>
+                    <h3 class="box-title padding-left" >Lista de notifications</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                            <span class="input-group-addon">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered  table-condensed" >
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Regexp</th>
+                                    <th style="width: 120px">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="a in notificationsTbl"  ng-class="{'st-selected':a.id === notificationSel.id}">
+                                    <td>{{a.name}}</td>
+                                    <td>{{a.regexp}}</td>
+                                    <td>
+                                        <div  class="btn-group btn-group-sm">
+                                            <button ng-click="onSelect(a)" tooltip-append-to-body="true"  uib-tooltip="Cancelar" class="btn btn-default" ng-if="a.id === notificationSel.id" >
+                                                <i class="fa fa-remove text-red"> </i>
+                                            </button>
+                                            <button ng-click="onSelect(a)" tooltip-append-to-body="true"  uib-tooltip="Editar" class="btn btn-default"  ng-if="a.id != notificationSel.id" >
+                                                <i class="fa fa-edit blue"> </i>
+                                            </button>
+                                        </div>
+                                        <a  permission-hide="['NOTIFICATION_ERROR_CASE_REM']" >
+                                            <c-btnremoveview c-callback="onAction" c-obj="a" c-service="ErrorLogNotificationCaseServ" c-name="{{a.name}}" >
+                                            </c-btnremoveview>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</section>
+

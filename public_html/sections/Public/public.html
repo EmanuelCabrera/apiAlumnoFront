@@ -1,0 +1,73 @@
+<nav class="navbar navbar-inverse" style="padding: 0 5px" role="navigation">
+    <!-- El logotipo y el icono que despliega el menú se agrupan
+         para mostrarlos mejor en los dispositivos móviles -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Desplegar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><b>Base</b></a>
+    </div>
+
+    <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+         otro elemento que se pueda ocultar al minimizar la barra -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+
+        <ul class="nav navbar-nav">
+            <li>
+                <a ui-sref="home">
+                    <i class="fa fa-home"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                
+                <a href="https://ciudadano.misiones.gob.ar/#/registro-misiones-digital?appId={{mdAppId}}">
+                    <i class="fa fa-pencil-square"></i>
+                    Registro 
+                </a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-if="isRegister">
+                <a href="{{redirectUri}}">
+                    <b>
+                        <i class="fa fa-user-plus"></i>
+                        Registrarme
+                    </b>
+                </a>
+            </li>
+
+            <li class="dropdown user user-menu">
+                <a ng-click="loginCiudadano()">
+                    <span class="social-icon-sm si-dark si-gray-round" style="height:24px; width:24px;">
+                        <img src="img/user.png" class="user-image">
+                    </span>
+                    <span style="text-transform: capitalize;">Iniciar sesi&oacuten</span>
+                </a>
+        </ul>
+    </div>
+</nav>
+
+
+<!--<div style="height:auto !important;height:100%">-->
+<section class="content" style="height: auto !important;" >
+    <div class="container" ui-view="">
+
+    </div>
+</section>
+<!--</div>-->
+
+<footer class="main-footer" >
+    <div class="navbar navbar-default" >
+        <div class="container" >
+            <div class="text-center"  >
+                <img src="img/logo_marandu_transparente.png" > <div class="visible-xs clearfix"></div>Copyright © {{date| date:'yyyy'}} Marandu Comunicaciones, <a target="_BLANK" href="https://marandu.com.ar/desarrollo">Development Team</a>
+            </div>
+        </div>
+    </div> 
+    
+</footer>

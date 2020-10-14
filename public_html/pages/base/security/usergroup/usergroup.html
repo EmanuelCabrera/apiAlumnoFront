@@ -1,0 +1,90 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-lock"></i>
+                Seguridad
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>Grupos de Usuarios</small>
+            </div>
+            <div class="breadcrumb">
+                <button permission-hide="['ACTION_LOG_LIST']" uib-tooltip="Ver acciones" tooltip-append-to-body="true" ui-sref="actionLog/class ({clazz:'UserGroup'})" class="btn bg-olive" > 
+                    <span class="hidden-xs">Ver acciones</span> <i class="fa fa-list-ol"></i>
+                </button>
+                <button class="btn btn-primary" ui-sref="security/usergroup/add">Crear <i class="fa fa-plus-circle"></i></button>
+                <button type="button" class="btn btn-default " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary" st-table="usergroups" st-pipe="paginate" expose-state="tableState">
+                <div class="box-body">
+                    <span class="pull-left"> 
+                        <select class="form-control input-sm" ng-model="jconfFiltro.op" ng-change="init()">
+                            <option value="NOT_FILTER">Todos</option>
+                            <option value="NULL">Normal</option>
+                            <option value="NOT_NULL">Eliminados</option>
+                        </select> 
+                    </span>
+                    <span class="pull-right">               
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <span class="input-group-addon">
+                                <i class="fa fa-filter"></i>
+                            </span>
+                            <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                        </div>
+                    </span> 
+                    <table class="table table-responsive table-hover table-bordered table-condensed" >
+                        <thead>
+                            <tr>
+                                <th st-sort="nombre">Grupo de Usuarios</th>
+                                <th st-sort="name">Usuarios</th>
+                                <th style="width: 200px;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="usergroup in usergroups">
+                                <td>{{usergroup.nombre}}</td>
+
+                                <td>
+                                    <span ng-repeat="usuario in usergroup.users">{{usuario.name}}
+                                    </span>
+                                </td>
+
+                                <td style="width: 200px; display: flex;">
+                                    <div class="btn-group btn-group-sm">
+                                        <button ui-sref="security/usergroup/edit({id:usergroup.id})"  tooltip-append-to-body="true"  uib-tooltip="Editar" class="btn btn-default">
+                                            <i class="fa fa-pencil blue"></i>
+                                        </button>                                        
+                                    </div>
+                                    <a  permission-hide="['USER_USERGROUP_REM']" >
+                                        <c-btnremoveview  
+                                            c-callback="onAction" 
+                                            c-obj="usergroup" 
+                                            c-service="UserGroupServ" 
+                                            c-name="{{usuario.name}}">
+                                        </c-btnremoveview>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="10" ></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>   
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,61 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-file"></i>
+                SelectPaginated
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default pull-right" back-button="">
+                        <i class="fa fa-arrow-left"></i>
+                        <span class="hidden-xs">Atras</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="box box-primary">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Documentación</h4>
+                        <a href="https://docs.google.com/document/d/1HJ6fYyGsbcVRhVStSOBRBx_zZfc9H8yHwYsNytCMDs4/edit#" target="_BLANK">https://docs.google.com/document/d/1HJ6fYyGsbcVRhVStSOBRBx_zZfc9H8yHwYsNytCMDs4/edit#</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" ng-model="inputwatch"/>
+                    </div>
+                    <div class="col-md-6">
+                        {{inputwatch}}
+                    </div>
+                    <div class="col-md-12">
+                        <select-paginated config="selectTest" watch="inputwatch" selected-id="testId">  
+                        </select-paginated>
+                    </div>
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            <a href="https://docs.google.com/document/d/1HJ6fYyGsbcVRhVStSOBRBx_zZfc9H8yHwYsNytCMDs4/edit#" target="_BLANK">
+                                <i class="fa fa-link"></i>
+                                SelectPaginated
+                            </a>
+                        </h1>
+                    </div>
+                    <code-dir js="selectPaginatedJs" html="selectPaginatedHtml"></code-dir>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            <a href="https://docs.google.com/document/d/1HJ6fYyGsbcVRhVStSOBRBx_zZfc9H8yHwYsNytCMDs4/edit#" target="_BLANK">
+                                <i class="fa fa-link"></i>
+                                SelectmPaginated
+                            </a>
+                        </h1>
+                    </div>
+                    <code-dir js="selectmPaginatedJs" html="selectmPaginatedHtml"></code-dir>
+                </div>
+            </div> 
+        </div>
+    </div>
+</section>

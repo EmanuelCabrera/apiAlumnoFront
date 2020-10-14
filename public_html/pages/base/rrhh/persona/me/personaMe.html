@@ -1,0 +1,76 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-user"></i>
+                Mis datos
+                <small>
+                    <span ng-if="persona.id">Modificar mis datos ({{persona.apellido + ' ' + persona.nombres}})</span>
+                </small>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default pull-right" back-button="">
+                        <i class="fa fa-arrow-left"></i>
+                        Atras
+                    </button>
+                    <open-modal-action-log id="persona.id">
+                    </open-modal-action-log>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <form name="personForm" ng-class="submited ? 'submited' : ''" ng-submit="update()">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <persona persona="persona" find-num-doc='true' required-fields="rf.persona"></persona>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            <i class="fa fa-envelope"></i>
+                            Mis datos de contacto
+                        </h3>
+                    </div>
+                    <div class="box-body">
+                        <contacto contacto="persona.contacto" required-fields="rf.contacto"></contacto>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">
+                            <i class="fa fa-map-marker"></i>
+                            Mi direcci&oacute;n 
+                        </h3>
+                    </div>
+                    <div class="box-body" novalidate>
+                        <direction-map direccion="persona.direccion" required-fields="rf.direccion" auto-location="false"
+                                       pais-id="paisId" provincia-id="provinciaId" departamento-id="departamentoId" localidad-id="localidadId"></direction-map>
+                        <!--<direction-map-view direccion="persona.direccion" points="points"></direction-map-view>-->
+                    </div>
+<!--                    <div class="box-body" novalidate>
+                        <direccion dir="persona.direccion" required-fields='rf.direccion' 
+                                   pais-id="43310001" provincia-id="43320001" departamento-id="44340001" localidad-id="75730001"></direccion>
+                    </div>-->
+                    <div class="box-footer">
+                        <button  class="btn btn-success" ng-disabled="saving" ng-click="submited = true">
+                            <i class="glyphicon glyphicon-refresh spinning" ng-show="saving"></i>
+                            <i class="fa fa-save" ng-hide="saving"></i>
+                            Guardar
+                        </button>
+                        <button  type="button"  class="btn btn-default" back-button="">
+                            <i class="fa fa-arrow-left"></i> Volver
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div> 
+</section>

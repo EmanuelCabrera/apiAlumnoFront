@@ -1,0 +1,36 @@
+
+<div class="text-center"  ng-show="!loading">
+    <div  ng-if="isVideo()"> 
+        <video  id="contenido-player-video"  class="img-responsive-height" src="{{contenidoShow.url}}" controls>
+        </video>
+    </div>
+    <div  ng-show="isAudio()">
+        <div  ng-if="isAudio()">
+            <audio id="contenido-player-audio"  ng-src="{{contenidoShow.url}}" type="{{contenidoShow.contentType}}" controls >
+                <!--<source ng-src="{{contenidoShow.url}}" type="{{contenidoShow.contentType}}">-->
+            </audio>
+        </div>
+    </div>
+    <div   ng-show="isImg()" style="text-align: center;">
+        <img ng-style="{'max-height':fullScreen?heigthScreen:heigthMediaScreen}"   ng-show='contenidoShow.url' ng-src="{{contenidoShow.url}}" style="width: 95%; margin: auto 0;" >
+        <!--<zoom  ng-show="fullScreen" src="{{contenido.url}}" frame="example1"   img="image1" zoomlvl="2.0"></zoom>-->
+    </div>
+    <div    ng-if="isPDF()">
+        <object  ng-show="isMobile"  data="{{contenidoShow.url}}"    type="application/pdf" width="100%" style="min-height: 450px;"  >
+            <p>Tu navegador no soporta la visualización de PDF.</p>
+        </object>
+        <embed  ng-show="!isMobile" style="min-height: 450px;"  ng-src="{{contenidoShow.url}}"  allowfullscreen="true" height="{{fullScreen?heigthScreen:heigthMediaScreen}}" class="col-xs-12" />
+    </div>
+    <div style="height: 500px;"  ng-if="isText()">
+        <embed  style="z-index: 99999;" ng-src="{{contenidoShow.url}}"  height="500" allowfullscreen="true" height="{{fullScreen?heigthScreen:heigthMediaScreen}}" class="col-xs-12" />
+    </div>
+    <div   ng-show=" !isVideo() && !isAudio() && !isImg() && !isPDF() && !isText()">
+        <div class="h3">
+            Este archivo no tiene vista rápida. Podés <a class="blue" ng-click="download()">descargarlo <i class="fa fa-download"></i></a> y verlo.
+        </div>
+    </div>
+</div>
+<div  ng-show="loading" class="text-center">
+    <icon-loading visible="true" ></icon-loading>
+</div>
+

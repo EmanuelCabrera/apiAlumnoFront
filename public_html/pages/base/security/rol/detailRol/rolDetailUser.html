@@ -1,0 +1,52 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                Mis roles
+                <i class="fa  fa-angle-double-right"></i>
+                <small>
+                    <span>Ver ({{userr.name}})</span>
+                </small>
+                <button type="button" class="btn btn-default pull-right" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <form >
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Roles</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-hover table-bordered table-condensed" >
+                            <thead>
+                                <tr>
+                                    <th width="40%">Rol</th>
+                                    <th >Permisos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="rol in rolshow">
+                                    <td><strong><i class="fa   fa-check-circle margin-r-5"></i> {{rol.name}}</strong></td>
+                                    <td>
+                                       
+                                        
+                                        <div class="col-sm-4" ng-repeat="p in rol.permissions">
+                                           
+                                            <span class="label label-success">{{p.name}}<span>
+                                        </div>
+                                    </td>                       
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                        
+                </div>
+           </div>
+        </form>
+    </div>
+</section>

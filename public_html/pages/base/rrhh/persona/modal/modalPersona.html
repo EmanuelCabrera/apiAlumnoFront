@@ -1,0 +1,25 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click=" close()"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="modal-title" ng-if="persona.nombreCompleto">Datos de <b>{{persona.nombreCompleto}}</b></h3>
+        <h3 class="modal-title" id="modal-title" ng-if="!persona.nombreCompleto">Datos de la persona</h3>
+
+    </div>
+    <div class="modal-body col-xs-12">
+        <persona-detail ng-if="buscarEnModal" persona="persona">
+
+        </persona-detail>
+        <persona-detail ng-if="!buscarEnModal && persona"  persona="persona">
+
+        </persona-detail>
+
+        <persona-detail ng-if="!buscarEnModal && !persona"  persona-id="personaId">
+
+        </persona-detail>
+
+    </div>
+    <div class="modal-footer ">
+
+
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Gestión de localidades</h3>
+                <open-modal-action-log id="localidadSel.id">
+                </open-modal-action-log>
+            </div>
+            <div class="box-body">
+                <form ng-submit="!localidadSel.id ? create() : update()" name="localidad">
+                    <div class="form-group">
+                        <label class="control-label"><cr/>Nombre</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="nombre" required="" ng-model="localidadSel.nombre" ng-maxlength="{{validations.nombre.maxlength}} " maxlength="{{validations.nombre.maxlength}}">
+                            <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div ng-show="localidad.nombre.$error.maxlength" class="alert no-padding alert-warning">
+                            <i class="fa fa-warning"></i>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Logitud maxima: {{validations.nombre.maxlength}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"><cr/>Código Postal</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="codigo" required="" ng-model="localidadSel.codigo" ng-maxlength="{{validations.nombre.maxlength}}" maxlength="{{validations.nombre.maxlength}}">
+                            <span class="input-group-addon"><i class="fa fa-code"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div ng-show="localidad.codigo.$error.maxlength" class="alert no-padding alert-warning">
+                            <i class="fa fa-warning"></i>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Logitud maxima: {{validations.nombre.maxlength}}
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-default" c-class-hover="dark-green" ng-class="{'c-highlight-default': !localidadSel.id}" ng-disabled="localidadSel.id">
+                            <i class="fa fa-plus-circle"></i>Agregar
+                        </button>
+                        <button class="btn btn-default "  c-class-hover="dark-green" ng-class="{'c-highlight-default': localidadSel.id}" ng-disabled="!localidadSel.id">
+                            <i class="fa fa-edit"></i>Modificar
+                        </button>
+                        <span permission-hide="[ 'LOCALIDAD_REM']" >
+                            <button c-btnremove="localidadSel" c-service="LocalidadServ" c-name="{{localidadSel.nombre}}"  c-callback="onAction"
+                                    class="btn btn-default" type="button"  c-class-hover="red" ng-disabled="!localidadSel.id"  >
+                                
+                                <i ng-class="!localidadSel.deletedAt ? 'fa fa-trash-o': 'fa fa-check-circle blue'"></i> <span ng-if="!localidadSel.deletedAt"> Eliminar</span><span ng-if="localidadSel.deletedAt"> Restaurar</span>
+                            </button>
+                        </span>
+                        <button class="btn btn-default" type="button" ng-click="onClear()">
+                            <i class="fa fa-eraser"></i>Limpiar campos
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Lista de Localidades</h3>
+            </div>
+            <div class="box-body" st-table="localidadesTbl" st-safe-src="localidades">
+                <span class="pull-left"> 
+                    <select class="form-control input-sm" ng-model="jconfFiltro.op" ng-change="init()">
+                        <option value="NOT_FILTER">Todos</option>
+                        <option value="NULL">Normal</option>
+                        <option value="NOT_NULL">Eliminados</option>
+                    </select> 
+                </span>
+                <span class="pull-right">
+                    <i class="fa fa-filter"></i>
+                    <input type="text" ng-model="filtro.$" placeholder="Filtro">
+                </span>
+                <table class="table table-hover table-striped  table-condensed" >
+                    <thead>
+                        <tr>
+                            <th>Nombre</th> 
+                            <th>Código Postal</th> 
+                            <th style="width: 80px"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="d in localidadesTbl| filter:filtro" ng-click="onSelect(d)" ng-class="{'st-selected':d.id === localidadSel.id}">
+                            <td>{{d.nombre}}</td> 
+                            <td>{{d.codigo}}</td> 
+                            <td>
+                                <a  permission-hide="['LOCALIDAD_REM']" >
+                                    <c-btnremoveview c-obj="d"
+                                                     c-service="LocalidadServ"
+                                                     c-name="{{d.nombre}}"
+                                                     c-callback="onAction">
+                                    </c-btnremoveview> 
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

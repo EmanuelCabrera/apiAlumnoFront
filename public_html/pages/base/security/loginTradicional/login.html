@@ -1,0 +1,69 @@
+<div class="login-body">
+    <article class="container-login center-block">
+        <section>
+            <ul id="top-bar" class="nav nav-tabs nav-justified">
+                <li class="active">
+                    <a ui-sref="login">Accesso</a>
+                </li>
+                <li ng-show="isRegister">
+                    <a ui-sref="registro">¿Eres nuevo? <strong>Registrarme</strong></a>
+                </li>
+            </ul>
+            <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+                <div id="login-access" class="tab-pane fade active in">
+                    <h2>Ingresando a
+                        <b>{{nombreVisual}}</b></h2>						
+                    <div class="login-logo">
+
+                    </div>
+
+                    <div class="col-md-12 col-xs-12" ng-if="profileSocialNetworkShow">
+                        <p ng-if="hasLoginFacebook || hasLoginGoogle" class="login-box-msg">Iniciar sesi&oacuten v&iacutea</p>
+                       
+<!--                        <div class="col-md-6 col-xs-6" >
+                            <a  ng-if="hasLoginFacebook" class="btn btn-block btn-social btn-facebook" ng-click="loginFacebook()">
+                                <span class="fa fa-facebook"></span> Iniciar sesión con Facebook
+                            </a>
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <a ng-if="hasLoginGoogle" class="btn btn-block btn-social btn-google" ng-click="loginGoogle()">
+                                <span class="fa fa-google"></span> Iniciar sesión con Google
+                            </a>
+                        </div>-->
+
+                    </div>
+                    <div class="col-xs-12  col-md-12" style="margin-top: 20px;">
+<!--                        <p ng-if="hasLoginFacebook || hasLoginGoogle" class="login-box-msg">O ingresá tus datos para iniciar sesión</p>
+                        <p ng-if="!(hasLoginFacebook || hasLoginGoogle)" class="login-box-msg">Ingresá tus datos para iniciar sesión</p>-->
+
+                        <form ng-submit="login()">
+                            <div class="form-group has-feedback">
+                                <input type="text" class="form-control" required  ng-model="userSistem.correo" placeholder="Correo" autofocus>
+                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="password" class="form-control" required  ng-model="userSistem.pass" placeholder="Contraseña">
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button type="submit" class="btn btn-primary btn-block btn-flat">
+                                        Ingresar <i class="fa fa-sign-in"></i>
+                                    </button>
+                                </div>
+                                <div class="col-xs-12">
+                                    <a ui-sref="passreset" class="btn btn-primary btn-block btn-flat">Recuperar Contraseña</a>
+                                    <br>
+                                </div>
+                            </div>
+                        </form>
+                    </div>			
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </section>
+        <div><a ui-sref="home" class="pull-left volver"> <i class="fa fa-arrow-left"></i> Volver a la pantalla principal</a></div>
+    </article>
+</div>
+

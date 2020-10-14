@@ -1,0 +1,99 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                RRHH
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>
+                    <span ng-if="persona.id">Ver ({{persona.apellido + ' ' + persona.nombres}})</span>
+
+                </small>                
+                
+                <div class="pull-right">
+
+
+                    <button type="button" class="btn btn-default pull-right" back-button="">
+                        <i class="fa fa-arrow-left"></i>
+                        Atras
+                    </button>
+                    <button ui-sref="rrhh/persona/edit({id:persona.id})" permission-hide="['PERSONA_UPD']" 
+                            class="btn btn-default pull-right"
+                           >
+                        <i class="fa fa-pencil blue" > Modificar</i>
+                    </button> 
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <form >
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Datos de persona</h3>
+                    </div>
+                    <div class="box-body">
+                        <persona-detail persona="persona" ></persona-detail>
+                    </div>
+                </div>
+
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Datos de direccion</h3>
+                    </div>
+                    <div class="box-body">
+                        <direccion-detail dir="persona.direccion" ></direccion-detail>
+                    </div>
+                </div>
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Datos de contacto</h3>
+                    </div>
+                    <div class="box-body">
+                        <contacto-detail contacto="persona.contacto" ></contacto-detail>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button ui-sref="rrhh/persona/edit({id:persona.id})" permission-hide="['PERSONA_UPD']" 
+                            class="btn btn-default text-center"
+                           >
+                        <i class="fa fa-pencil blue" > Modificar</i>
+                    </button> 
+                </div>
+            </div>
+            <!--            <div class="col-md-12">
+                            <div class="box box-primary">
+            
+                                <div class="col-md-12">
+                                    <div class="box box-primary">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Datos de contacto</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            <contacto contacto="persona.contacto" required-fields="rf.contacto"></contacto>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Dirección de persona</h3>
+                                </div>
+                                <div class="box-body" novalidate>
+                                    <direccion dir="persona.direccion" required-fields='rf.direccion'></direccion>
+                                </div>
+            
+                                <div class="box-footer">
+                                    <button  class="btn btn-success" ng-disabled="saving">
+                                        <i class="glyphicon glyphicon-refresh spinning" ng-show="saving"></i>
+                                        <i class="fa fa-save" ng-hide="saving"></i>
+                                        Guardar
+                                    </button>
+                                    <button  class="btn btn-default" back-button="">
+                                        <i class="fa fa-arrow-left"></i> Volver
+                                    </button>
+                                </div>
+                            </div>
+                        </div>-->
+
+        </form>
+    </div> 
+</section>

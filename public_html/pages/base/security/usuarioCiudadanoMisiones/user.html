@@ -1,0 +1,129 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-users"></i>
+                Usuarios
+            </div>
+            <div class="breadcrumb">
+                <button ng-click="exportar()" class="btn btn-success" ><span class="hidden-xs">Exportar</span> <i class="fa fa-file-excel-o"></i></button>
+                <button permission-hide="['ACTION_LOG_LIST']" uib-tooltip="Ver acciones" tooltip-append-to-body="true" ui-sref="actionLog/class ({clazz:'User'})" class="btn bg-olive" > 
+                    <span class="hidden-xs">Ver acciones</span> <i class="fa fa-list-ol"></i>
+                </button>
+                <button permission-hide="['USER_CM_ADD']"  class="btn btn-primary" ui-sref="security/usuario-cm/add">Crear <i class="fa fa-plus-circle"></i></button>
+                <button type="button" class="btn btn-default " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary" st-table="personas" st-pipe="paginate" expose-state="tableState">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="pull-left"> 
+                                <select class="form-control input-sm" ng-model="jconfFiltro.op" ng-change="paginate()">
+                                    <option value="NOT_FILTER">Todos</option>
+                                    <option value="NULL">Normal</option>
+                                    <option value="NOT_NULL">Eliminados</option>
+                                </select> 
+                            </span>
+                            <span class="form-inline pull-right">  
+                                <ipp-table ipp="pagination.ipp" ></ipp-table>
+
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-filter"></i>
+                                    </span>
+                                    <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                                </div>
+                            </span> 
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table  table-hover table-striped table-condensed" >
+                            <thead>
+                                <tr>
+                                    <th style="width: 45px;">Perfil</th>
+                                    <th st-sort="usuario">Usuario</th>
+                                    <th st-sort="cuit">Cuit</th>
+                                    <th st-sort="correo">Correo</th>
+                                    <th  st-sort="apellido">Persona</th>
+                                    <th st-sort="rol">Rol</th>
+                                    <th>Último Acceso</th>
+                                    <th style="width: 120px;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="usuario in users">
+                                    <td style="width: 45px;">
+                                        <span >
+                                            <img   profile-img cuidadano="true" user="usuario"  ui-sref="security/profilePublic({id:usuario.id})" 
+                                                   class="img-circle pointer " 
+                                                   alt="Person Image"  
+                                                   style="width: 45px;height: 45px">
+                                        </span>
+                                    </td>
+                                    <td>{{usuario.name}}</td>
+                                    <td>{{usuario.cuit}}</td>
+                                    <td>{{usuario.correo}}</td>
+                                    <td>
+                                        <span ng-if="usuario.persona.id"> 
+                                            <a ui-sref="rrhh/persona/show({id:usuario.persona.id})" uib-tooltip="Ver persona" tooltip-append-to-body="true">
+                                                {{usuario.persona.apellido}} {{usuario.persona.nombres}}
+                                            </a> 
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span ng-repeat="rol in usuario.roles">
+                                            <a ui-sref="security/rol/show({id:rol.id})" uib-tooltip="Ver Detalle" tooltip-append-to-body="true">
+                                                {{rol.name}}
+                                            </a> 
+                                        </span>
+                                    </td>
+                                    <td>{{usuario.lastAccess| date:'dd/MM/yyyy HH:mm'}}</td>
+                                    <td style="width: 120px; display: flex;">
+                                        <div class="btn-group btn-group-sm">
+                                            <a  uib-tooltip="Ver usuario" tooltip-append-to-body="true" ui-sref="security/profilePublic({id:usuario.id})" class="btn btn-default">
+                                                <i class="fa fa-eye blue"></i>
+                                            </a> 
+                                            <a  uib-tooltip="Editar" tooltip-append-to-body="true"  permission-hide="['USER_CM_UPD']" ui-sref="security/usuario-cm/edit({id:usuario.id})" class="btn btn-default">
+                                                <i class="fa fa-pencil blue"></i>
+                                            </a> 
+                                        </div>
+                                        <a  permission-hide="['USER_REM']" >
+                                            <c-btnremoveview  
+                                                c-callback="onAction" 
+                                                c-obj="usuario" 
+                                                c-service="UserServ" 
+                                                c-name="{{usuario.name}}">
+                                            </c-btnremoveview>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6" class="text-center">  
+                            <count-rows table-state="tableState" items="users.length" total="count"></count-rows>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                            <custom-pagination display-pages="10"> </custom-pagination>
+                            </td>
+                            </tr>
+                            </tfoot>
+                        </table>  
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>

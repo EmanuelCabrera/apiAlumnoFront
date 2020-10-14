@@ -1,0 +1,51 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                Grupos de permisos
+                <i class="fa  fa-angle-double-right"></i>
+                <small>
+                    <span>Ver grupos de permisos</span>
+                </small>
+            </div>
+            <div class="breadcrumb">
+                <button type="button" class="btn btn-default" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>     
+    </div>
+    <div class="row">
+        <form >
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Grupos y permisos</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-hover table-bordered table-condensed" >
+                            <thead>
+                                <tr>
+                                    <th width="40%">Grupo</th>
+                                    <th >Permisos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="grupo in group_permissions">
+                                    <td><strong><i class="fa   fa-check-circle margin-r-5"></i> {{grupo.name}}</strong></td>
+                                    <td>
+                                        <div class="col-sm-4" ng-repeat="g in grupo.permisos">
+                                            <span class="label label-success">{{g.name}}<span>
+                                        </div>
+                                    </td>                       
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                        
+                </div>
+           </div>
+        </form>
+    </div>
+</section>

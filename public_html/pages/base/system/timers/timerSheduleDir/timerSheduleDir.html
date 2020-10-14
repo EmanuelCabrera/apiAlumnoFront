@@ -1,0 +1,77 @@
+<div>
+    <div ng-if="timer">
+        <div class="row">
+            <div class="col-md-12 no-padding margin-bottom">
+                <div class="col-xs-4  text-center">
+                    <div class="col-xs-6  text-center no-padding">
+                        <label class="no-margin">Persistente</label><br>
+                        <boolean-show model="timer.persistent" true-text=" 'Sí'" false-text=" 'No'"></boolean-show>
+                    </div>
+                    <div class="col-xs-6  text-center no-padding">
+                        <label class="no-margin">Autostart</label><br>
+                        <boolean-show model="timer.autostart" true-text=" 'Sí'" false-text=" 'No'"></boolean-show>
+                    </div>
+                </div>
+                <div class="col-xs-3 text-center">
+                    <label class="margin-r-5">Estado</label>
+                    <div class="btn-group" data-toggle="btn-toggle">
+                        <button type="button" ng-if="timer.info" style="cursor: default;" class="btn btn-sm" ng-class="timer.info ? 'parpadeo-online active  btn-success' : 'btn-disabled'">
+                            <span class="hidden-xs " ng-class="timer.info ? 'bold' : ''">Activo</span>
+                            <i class="fa fa-square" ng-class="timer.info ? 'text-green' : ''"></i>
+                        </button>
+                        <button type="button" ng-if="!timer.info" style="cursor: default;" class="btn btn-sm" ng-class="!timer.info ? 'parpadeo-offline active  btn-danger' : 'btn-disabled'">
+                            <span class="hidden-xs" ng-class="!timer.info ? 'bold' : ''">Inactivo</span>
+                            <i class="fa fa-square " ng-class="!timer.info ? 'text-red' : ''"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-xs-5  text-center">
+                    <label class="margin-r-5">Acciones</label>
+                    <button title="Arrancar timer" type="button" ng-click="start()" ng-if="!timer.info" class="btn btn-success ">
+                        <span class="hidden-xs">START</span>
+                        <i class="fa fa-play white"></i>
+                    </button>
+                    <button title="Parar timer" type="button" ng-click="stop()" ng-if="timer.info" class="btn btn-danger ">
+                        <span class="hidden-xs ">STOP</span>
+                        <i class="fa fa-square "></i>
+                    </button>
+                    <button ui-sref="timers/scheduleEntity/act({id:timer.id})" title="Editar timer" type="button" class="btn btn-primary">
+                        <span class="hidden-xs ">Editar</span>
+                        <i class="fa fa-edit "></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div ng-if="details" class="row">
+            <div class="col-md-6 text-center">
+                <label class="margin-r-5">Timer-Shedule</label> {{timer.name}}
+            </div>
+            <div class="col-md-6  text-center no-padding">
+                <label class="margin-r-5">Clase</label> {{timer.className}}
+            </div>
+
+            <div class="col-md-4  text-center no-padding">
+                <label class="margin-r-5">Próxima ejecución</label>
+                <span ng-if="timer.info">{{timer.info.nextTimeout| date:"dd/MM/yyyy HH:mm:ss"}}</span>
+            </div>
+            <div class="col-md-4 text-center">
+                <label class="margin-r-5">Tiempo</label>
+                <span class="pointer label label-default" title="Día de la semana">{{timer.dayOfWeek}}</span>
+                |
+                <span class="pointer label label-default" title="Día del mes">{{timer.dayOfMonth}}</span>/
+                <span class="pointer label label-default" title="Mes">{{timer.month}}</span>/
+                <span class="pointer label label-default" title="Año">{{timer.year}}</span>
+                <span class="pointer label label-default" title="Hora">{{timer.hour}}</span>:
+                <span class="pointer label label-default" title="Minuto">{{timer.minute}}</span>:
+                <span class="pointer label label-default" title="Segundo">{{timer.second}}</span>
+            </div>
+            <div class="col-md-4  text-center no-padding">
+                <label class="margin-r-5">Tiempo restante</label>
+                <span ng-if="timer.info">{{timer.info.timeRemaining| millSecondsToTimeStringES}}</span>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!timer" class="text-center">
+        <h3 class="text-danger">No hay timer <i class="fa fa-warning "></i></h3>
+    </div>
+</div>

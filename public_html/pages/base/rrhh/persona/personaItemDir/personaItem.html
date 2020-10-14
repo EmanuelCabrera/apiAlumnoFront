@@ -1,0 +1,30 @@
+<div ui-sref="security/profilePublic({id:person.user.id})" class="bordeo text-center" >
+    <img ng-hide="hide.foto" profile-img user="person.user" class="img-circle pointer " alt="User Image" 
+         style="height:100px">
+    <div ng-hide="hide.nombres" class="box-header  no-padding" style="height: 50px; padding-top: 10px !important;"> 
+        <h3 style="font-size: 16px;" class="box-title">{{person.nombres}} {{person.apellido}}</h3><br>
+    </div>  
+    <div class="box-body no-padding" style="padding: 5px;">
+        <div ng-hide="hide.direccion" ng-if="person.direccion.direccion">
+            <i class="fa  fa-map-marker margin-r-5"></i> 
+            Dirección
+            <p class="text-muted ng-binding">{{person.direccion.direccion}}</p>
+        </div>
+        <div  ng-hide="hide.correo" ng-if="person.contacto.correo">
+            <i class="fa  fa-envelope-o margin-r-5"></i> 
+            E-mail
+            <p class="text-muted ng-binding">{{person.contacto.correo}}</p>
+        </div>
+        <div  ng-hide="hide.tel" ng-if="person.contacto.tel1 || person.contacto.tel2">
+            <strong>
+                <i class="fa  fa-phone margin-r-5"></i> 
+                Telefonos
+            </strong>
+            <p class="text-muted ng-binding">
+                {{person.contacto.tel1}}
+                <span ng-if="person.contacto.tel1 && person.contacto.tel2"> | </span>
+                {{person.contacto.tel2}}
+            </p>
+        </div>
+    </div>
+</div>

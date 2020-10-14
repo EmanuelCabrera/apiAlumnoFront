@@ -1,0 +1,242 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-users"></i>
+                Logs
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>Logs de solicitudes </small>
+                <button type="button" class="btn btn-default pull-right " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary" st-table="requestlogs" st-pipe="paginate"  expose-state="tableState">
+                <h3 class="box-title" >Listado de solicitudes</h3>
+
+                <div class="box-header with-border">
+                    <div class="row" style="margin-top:-20px;">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <ipp-table></ipp-table>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label">AbsolutePath</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" ng-model="absolutePath" >
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label">remoteAddress</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" ng-model="remoteAddress" >
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="control-label">Time</label>
+                            <div class="form-group">
+                                <input type="number" class="form-control" ng-model="time" >
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label">Usuario</label>
+                            <div class="form-group">
+<!--                                                                <ui-select ng-model="userSelected.name" theme="bootstrap" >
+                                                                    <ui-select-match allow-clear="true"  placeholder="">{{$select.selected.name}}</ui-select-match>
+                                                                    <ui-select-choices repeat="user.name as user in users | orderBy:'name' | filter: $select.search" null-option="Seleccionar usuario">
+                                                                        <div ng-bind-html="user.name | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>-->
+
+                                <select-paginated  config="selectUsuario"  
+                                                   selected-item="userSelected">  
+                                </select-paginated>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label">Tipo de petición</label>
+
+                            <div class="form-group">
+                                <div class="input-group">
+
+                                    <select ng-model="filterPeticion" name="filterPeticion" ng-change="filtrarPeticion()" class="form-control ">
+                                        <option hidden="" value="">--Tipo de petición--</option>
+                                        <option value="GET">GET</option>
+                                        <option value="POST">POST</option>
+                                        <option value="PUT">PUT</option>
+                                        <option value="DELETE">DELETE</option>
+                                    </select>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default pull-right" ng-click="filtrar()"><i class="fa fa-filter"></i> Filtrar</button>
+                                    </span>
+                                </div>  
+                            </div>  
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="box-body">
+                    <div ng-if="checkeSel()">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    ¿Desea eliminar el/los <b>{{cantSel()}}</b> elemento/s  seleccionado/s?
+                                </div>
+                                <div class="col-xs-12 text-center">
+                                    <button  class="btn btn-danger" ng-disabled="deleted" ng-click="removeSelected()">
+                                        <i class="glyphicon glyphicon-refresh spinning" ng-show="deleted"></i>
+                                        <i class="fa fa-trash" ng-hide="deleted"></i>
+                                        Eliminar seleccionados
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-condensed " >
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 25px;">
+                                        <input ng-change="onCheck()" type="checkbox" ng-model="selTodos">
+                                    </th>
+                                    <th >Method</th>
+                                    <th>AbsolutePatch</th>
+                                    <th>Datetime</th>
+                                    <th>Time</th>
+                                    <th>Size</th>
+
+                                    <th>RemoteAddr</th>
+                                    <th>User</th>
+                                    <th>Acciones</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="resquest in requestlogs" ng-click="showDetail(resquest)" ng-class="{'st-selected':resquest.id === logSel.id}">
+                                    <td class="text-center">
+                                        <input type="checkbox" ng-model="resquest.selected">
+                                    </td>
+                                    <td>{{resquest.method}}</td>
+                                    <td>{{resquest.absolutePatch}}</td>
+                                    <td>{{resquest.datetime| date:"dd/MM/yyyy HH:mm ' hs'"}}</td>
+                                    <td>{{resquest.time}} mseg</td>
+                                    <td>{{resquest.size}} </td>
+                                    <td>{{resquest.remoteAddr}}</td>
+                                    <td>{{resquest.user}}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm pull-right">
+                                            <a uib-tooltip="Eliminar" tooltip-append-to-body="true"  class="btn btn-default"
+                                               ng-bootbox-title="Eliminar log"
+                                               ng-bootbox-confirm="Esta seguro de eliminar el log?"
+                                               ng-bootbox-confirm-action="remove(resquest.id)" ng-bootbox-confirm-action-cancel=""> 
+                                                <i class="fa fa-trash blue"></i>  
+                                            </a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="8" class="text-center">  
+                            <count-rows table-state="tableState" items="requestlogs.length" total="count"></count-rows>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td colspan="8" class="text-center">
+                            <custom-pagination display-pages="10">
+                            </custom-pagination>
+                            </td>
+                            </tr>
+                            </tfoot>
+                        </table>  
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row" ng-if="statusDetail" >
+        <div class="col-md-12">
+            <div class="box-header with-border">
+                <h3 class="box-title">Detalles del log</h3>
+            </div>
+            <div class="box-body">
+                <table class="table table-hover table-bordered table-condensed" >
+
+                    <tbody>
+                        <tr>
+                            <th>Method</th>
+                            <td>{{log.method}}</td>                          
+                        </tr>
+                        <tr>
+                            <th>queryParams</th>
+                            <td>{{log.queryParams}}</td>
+                        </tr>
+                        <tr>
+                            <th>formParams</th>
+                            <td>{{log.formParams}}</td>
+                        </tr>
+                        <tr>
+                            <th>patchParams</th>
+                            <td>{{log.patchParams}}</td>
+                        </tr>
+                        <tr>
+                            <th>jsonParams</th>
+                            <td>{{log.jsonParams}}</td>         
+                        </tr>
+                        <tr>
+                            <th>headersParams</th>
+                            <td>{{log.headersParams}}</td>
+                        </tr>
+                        <tr>
+                            <th>absolutePatch</th>
+                            <td>{{log.absolutePatch}}</td>
+                        </tr>
+                        <tr>
+                            <th>datetime</th>
+                            <td>{{log.datetime| date:"dd/MM/yyyy HH:mm ' hs'"}}</td>
+                        </tr>                
+                        <tr>
+                            <th>time</th>
+                            <td>{{log.time}}</td>
+                        </tr>
+                        <tr>
+                            <th>remoteAddr</th>
+                            <td>{{log.remoteAddr}}</td>
+                        </tr>
+                        <tr>
+                            <th>remoteHost</th>
+                            <td>{{log.remoteHost}}</td>
+                        </tr>                        
+                        <tr>
+                            <th>remoteUser</th>
+                            <td>{{log.remoteUser}}</td>
+                        </tr>    
+                        <tr>
+                            <th>remotePort</th>
+                            <td>{{log.remotePort}}</td>
+                        </tr>      
+                        <tr>
+                            <th>characterEncoding</th>
+                            <td>{{log.characterEncoding}}</td>
+                        </tr> 
+                        <tr>
+                            <th>user</th>
+                            <td>{{log.user}}</td>
+                        </tr> 
+                    </tbody>
+                </table>   
+            </div>
+
+        </div>
+    </div>
+</section>

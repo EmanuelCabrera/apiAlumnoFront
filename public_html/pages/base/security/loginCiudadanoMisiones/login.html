@@ -1,0 +1,79 @@
+<style>
+    .content{
+        background:url('img/fondo-azul.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+        outline: thin dotted;
+        outline: 0px auto -webkit-focus-ring-color;
+    }
+</style>
+<div class="mid-login-content-box">
+    <div>
+        <article class="center-block">
+            <section class="mid-login-sistema-box">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img class="mid-login-img-logo-sistema img-responsive" src="img/logo_marandu_transparente.png">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <div class="h3 mid-login-sistema-nombre">Sistema BASE de Marandu Comunicaciones</div>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </div>
+    <div style="margin-top: 4rem;">
+        <article class="center-block">
+            <section class="mid-login-box">
+                <form style="margin-top: 3rem;" ng-submit="login()" class="form center-block form-inputs-rounded">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12">
+                            <img class="mid-login-img-logo img-responsive" src="img/ciudadanomisiones.jpg">
+                        </div>
+                        <div class="col-sm-6 col-xs-12">
+                            <div class="form-group has-feedback">
+                                <input  class="form-control" ng-model="user.correo" placeholder="CUIT" required="">
+                                <span class="fa fa-user form-control-feedback"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="password" class="form-control" ng-model="user.pass" placeholder="Contraseña" required="">
+                                <span class="fa fa-lock form-control-feedback"></span>
+                            </div>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-xs-6 text-center">
+                                    <button ng-disabled="process"  type="submit"  class="btn btn-lg btn-block btn-mdi-login">
+                                        <span ng-if="!process">Ingresar</span>
+                                        <span ng-if="process">Ingresando </span>
+                                        <icon-loading visible="process"></icon-loading>
+                                    </button>
+                                </div>
+                                <div class="col-xs-6 text-center">
+                                    <button  ng-click="register()" type="button"  class="btn btn-lg btn-block btn-registro">
+                                        <span>Registrarme</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row"  style="margin-top: 20px;">
+                                <div class="col-xs-12 text-center">
+                                    <a href="https://ciudadano.misiones.gob.ar/#/passreset" target="_blank" class="btn btn-link btn-mdi-login-olvide">
+                                        Olvidé mi contraseña
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <div class="clearfix"></div>
+            </section>
+        </article>
+    </div>
+</div>
+

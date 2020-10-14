@@ -1,0 +1,112 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-list-ol"></i>
+                Lista de todas las acciones
+            </div>
+            <div class="breadcrumb">
+                <button type="button" class="btn btn-default " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary" st-table="actionLogs" st-pipe="paginate"  expose-state="tableState">
+
+                <div class="box-header">
+
+                    <div class="row">
+                        <div class="box-tools pull-right">
+                            <div class="form-inline">
+                                <ipp-table></ipp-table>
+                                <div class="input-group input-group-sm hidden" style="width: 200px;">
+                                    <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                                    <span  class="input-group-addon">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="control-label">Usuario</label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                <ui-select ng-model="userSelected.id" >
+                                <ui-select-match allow-clear="true">{{$select.selected.name}} </ui-select-match>
+                                 <ui-select-choices 
+                                    refresh="fetch($select)" 
+                                    refresh-delay="100" 
+                                    repeat="e.id as e in users | filter: $select.search">
+                                    {{e.name}} <br>
+                                   
+                                    <div ng-if="$index == $select.items.length - 1">
+                                        <button 
+                                            ng-if="!useNgMouseover && userHashNext" 
+                                            class="btn btn-xs btn-success" 
+                                            style="width: 100%; margin-top: 5px;" 
+                                            ng-click="fetch($select, $event);"
+                                            ng-disabled="loading">Cargar mas resultados...</button>                 
+                                        <button 
+                                            ng-if="useNgMouseover && userHashNext" 
+                                            class="btn btn-xs btn-danger" 
+                                            style="width: 100%; margin-top: 5px;" 
+                                            ng-mouseover="fetch($select, $event);"
+                                            ng-disabled="loading">Mouse over load more...</button>                 
+                                    </div>
+                                </ui-select-choices>
+                            </ui-select>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default " ng-click="filtrar()"><i class="fa fa-filter"></i> Filtrar</button>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div ng-if="actionLogs.length > 0" style="margin-top: 10px;" >
+                        <ul class="todo-list">
+                            <li ng-repeat="a in actionLogs">
+                                <div></div>
+                                <img  ng-src="{{a.image}}" class="user-image" style="
+                                      width: 25px !important;
+                                      height: 25px !important;
+                                      border-radius: 50%;
+                                      ">
+
+                                <span>
+                                    {{a.sms}}
+                                </span>
+                                <span class="pull-right hidden-xs">
+                                    <i class="fa fa-calendar"></i> 
+                                    {{a.time| date:"dd-MM-yyyy HH:mm:ss ' hs'"}}
+                                </span>
+                                <span class="hidden-sm hidden-lg hidden-md padding-left">
+                                    |
+                                    <i class="fa fa-calendar"></i> 
+                                    {{a.time| date:"dd-MM-yyyy HH:mm:ss ' hs'"}}
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-if="actionLogs.length == 0" class="row margin text-info center-block">
+                        <h4>No se encontraron acciones</h4> 
+                    </div>
+                </div>
+                <div class="box-footer text-center">
+                    <div class="text-center">  
+                        <count-rows table-state="tableState" items="actionLogs.length" total="count"></count-rows>
+                    </div>
+                    <custom-pagination display-pages="10"></custom-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

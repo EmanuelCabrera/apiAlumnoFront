@@ -1,0 +1,135 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-clock-o"></i>
+                Timers
+                <i class="fa  fa-angle-double-right"></i>
+                <small>
+                    <span>Schedule entity</span>
+                </small>
+                <button type="button" class="btn btn-default pull-right" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atrás
+                </button>
+            </div>
+        </section>
+    </div>
+    <!--    <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-info">
+                    <span class="fa fa-info-circle"></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    texto de ayuda
+                </div>
+            </div>
+        </div>-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <form ng-submit="!schedule.id ? create() : update()" name="asignatura">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Editar schedule entity</h3>
+                    </div>
+                    <div class="box-body">
+
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="control-label"><cr/>Nombre</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control"  required="" ng-model="schedule.name" >
+                                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-sm-6">
+                            <label class="control-label">Clase</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control"  ng-model="schedule.className" >
+                                <span class="input-group-addon"><i class="fa fa-font"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label class="control-label">Segundo</label>
+                            <div class="input-group">
+                                <input type="text" ng-model="schedule.second" class="form-control">
+                                <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="control-label">Minutos</label>
+                            <div class="input-group">
+                                <input type="text" ng-model="schedule.minute" class="form-control">
+                                <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="control-label">Horas</label>
+                            <div class="input-group">
+                                <input type="text" ng-model="schedule.hour" class="form-control">
+
+                                <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="control-label">Día de la semana</label>
+                            <div class="input-group">
+                                <input type="text" ng-model="schedule.dayOfWeek" class="form-control">
+                                <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label class="control-label">Día del mes</label>
+                            <div class="input-group">
+                                <input type="text" ng-model="schedule.dayOfMonth" class="form-control">
+
+                                <span class="input-group-addon"><i class="fa fa-hashtag"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-1 no-padding">
+                            <label class="control-label">Mes</label>
+                            <input type="text" ng-model="schedule.month" class="form-control">
+                        </div>
+                        <div class="form-group col-md-1 no-padding">
+                            <label class="control-label">Año</label>
+                            <input type="text" ng-model="schedule.year" class="form-control">
+                        </div>
+                        <div class="form-group col-md-8 col-sm-6">
+                            <label class="control-label">Descripción</label>
+                            <textarea ng-model="schedule.description" placeholder="Escriba algún comentario acerca del schedule"  class="form-control"></textarea>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="input-group">
+                                <c-check text=" 'Es persistente'" editable='true' value='schedule.persistent'></c-check>
+                            </div>
+
+                            <div class="input-group">
+                                <c-check text=" 'Inicia automaticamente'" editable='true' value='schedule.autostart'></c-check>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+
+                    </div>
+                    <div class="box-footer ">
+
+                        <button  type="button"  class="btn btn-default" back-button="">
+                            <i class="fa fa-arrow-left"></i> Volver
+                        </button>
+                        <button  class="btn btn-primary" ng-disabled="saving">
+                            <i class="glyphicon glyphicon-refresh spinning" ng-show="saving"></i>
+                            <i class="fa fa-save" ng-hide="saving"></i>
+                            Guardar
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+

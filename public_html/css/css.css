@@ -1,0 +1,1095 @@
+/*LOGIN*/
+
+.navbar {
+    margin-bottom: 0px;
+    border-radius: 0px;
+    border: 0px;
+
+}
+
+.skin-blue .wrapper {
+    background-color: #fff ;
+}
+
+.user-header .info {
+
+    padding: 12px 16px;
+    text-align: left;
+
+
+}
+.nav-pills>li>a {
+    border-top: none;
+
+}
+
+.nav-pills {
+    font-weight: 800;
+
+}
+.tab-pane .margin {
+    margin: 0px 0px;
+}
+
+
+.box-footer {
+    background-color:inherit;
+}
+
+.img-perfil {
+    width: 80%;
+    display: initial;
+}
+
+.botones-perfil{
+    padding: 30px 0px;
+
+}
+
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header {
+    height: inherit;
+    color: #222d32;
+    font-size: 16px;
+    font-weight: 900;
+
+    -webkit-box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.45);
+    box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.45);
+
+
+}
+
+.skin-blue .main-header li.user-header {
+    background-color: #fff;
+}
+.login section {
+
+    -webkit-box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.75);
+}
+.content {
+    min-height: 80vh !important;
+    padding: 0px 15px 15px 15px;
+}
+
+.container-login {
+    min-height: 0;
+    width: 480px;
+    color: #333333;
+    margin-top: 40px;
+    padding: 0;
+}
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container-login > section {
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 0px;
+    -webkit-box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 6px 13px 0px rgba(0,0,0,0.75);
+    margin-bottom: 30px;
+}
+#top-bar {
+    display: inherit;
+    background-color: #EEE;
+}
+.nav-tabs.nav-justified {
+    border-bottom: 0 none;
+    width: 100%;
+}
+.nav-tabs.nav-justified > li {
+    display: table-cell;
+    width: 1%;
+    float: none;
+}
+.container-login .nav-tabs.nav-justified > li > a,
+.container-login .nav-tabs.nav-justified > li > a:hover,
+.container-login .nav-tabs.nav-justified > li > a:focus {
+    background: #ea533f;
+    border: medium none;
+    color: #ffffff;
+    margin-bottom: 0;
+    margin-right: 0;
+    border-radius: 0;
+}
+.container-login .nav-tabs.nav-justified > .active > a,
+.container-login .nav-tabs.nav-justified > .active > a:hover,
+.container-login .nav-tabs.nav-justified > .active > a:focus {
+    background: #EEE;
+    color: #333333;
+}
+.container-login .nav-tabs.nav-justified > li > a:hover,
+.container-login .nav-tabs.nav-justified > li > a:focus {
+    background: #de2f18;
+}
+.tabs-login {
+    background: #EEE;
+    border: medium none;
+    margin-top: -1px;
+    padding: 10px 30px;
+}
+.container-login h2 {
+    color: #ea533f;
+    text-align: center;
+}
+.volver {
+    color: #333;
+}
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+    font-size: 25px;
+}
+.navbar-default {
+    background-color: inherit;
+}
+
+.main-footer {
+
+    padding: 0px;
+}
+
+.main-footer img {
+    max-height: 40px;
+    position: relative;
+    top: 7px;
+    right: 5px;
+}
+
+.main-footer .navbar-default {
+    padding: 10px;
+}
+
+#menu {
+
+    background-color: #222d32;
+}
+
+.navbar-inverse {
+    background-color: #333;
+    border-color: #080808;
+    -webkit-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.35);
+    -moz-box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.35);
+    box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.35);
+}
+
+.form-control {
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #999999;
+    border-radius: 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #333333;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+.container-login .checkbox {
+    margin-top: -15px;
+}
+.container-login button {
+    background-color: #ea533f;
+    border-color: #e73e28;
+    color: #ffffff;
+    border-radius: 0;
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 10px 16px;
+    width: 100%;
+}
+.container-login button:hover,
+.container-login button:focus {
+    background: #de2f18;
+    border-color: #be2815;
+}
+
+
+
+/*FIN LOGIN*/
+
+
+.ui-pnotify.stack-bar-top {
+    right: 0;
+    top: 0;
+}
+
+a:disabled{
+    cursor: not-allowed;
+}
+
+.col-condensed {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.ben-acordion-green{
+    color:#5D8500
+}
+.ben-acordion-gray{
+    color: #999999
+}
+.navbar .divider-vertical {
+    height: 50px;
+    margin: 0 9px;
+    border-right: 1px solid #ffffff;
+    border-left: 1px solid #f2f2f2;
+}
+
+.navbar-inverse .divider-vertical {
+    border-right-color: #222222;
+    border-left-color: #111111;
+}
+
+
+.page-header{
+    margin-top: 3px !important;
+} 
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: block;
+}
+/*//para login sistem*/
+.profile-img{width:96px;height:96px;display:block;-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;margin:0 auto 10px;}
+
+.c-loading {  
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1000;
+    background-color:grey;
+    opacity: .8;
+}
+.ajax-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -32px; /* -1 * image width / 2 */
+    margin-top: -32px;  /* -1 * image height / 2 */
+    display: block;     
+}
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -70px
+}
+
+.footer {
+    position: relative;
+    clear:both;
+    height: 70px
+}
+
+/*Se aplica solo con resolucion mayor a 1000*/
+@media screen and (max-width: 1100px) {
+    .nav-condensed > li > a{
+        padding-left : 6px;
+        padding-right : 6px; 
+    }   
+}
+
+@media screen and (max-width: 767px) {
+
+
+    .content {
+
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .container-login {
+
+        width: 100%;
+    }
+
+
+
+}
+
+
+
+/*.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+   Set the fixed height of the footer here 
+  height: 50px;
+  background-color: #f5f5f5;
+}
+.footer > .container {
+  padding-top: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+}*/
+
+.st-selected {
+    background: #216eff !important;
+    color: white !important;
+}
+
+.st-no-selected {
+    background: red !important;
+    color: white !important;
+}
+
+.st-sort-ascent:after{
+    float: right !important;
+    content: '\25B2';
+    color: darkblue;
+}
+
+.st-sort-descent:after{
+    float: right !important;
+    content: '\25BC';
+    color: darkblue;
+}
+
+.pointer{cursor: pointer}
+
+.dark{color:#333!important}
+.white{color:#fff!important}
+.red{color:#dd5a43!important}
+.light-red{color:#f77!important}
+.blue{color:#478fca!important}
+.light-blue{color:#93cbf9!important}
+.green{color:#69aa46!important}
+.dark-green{color:#004700!important}
+.light-green{color:#b0d877!important}
+.orange{color:#ff892a!important}
+.light-orange{color:#fcac6f!important}
+.orange2{color:#feb902!important}
+.purple{color:#a069c3!important}
+.pink{color:#c6699f!important}
+.pink2{color:#d6487e!important}
+.brown{color:#a52a2a!important}
+.grey{color:#777!important}
+.light-grey{color:#bbb!important}
+.yellow{color:#ffff00!important}
+
+.bigger-110{font-size:110%}
+.bigger-120{font-size:120%}
+.bigger-130{font-size:130%}
+.bigger-140{font-size:140%}
+.bigger-150{font-size:150%}
+.bigger-160{font-size:160%}
+.bigger-170{font-size:170%}
+.bigger-180{font-size:180%}
+.bigger-190{font-size:190%}
+.bigger-200{font-size:200%}
+.bigger-210{font-size:210%}
+.bigger-220{font-size:220%}
+.bigger-230{font-size:230%}
+.bigger-240{font-size:240%}
+.bigger-250{font-size:250%}
+.bigger-260{font-size:260%}
+.bigger-270{font-size:270%}
+.bigger-280{font-size:280%}
+.bigger-290{font-size:290%}
+.bigger-300{font-size:300%}
+.bigger-125{font-size:125%}
+.bigger-175{font-size:175%}
+.bigger-225{font-size:225%}
+.bigger-275{font-size:275%}
+
+.smaller-90{font-size:90%}
+.smaller-80{font-size:80%}
+.smaller-70{font-size:70%}
+.smaller-60{font-size:60%}
+.smaller-50{font-size:50%}
+.smaller-40{font-size:40%}
+.smaller-30{font-size:30%}
+.smaller-20{font-size:20%}
+.smaller-75{font-size:75%}
+
+.width-20{width:20%!important}
+.width-25{width:25%!important}
+.width-30{width:30%!important}
+.width-35{width:35%!important}
+.width-40{width:40%!important}
+.width-45{width:45%!important}
+.width-50{width:50%!important}
+.width-55{width:55%!important}
+.width-60{width:60%!important}
+.width-65{width:65%!important}
+.width-70{width:70%!important}
+.width-75{width:75%!important}
+.width-80{width:80%!important}
+.width-85{width:85%!important}
+.width-90{width:90%!important}
+.width-95{width:95%!important}
+.width-100{width:100%!important}
+.width-48{width:48%!important}
+
+
+/* 
+    Component: callout
+------------------------
+*/
+.callout {
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid #eee;
+}
+.callout h4 {
+    margin-top: 0;
+}
+.callout p:last-child {
+    margin-bottom: 0;
+}
+.callout code,
+.callout .highlight {
+    background-color: #fff;
+}
+.callout.callout-danger {
+    background-color: #fcf2f2;
+    border-color: #dFb5b4;
+}
+
+.callout.callout-warning {
+    background-color: #fefbed;
+    border-color: #f1e7bc;
+}
+.callout.callout-info {
+    background-color: #f0f7fd;
+    border-color: #d0e3f0;
+}
+/*Add by CICHA*/
+.callout.callout-default {
+    background-color: #eeeeee ;
+}
+.callout.callout-success { 
+    background-color: #dff0d8 ;
+    border-color: #c8e5bc;
+}
+.callout.callout-danger h4 {
+    color: #B94A48;
+}
+.callout.callout-warning h4 {
+    color: #C09853;
+}
+.callout.callout-info h4 {
+    color: #3A87AD;
+}
+
+.font-weight{
+    font-weight: 600;
+} 
+
+/*Icono que simula un loading: Ejemplo uso <i class="glyphicon glyphicon-refresh spinning"></i>*/
+.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+.fa.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+@-webkit-keyframes spin2 {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+
+.btn-facebook,
+.btn-facebook:focus,
+.btn-facebook:hover
+{
+    background-color: #3B5998;
+    color: #FFF;
+}
+.btn-gplus,
+.btn-gplus:focus,
+.btn-gplus:hover
+{
+    background-color: #DB4437;
+    color: #FFF;
+}
+
+/*Color del tab active*/
+
+.uib-tab.nav-item.active>a,
+.uib-tab.nav-item.active>a:focus,
+.uib-tab.nav-item.active>a:hover
+{
+    border-top: 3px solid #ccc;
+
+    background-color: #eee;
+    color: #333;
+
+}
+
+a {
+    cursor: pointer;
+}
+
+.video-center-50{
+    text-align: center;
+}
+.video-center-50 video {
+    max-width: 50%; 
+    height: auto;
+}
+
+.video-center-65{
+    text-align: center;
+}
+.video-center-65 video, .video-center-65 i {
+    max-width: 65%; 
+    height: auto;
+}
+
+
+.box.box-primary{border-top-color:#FFF}
+
+/**
+*Para la vista de temas
+*/
+
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 90vh; /* These two lines are counted as one :-)       */
+
+    display: flex;
+    align-items: center;
+}
+
+.box-tema{
+    margin-bottom: 3px !important;
+    cursor: pointer;
+
+}
+
+.box-tema:hover{
+    background-color: #EEEEEE;
+}
+
+.box {
+    background-color: inherit !important;
+    border-top: inherit !important;
+    box-shadow: inherit !important;
+}
+
+
+
+
+.back-unidad{
+    color: #EEEEEE !important;
+    cursor: pointer;
+    text-decoration: none  !important;
+}
+.back-unidad:hover{
+    color: #FFF !important;
+}
+
+.back-tema{
+    color: #0073B7 !important;
+    cursor: pointer;
+    text-decoration: none  !important;
+}
+
+.vertical-padding{
+    min-height: 90%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 90vh; /* These two lines are counted as one :-)       */
+
+    display: flex;
+}
+
+.timeline>li{
+    margin-bottom: 5px;
+}
+
+.timeline > li > .timeline-item > .timeline-body,
+.timeline > li > .timeline-item > .timeline-footer {
+    padding: 5px;
+}
+
+.actividad-hover-color:hover,
+.actividad-hover-color:focus{
+    background-color: #0073B7 !important;
+    color: #FFF !important;
+    cursor: pointer;
+}
+
+.bg-image {
+    position: relative;
+    cursor: pointer;
+    height: 125px;
+
+}
+.bg-image img {
+    display: block;
+    width: 100%;
+    max-width: 1200px; /* corresponds to max height of 450px */
+    margin: 0 auto;
+    height: 125px;
+
+}
+.bg-image h1 {
+    position: absolute;
+    text-align: left;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    font-size: inherit;
+    padding-left: 10px;
+}
+
+.tema-descripcion {
+    padding: 5px; font-weight: bold;
+}
+
+.carousel-inner.item,
+.carousel-inner .item img{
+    width: 100%;
+}
+
+
+.btn-app{
+    width: 150px;
+    width: 200px;
+}
+
+
+.layout-top-nav .wrapper{
+    background-color: white; 
+}
+
+.layout-top-nav .rol-hidden{
+    display: none;
+}
+
+layout-top-nav .rol-show{
+    display: block;
+}
+
+.hold-transition .rol-show, .sidebar-collapse .rol-show{
+    display: none;
+}
+
+html, body {
+    height: auto !important;
+    min-height: 100%;
+}
+
+section{
+    height: 100%;
+}
+
+/*Setear el color del loading bar y el ancho*/
+#loading-bar .bar {
+    background: #222D32;
+    height: 3px;
+}
+
+.conetnido-selected {
+    border: solid 4px green;
+}
+
+
+
+.content-header{
+    padding-top: 0px;
+    padding: 20px 20px 10px 20px;
+    background-color: #EEE !important;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.content-header > .h3 {
+    font-size: 18px;
+    margin-top:  0px;
+}
+
+.content-header button {
+    background-color: #FFFFFF;
+    color: #222d32;
+    position: relative;
+    top: -6px;
+}
+
+.fa-play {
+    font-size: 12px;
+    top: -1px;
+    position: relative;
+    padding: 0px 10px;
+    color: #2c3b41;
+
+}
+
+
+
+.content-header small {
+    font-size: inherit;
+    margin-top:  0px;
+
+}
+
+
+li {
+    list-style-type: none;
+}
+
+.parpadeo-online{
+    background-color: #419641;
+    animation: parpadeoOnLine 1.5s;
+    -webkit-animation: parpadeoOnLine 1.5s;
+    -moz-animation: parpadeoOnLine 1.5s;
+    animation-iteration-count:infinite;
+    -webkit-animation-iteration-count:infinite;
+    -moz-animation-iteration-count:infinite;
+}
+
+
+@keyframes parpadeoOnLine { 
+    0% {background-color: #419641}
+    25% {background-color: #419641}
+    75% {background-color: white}
+    100%{background-color: #419641} 
+}
+
+@-webkit-keyframes parpadeoOnLine { 
+    0% {background-color: #419641}
+    25% {background-color: #419641}
+    75% {background-color: white}
+    100%{background-color: #419641} 
+}
+
+.parpadeo-offline{
+    background-color: #d73925;
+    animation: parpadeoOffLine 1.5s;
+    -webkit-animation: parpadeoOffLine 1.5s;
+    -moz-animation: parpadeoOffLine 1.5s;
+    animation-iteration-count:infinite;
+    -webkit-animation-iteration-count:infinite;
+    -moz-animation-iteration-count:infinite;
+}
+
+
+@keyframes parpadeoOffLine { 
+    0% {background-color: #d73925}
+    25% {background-color: #d73925}
+    75% {background-color: white}
+    100%{background-color: #d73925} 
+}
+
+@-webkit-keyframes parpadeoOffLine { 
+    0% {background-color: #d73925}
+    25% {background-color: #d73925}
+    75% {background-color: white}
+    100%{background-color: #d73925} 
+}
+
+.submited input.ng-invalid{
+    background-color: #FA787E;
+}
+.submited select.ng-invalid{
+    background-color: #FA787E;
+}
+
+.float-btn-stack-noti {
+    position: fixed;
+    top: 0;
+    right: 8%;
+    z-index: 99;
+    border: none;
+    /*outline: none;*/
+    cursor: pointer;
+    z-index: 999999 !important;
+}
+
+.foto-perfil:hover{
+    background: none;
+}
+
+.change-profile-img{
+    display: none;
+}
+
+.hover-change-profile-img:hover .change-profile-img{
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    left: 3px;
+    background-color: #222D34;
+    color: #fff;
+    border: 3px;
+    padding: 4px 10px;
+
+}
+
+.todo-list>li:hover{
+    background-color: #f4f4f4;
+    font-weight: 600;
+}
+
+#map { 
+    height: 100%;
+    min-height: 250px;
+}
+
+.height-inherit{
+    height: inherit;
+}
+
+.color-facebook {
+    color:#3b5998;
+}
+
+.color-instagram {
+    color:#8a3ab9;
+}
+
+.color-twitter {
+    color:#00aced;
+}
+
+.color-gmail {
+    color:#c71610;
+}
+
+.breadcrumb{
+    background-color: transparent !important;
+    text-align: center;
+}
+
+/*.error-page{
+    width: 725px !important;
+}*/
+
+.error-content>h3{
+    padding: 5px !important;
+}
+
+.bordeo{
+    padding: 5px;
+    border-radius: 8px;
+    border: 1px solid  #3c8dbc !important;
+    cursor: pointer;
+}
+
+.contenido-style-default{
+    background-size: cover;
+    height: 100px;
+}
+
+
+/*/Login Ciudadano Misiones*/
+
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .mid-login-content-box article{
+        width: 100% !important;
+    }
+
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+    .mid-login-box {
+        padding: 2rem;
+    }
+
+    .mid-login-content-box article{
+        width: 70% !important;
+    }
+
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .mid-login-box {
+
+        padding: 2rem;
+    }
+
+    .mid-login-content-box article{
+        width: 100% !important;
+    }
+
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .mid-login-box {
+
+        padding: 1rem;
+
+    }
+
+    .mid-login-content-box article{
+        width: 100% !important;
+    }
+
+}
+
+
+.mid-login-img-logo{
+    max-height: 100px;
+    margin: 0 auto;
+}
+
+.mid-login-img-logo-sistema{
+    max-height: 110px;
+    margin: 0 auto;
+}
+
+.form-inputs-rounded .form-control{
+    border-radius: 2rem;
+    font-size: 1.5rem !important;
+    height: 3.5rem !important;
+    border:1px solid #cccccc;
+
+}
+
+.form-inputs-rounded .form-control-feedback {
+    padding-right: 10px;
+}
+
+.form-inputs-rounded * {
+    font-size: 1.5rem !important;
+}
+
+
+.mid-login-content-box{
+    margin-top: 2%;
+
+}
+
+.mid-login-sistema-box{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.mid-login-content-box article{
+    width: 70% ;
+}
+
+.mid-login-sistema-nombre{
+    color:#FFF;
+}
+
+.mid-login-box {
+    background-color: #FFF;
+    padding: 4.5rem;
+    border-radius: 2rem;
+    margin-left: 0;
+    margin-right: 0;
+    -webkit-box-shadow: 0px 4px 8px -4px  rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 8px -4px  rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 4px 8px -4px  rgba(0,0,0,0.75);
+}
+
+
+.btn-registro{
+    background-color: #B80F16;
+    border-color: #a00c11;
+    border-radius: 3rem;
+    color: #FFF !important;
+    font-weight: 700;
+}
+
+.btn-registro:hover{
+    background-color: #a00c11 !important;
+}
+
+.btn-mdi-login{
+    background-color: #2053a5;
+    border-color: #0c4396;
+    border-radius: 3rem;
+    color: #FFF !important;
+    font-weight: 700;
+}
+
+.btn-mdi-login:hover{
+    background-color: #0c4396 !important;
+}
+
+
+.btn-mdi-login-olvide {
+    color: inherit;
+    font-size: 2rem !important;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+
+/*LOGIN END*/
+
+video{
+    width: 100%;
+    height: auto;
+}
+
+.logos{
+    max-height: 25%;
+    margin: 0 auto;
+    max-width: 25%;
+    margin-right: 10px;
+}

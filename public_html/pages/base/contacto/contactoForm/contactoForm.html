@@ -1,0 +1,24 @@
+<div>
+    <div class="form-group  col-md-6">
+        <label class="control-label"><cr visible='rf.correo'/>Correo</label>
+        <div class="input-group">
+            <input type="email" name="email" class="form-control" ng-model="contacto.correo" >
+            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+
+        </div>
+    </div>
+    <div class="form-group  col-md-6">
+        <label class="control-label"><cr visible='rf.tel1'/>Teléfono </label>
+        <div class="input-group">
+            <input type="tel" class="form-control" ng-model="contacto.tel1" ng-required="rf.tel1">
+            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label class="control-label"><cr visible='rf.tel2'/>Teléfono adicional </label>
+        <div class="input-group">
+            <input type="tel" class="form-control" ng-model="contacto.tel2" ng-required="rf.tel2">
+            <span class="input-group-addon"><i class="fa fa-tablet"></i></span>
+        </div>
+    </div>
+</div>

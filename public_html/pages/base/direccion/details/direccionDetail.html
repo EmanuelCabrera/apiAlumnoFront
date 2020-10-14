@@ -1,0 +1,58 @@
+<div class="row">
+    <!-- 
+       Cicha Created: 2015/12/03 
+    -->
+    <div class="col-xs-6 col-sm-4 col-md-4">
+        <strong><i class="fa fa-map-o margin-r-5"></i>Pais</strong>
+        <p class="text-muted"> {{dir.localidadDepartamentoProvinciaPaisNombre}}</p>
+        <hr>
+    </div>
+    
+    <div class="col-xs-6 col-sm-4 col-md-4">
+        <strong><i class="fa fa-map-o margin-r-5"></i>Provincia</strong>
+        <p class="text-muted"> {{dir.localidadDepartamentoProvinciaNombre}}</p>
+        <hr>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-4">
+        <strong><i class="fa fa-map-o margin-r-5"></i>Departamento</strong>
+        <p class="text-muted"> {{dir.localidadDepartamentoNombre}}</p>
+        <hr>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-4">
+        <strong><i class="fa fa-map-o margin-r-5"></i>Localidad</strong>
+        <p class="text-muted"> {{dir.localidadNombre}}</p>
+        <hr>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-4" ng-hide="!dir.barrio">
+        <strong><i class="fa fa-building margin-r-5"></i>Barrio</strong>
+        <p class="text-muted"> {{dir.barrio}}</p>
+        <hr>
+    </div>
+    <div class="col-xs-6 col-sm-4 col-md-4" ng-hide="!dir.calle">
+        <strong><i class="fa fa-home"></i>Calle</strong>
+        <p class="text-muted"> {{dir.calle}}</p>
+        <hr>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-4" ng-hide="!dir.altura">
+        <strong><i class="fa fa-hashtag margin-r-5"></i>Altura</strong>
+        <p class="text-muted"> {{dir.altura}}</p>
+        <hr>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-4" ng-hide="!dir.piso">
+        <strong><i class="fa fa-hashtag margin-r-5"></i>Piso</strong>
+        <p class="text-muted"> {{dir.piso}}</p>
+        <hr>
+    </div>
+
+    <div class="col-xs-6 col-sm-4 col-md-4" ng-hide="!dir.depto">
+        <strong><i class="fa fa-hashtag margin-r-5"></i>Depto</strong>
+        <p class="text-muted"> {{dir.depto}}</p>
+        <hr>
+    </div>
+
+
+</div>

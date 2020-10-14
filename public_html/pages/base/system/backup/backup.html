@@ -1,0 +1,76 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-database"></i>
+                Back-up
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default " back-button="">
+                        <i class="fa fa-arrow-left"></i>
+                        Atras
+                    </button>
+
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary"  st-table="filesTbl"  st-safe-src="files">
+                <div class="box-header with-border">
+                    <h3 class="box-title " style="margin: 5px;">Estado del timer backup</h3>
+                </div>
+                <div class="box-body table-responsive">
+                   <timer-shedule timer-name=" 'BACKUP'" details="true">
+                        
+                    </timer-shedule>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="box box-primary"  st-table="filesTbl"  st-safe-src="files" expose-state="tableState">
+                <div class="box-header ">
+
+                    <h3 class="box-title " style="margin: 5px;">Archivos</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input ng-model="filtro.$" class="form-control" type="search" st-search="" placeholder="Filtro">
+                            <span class="input-group-addon">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover table-bordered table-condensed" >
+                        <thead>
+                            <tr>
+                                <th >Nombre</th>
+                                <th st-sort="sortColumn(tableState)">Fecha de creación</th>
+                                <th>Tamaño</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="f in files | filter:filtro | orderBy: order">
+                                
+                                <td>{{f.name}}</td>
+                                <td>{{f.creationTime | date:"dd-MM-yyyy HH:mm:ss ' hs'"}}</td>
+                                <td>{{f.size | bytes}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="10" ></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>   
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,71 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-map-marker"></i>
+                Lugar
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>
+                    <span>Departamento</span>
+                </small>
+            </div>
+            <div class="breadcrumb">
+                <button permission-hide="['ACTION_LOG_LIST']" uib-tooltip="Ver acciones" tooltip-append-to-body="true" ui-sref="actionLog/class ({clazz:'Departamento'})" class="btn bg-olive" > 
+                    <span class="hidden-xs">Ver acciones </span><i class="fa fa-list-ol"></i>
+                </button>
+                <button type="button" class="btn btn-default" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="callout callout-default">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label"><cr/>País</label>
+                            <ui-select  ng-model="paisSel" theme="bootstrap"  close-on-select="true" on-select="changeProvinces(paisSel)">
+                                    <ui-select-match placeholder="Seleccionar país" allow-clear="true" >{{$select.selected.nombre}} </ui-select-match> 
+                                    <ui-select-choices repeat="item in paises |orderBy:'nombre'| filter:$select.search">
+                                        <div ng-bind-html="item.nombre | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                    <ui-select-no-choice>
+                                        No se ha encontrado el país
+                                    </ui-select-no-choice>
+                                </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label"><cr/>Provincia</label>
+                            <ui-select  ng-model="provinciaSel" theme="bootstrap" close-on-select="true" on-select="onChangeProvincia(provinciaSel)" >
+                                    <ui-select-match placeholder="Seleccionar provincia" allow-clear="true" >{{$select.selected.nombre}} </ui-select-match> 
+                                    <ui-select-choices repeat="provincia.id as provincia in provincias |orderBy:'nombre'| filter:$select.search">
+                                        <div ng-bind-html="provincia.nombre | highlight: $select.search"></div>
+                                    </ui-select-choices>
+                                    <ui-select-no-choice>
+                                        No se ha encontrado la provincia
+                                    </ui-select-no-choice>
+                                </ui-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" ng-hide="provinciaSel">
+            <div class="alert alert-info">
+                <i class="fa fa-info-circle"></i>
+                Seleccione el país y la provincia a la que desea agregar los departamentos
+            </div>
+        </div>
+        <div class="col-md-12" ui-view="deptoact">
+
+        </div>
+    </div>
+</section>
+

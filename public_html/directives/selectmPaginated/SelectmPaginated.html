@@ -1,0 +1,44 @@
+<div> 
+   <ui-select  multiple ng-model="selectedsItem"  theme="bootstrap" close-on-select="true" on-remove="onRemove($item, $model)"  on-select="onSelect($item, $model)">
+            <ui-select-match placeholder="{{config.textName}}" style="padding-left: 4px;">
+                <ng-bind-html
+                    ng-bind-html="parserSelect($item)"> 
+                </ng-bind-html> 
+                &nbsp;&nbsp;&nbsp;
+                <small ng-if="$item.deletedAt">
+                    <i  class="fa fa-warning orange"></i>
+                    Eliminado
+                </small>
+            </ui-select-match>
+            <ui-select-choices 
+                refresh="fetch($select)" 
+                refresh-delay="200" 
+                repeat="item.id as item in items"
+                ui-disable-choice="isDisableChoice(item)">
+                <ng-bind-html
+                    ng-bind-html="parserChoice(item)"> 
+                </ng-bind-html>  
+                <small ng-if="item.deletedAt">
+                    <i class="fa fa-warning orange"></i>
+                    {{config.textName}} eliminado el {{item.deletedAt| date:"dd/MM/yyyy"}}
+                </small>
+                <div ng-if="$index == $select.items.length - 1">
+                    <button 
+                        ng-if="!useNgMouseover  && itemsHashNext" 
+                        class="btn btn-xs btn-success" 
+                        style="width: 100%; margin-top: 5px;" 
+                        ng-click="fetch($select, $event);"
+                        ng-disabled="loading">Cargar m&aacute;s resultados...</button>                 
+                    <button 
+                        ng-if="useNgMouseover && itemsHashNext" 
+                        class="btn btn-xs btn-danger" 
+                        style="width: 100%; margin-top: 5px;" 
+                        ng-mouseover="fetch($select, $event);"
+                        ng-disabled="loading">Mouse over load more...</button>                 
+                </div>
+            </ui-select-choices>
+            <ui-select-no-choice>
+                No se encontró el {{config.textName}}
+            </ui-select-no-choice>
+        </ui-select>
+</div>  

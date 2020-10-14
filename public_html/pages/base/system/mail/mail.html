@@ -1,0 +1,58 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-envelope-o"></i>
+                Mail
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>
+                    <span>Enviar e-mail</span>
+                </small>
+                <button type="button" class="btn btn-default pull-right" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary"> 
+                <form ng-submit="create()" name="email_form">
+                    <div class="box-body">
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Destinatarios (*)</label>
+                            <ui-select required  multiple tagging tagging-label="" ng-model="mail.to" theme="bootstrap" sortable="true" style="width: 100%;" uib-tooltip="Ingrese uno o varios e-mails">
+                                <ui-select-match placeholder="Destinatarios">{{$item}}</ui-select-match>
+                                <ui-select-choices repeat="d in emailAddressesAvailables | filter:$select.search">
+                                    {{d}}
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Asunto</label>
+                            <input class="form-control" ng-model="mail.subject">
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Mensaje</label>
+                            <wysiwyg-edit content="mail.html" config="editorConfig" ></wysiwyg-edit>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="text-center">
+                            <button type="submit" ng-disabled="enviado" class="btn btn-primary">
+                                <i ng-hide="enviado" class="fa fa-envelope-o"></i> 
+                                <icon-loading visible="enviado"></icon-loading>
+                                Enviar
+                            </button>
+                            <button type="reset" class="btn btn-default" back-button=""><i class="fa fa-times"></i> Descartar</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+

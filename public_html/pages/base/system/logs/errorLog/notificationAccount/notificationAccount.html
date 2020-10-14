@@ -1,0 +1,153 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-envelope-o"></i>
+                Error Log
+                <i class="fa  fa-angle-double-right"></i>
+                <small>
+                    <span>Account</span>
+                </small>
+                <button type="button" class="btn btn-default pull-right" back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    Atrás
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Gestión de Account Case</h3>
+                </div>
+                <form ng-submit="!accountSel.id ? create() : update()" name="asignatura">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="control-label"><cr/>Account </label>
+                            <div class="input-group">
+                                <input type="email" class="form-control" name="name" required="" ng-model="accountSel.account" >
+                                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            </div>
+                            <span class="help-block">E-mail del desarrollador</span>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <div class="checkbox-inline">
+                                    <label class="control-label"> 
+                                        <input type="checkbox"  ng-model="accountSel.onLocalRequest">
+                                        onLocalRequest
+                                    </label>
+                                </div>
+                                <span class="help-block">Activa o desactiva la notificación del error si es que la URL de esta contiene "localhost"</span>
+                            </div>
+                        </div>
+                        <div   class="form-group">
+                            <label class="control-label"><cr/>Notifications case</label>
+                            <div class="input-group col-md-12">
+                                <ui-select multiple  ng-model="accountSel.errorJavaLogNotificationCaseIds" theme="bootstrap" sortable="true" close-on-select="false" style="width: 100%;">
+                                    <ui-select-match placeholder="-- Seleccione un notification case -- ">{{!$item?'-- Seleccione un notification case --': $item.name}} </ui-select-match>
+                                    <ui-select-choices repeat="noti.id as noti in notifications | propsFilter: {name : $select.search}">
+                                        <div ng-bind-html="noti.name | highlight: $select.search"></div>
+                                        <small>{{noti.regexp}}</small>
+                                    </ui-select-choices>
+                                    <ui-select-no-choice>
+                                        No se ha encontrado la clase de notificaci&oacute;n
+                                    </ui-select-no-choice>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button  class="btn btn-default" c-class-hover="dark-green" ng-class="{'c-highlight-default': !accountSel.id}" ng-disabled="accountSel.id">
+                            Agregar <i class="fa fa-plus-circle"></i> 
+                        </button>
+                        <button  class="btn btn-default "  c-class-hover="dark-green" ng-class="{'c-highlight-default': accountSel.id}" ng-disabled="!accountSel.id">
+                            Editar <i class="fa fa-edit"></i> 
+                        </button>
+
+                        <button class="btn btn-default" type="button" ng-click="onClear()"> Limpiar campos <i class="fa fa-eraser"> </i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="box box-primary" st-table="accountsTbl"  st-safe-src="accounts">
+                <div class="box-header ">
+                    <span class="pull-left"> 
+                        <select class="form-control input-sm" ng-model="jconfFiltro.op" ng-change="init()">
+                            <option value="NOT_FILTER">Todos</option>
+                            <option value="NULL">Normal</option>
+                            <option value="NOT_NULL">Eliminados</option>
+                        </select> 
+                    </span>
+                    <h3 class="box-title padding-left" >Lista de accounts</h3>
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                            <span class="input-group-addon">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered  table-condensed" >
+                            <thead>
+                                <tr>
+                                    <th>Account</th>
+                                    <th>Notifications case</th>
+                                    <th>On local request</th>
+                                    <th style="width: 120px">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="a in accountsTbl"  ng-class="{'st-selected':a.id === accountSel.id}">
+                                    <td>{{a.account}}</td>
+                                    <td>
+                                        <span ng-repeat="noti in a.cases" class="label label-primary margin-r-5">
+                                            {{noti.name}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                    <boolean-show model="a.onLocalRequest" true-text="'Activado' "  false-text=" 'Desactivado' ">
+
+                                    </boolean-show >
+                                    </td>
+                            <td>
+                                <div class="btn-group btn-group-sm" >
+                                    <div  class="btn-group btn-group-sm">
+                                        <button ng-click="onSelect(a)" tooltip-append-to-body="true"  uib-tooltip="Cancelar" class="btn btn-default" ng-if="a.id === accountSel.id" >
+                                            <i class="fa fa-remove text-red"> </i>
+                                        </button>
+                                        <button ng-click="onSelect(a)" tooltip-append-to-body="true"  uib-tooltip="Editar" class="btn btn-default"  ng-if="a.id != accountSel.id" >
+                                            <i class="fa fa-edit blue"> </i>
+                                        </button>
+                                    </div>
+                                    <a  permission-hide="['NOTIFICATION_ERROR_ACCOUNT_REM']" >
+                                        <c-btnremoveview c-callback="onAction" c-obj="a" c-service="ErrorLogNotificationAccountServ" c-name="{{a.name}}" >
+                                        </c-btnremoveview>
+                                    </a>
+                                </div>
+                            </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+</section>
+

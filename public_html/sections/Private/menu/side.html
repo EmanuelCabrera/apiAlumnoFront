@@ -1,0 +1,284 @@
+<header class="main-header" >
+    <!-- Logo -->
+    <a ui-sref="initStateSigned" class="logo">
+        <span class="logo-mini"><img src="img/icon.png" style="width: 20px; height: 20px;"></span>
+        <span class="logo-lg"><img src="img/icon.png" style="width: 25px; height: 25px;"> {{nombreVisual}}</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a class="sidebar-toggle" ng-click="toogleSideBar()" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <li class="dropdown user user-menu" ng-show="!user">
+                    <a  class="btn btn-success" ui-sref="login">
+                        <i class="fa fa-user"></i>Login
+                    </a>
+                </li>
+                <!--User menu-->
+                <li class="dropdown user user-menu" ng-show="user">
+                    <a  class="dropdown-toggle" data-toggle="dropdown">
+                        <img profile-img class="user-image" alt="User Image">
+                        <span >{{user.name}}</span>
+                    </a>
+                    <ul class="dropdown-menu" style="width: 350px;">
+                        <!-- User image -->
+                        <li class="user-header ">
+                            <div class="pull-left image hover-change-profile-img">
+                                <img ng-click="toPerfil( 'perfil', 'security/profileimg')"
+                                     profile-img  class="img-circle pointer " alt="User Image" style="
+                                     width: 90px;
+                                     height: 90px;
+                                     ">
+                                <button ng-click="toPerfil( 'perfil', 'security/profileimg')" class="btn btn-default btn-xs pointer change-profile-img text-center">
+                                    <i class="fa fa-edit"></i> Cambiar foto</button>
+                            </div>
+                            <div class="pull-left info">
+                                <p>
+                                    <i class="fa fa-circle text-success"></i>&nbsp; {{user.name}}
+                                    <!--<span class="label label-default">{{main.user.auth.rol.nombre}}</span>-->
+                                </p>
+
+                                <div class="btn-group btn-group-sm">
+                                    <a ui-sref="security/roluser/show({id:user.id})"   c-class-hover="blue" class="btn btn-default"><i class="fa fa-sitemap" tooltip="Roles"></i> Mis Roles</a>
+                                    <a ui-sref="perfil"  c-class-hover="blue" class="btn btn-default" uib-tooltip="Perfil" tooltip-append-to-body="true" >
+                                        <i class="fa fa-user" tooltip="Perfil"></i>
+                                    </a>
+                                    <button class="btn btn-default" c-class-hover="red"  type="button" ng-click="logout()" uib-tooltip="Salir" tooltip-append-to-body="true" >
+                                        <i class="fa fa-power-off" tooltip="cerrar sesión"></i>
+                                    </button>
+                                </div>
+                            </div><div class="clearfix"></div>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<aside class="main-sidebar" >
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+
+        <ul class="sidebar-menu">
+            <li class="treeview">
+                <a>
+                    <i class="fa fa-user-plus"></i> <span>Mi Cuenta</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li permission-hide="['PERSONA_ME']">
+                        <a ui-sref="rrhh/persona/me">
+                            <i class="fa fa-list-alt"></i> <span>Datos Personales</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="security/roluser/show({id:user.id})">
+                            <i class="fa fa-shield"></i> Mis Roles
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="toPerfil( 'perfil', 'perfil')">
+                            <i class="fa fa-user"></i><span>Perfil</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview" ng-if="user.root">
+                <a>
+                    <i class="fa fa-check-square"></i> <span>Test</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a ui-sref="test/contenido">
+                            <i class="fa fa-database"></i> 
+                            <span>Contenido</span>
+                        </a>
+                    </li> 
+                    <li>
+                        <a ui-sref="test/mapView">
+                            <i class="fa fa-map-marker"></i> 
+                            <span>Map View</span>
+                        </a>
+                    </li> 
+                    <li>
+                        <a ui-sref="test/selectpaginated">
+                            <i class="fa fa-list"></i> 
+                            <span>Select Paginated</span>
+                        </a>
+                    </li> 
+                </ul>
+            </li>
+            <li class="treeview" ng-if="user.root">
+                <a>
+                    <i class="glyphicon glyphicon-cog"></i> <span>Sistema</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a> 
+                <ul class="treeview-menu">
+                    <li>
+                        <a ui-sref="eventbus">
+                            <i class="fa fa-bus"></i> 
+                            <span>EventBus</span>
+                        </a>
+                    </li> 
+                    <li  >
+                        <a ui-sref="serverconfig">
+                            <i class="glyphicon glyphicon-tasks"></i> <span>Server Config</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="methodname">
+                            <i class="glyphicon glyphicon-send"></i> <span>Methodname</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="backup">
+                            <i class="fa fa-database"></i> 
+                            <span>Backup</span>
+                        </a>
+                    </li> 
+                    <li  >
+                        <a ui-sref="logs/requestlog">
+                            <i class="fa fa-exclamation-circle"></i> <span>Solicitudes</span>
+                        </a>
+                    </li>                 
+                    <li  >
+                        <a ui-sref="logs/errorlog">
+                            <i class="fa fa-exclamation-triangle"></i> <span>Errores</span>
+                        </a>
+                    </li>
+                    <li  >
+                        <a ui-sref="logs/notificationCase">
+                            <i class="fa fa-info-circle"></i> <span>Notifications Case</span>
+                        </a>
+                    </li>
+                    <li  >
+                        <a ui-sref="logs/notificationAccount">
+                            <i class="fa fa-envelope-o "></i> <span>Notifications Account</span>
+                        </a
+
+
+                    <li>
+                        <a ui-sref="timers/scheduleEntity">
+                            <i class="fa fa-clock-o"></i> <span>Timers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="template">
+                            <i class="fa fa-file-text"></i> <span>Email Templates</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="mail">
+                            <i class="fa fa-envelope-o"></i> <span>Enviar Email</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="system/apirest">
+                            <i class="fa fa-laptop"></i> <span>API REST</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="security/espaciosusados"  >
+                            <i class="fa fa-sitemap"></i> <span>Espacio usado</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li permission-hide="['ACTION_LOG_LIST']">
+                <a ui-sref="actionLog/list">
+                    <i class="fa fa-list-ol"></i> <span>Historial de acciones</span>
+                </a>
+            </li>
+            <li class="treeview " permission-hide="['^PAIS.*$','^PROVINCIA.*$','^LOCALIDAD.*$']" >
+                <a>
+                    <i class="fa fa-map-marker"></i> <span>Direcci&oacute;n</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li >
+                        <a ui-sref="direccion/pais" c-state-hide="direccion/pais" c-state-action="disable">
+                            <i class="fa fa-map"></i> <span>Países</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="direccion/provincia" permission-hide="['PROVINCIA_ADD','PROVINCIA_UPD','PROVINCIA_REM']">
+                            <i class="fa fa-map"></i> <span>Provincias</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="direccion/departamento" permission-hide="['DEPARTAMENTO_ADD','DEPARTAMENTO_UPD','DEPARTAMENTO_REM']">
+                            <i class="fa fa-map"></i> <span>Departamento</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="direccion/localidad" permission-hide="'^LOCALIDAD.*$'">
+                            <i class="fa fa-map"></i> <span>Localidad</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li  >
+                <a ui-sref="rrhh/persona" permission-hide="['^PERSONA.*$']">
+                    <i class="fa fa-users"></i> <span>Persona</span>
+                </a>
+            </li>
+            <li class="treeview" permission-hide="['^CALENDARIO.*$']" >
+                <a ui-sref="calendario" >
+                    <i class="fa fa-calendar"></i> <span>Calendario</span>
+                </a>
+            </li>
+            <li class="treeview" permission-hide="['^MATERIA.*$']" >
+                <a ui-sref="materia" >
+                    <i class="fa fa-book"></i> <span>Materias</span>
+                </a>
+            </li>
+            <li class="treeview" permission-hide="['^USER.*$']">
+                <a>
+                    <i class="fa fa-lock"></i> <span>Seguridad</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li permission-hide="['USER_ADD','USER_UPD']" >
+                        <a ui-sref="security/usuario">
+                            <i class="fa fa-user"></i> <span>Usuarios</span>
+                        </a>
+                    </li>
+                    <li permission-hide="['USER_CM_ADD']" >
+                        <a ui-sref="security/usuario-cm"  >
+                            <i class="fa fa-user"></i> <span>Usuarios Ciudadano Misiones</span>
+                        </a>
+                    </li>
+                    <li permission-hide="['ROL_LIST','ROL_ADD','ROL_UPD','ROL_REM']" >
+                        <a ui-sref="security/rol" >
+                            <i class="fa fa-sitemap"></i> <span>Roles</span>
+                        </a>
+                    </li>
+
+                    <li  permission-hide="['PERMISSION_LIST']">
+                        <a ui-sref="security/grupopermisos/show"  >
+                            <i class="fa fa-sitemap"></i> <span>Grupos de permisos y Permisos</span>
+                        </a>
+                    </li>
+                    <li permission-hide="['USERGROUP_ADD','USERGROUP_UPD','USERGROUP_REM']" >
+                        <a ui-sref="security/usergroup"  >
+                            <i class="fa fa-sitemap"></i> <span>Grupo de Usuarios</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li>
+                <a ui-sref="errorReport">
+                    <i class="fa fa-mail-forward"></i> <span>Soporte técnico</span>
+                </a>
+            </li>
+        </ul>
+    </section> 
+</aside>

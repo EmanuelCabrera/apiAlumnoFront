@@ -1,0 +1,47 @@
+<div class="page-header">
+    <h3> 
+        <i class="fa fa-user"></i>
+        Perfil 
+        <small>
+            <i class="fa fa-angle-double-right"></i>
+            Cambiar pass
+        </small>
+        <button type="button" class="btn btn-sm btn-default pull-right" back-button>
+            <i class="fa fa-arrow-left"></i>
+            Atras
+        </button>
+    </h3>
+</div>
+<form ng-submit="passChange()">
+    <div class="form-group">
+        <label class="control-label">Contrase&ntilde;a Actual</label>
+        <div class="input-group">
+            <input type="password" class="form-control" required="" ng-model="actualPass">
+            <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Contrase&ntilde;a Nueva</label>
+        <div class="input-group">
+            <input type="password" class="form-control" ng-model="newPass1" required="">
+            <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error': newPass1 != newPass2,'has-success': newPass1 == newPass2}">
+        <label class="control-label">
+            <i class="fa fa-warning" ng-show="newPass1 != newPass2" tooltip="Las contraseñas ingresadas no concuerdan"></i>
+            Repetir Contrase&ntilde;a Nueva
+        </label>
+        <div class="input-group">
+            <input type="password" class="form-control" ng-model="newPass2" required="">
+            <span class="input-group-addon"><i class="fa fa-shield"></i></span>
+        </div>
+    </div>
+    <button type="button" class="btn btn-default" back-button="">
+        <i class="fa fa-arrow-left"></i>
+        Cancelar
+    </button>
+    <button type="submit" class="btn btn-success">
+        <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar cambios
+    </button>
+</form>
