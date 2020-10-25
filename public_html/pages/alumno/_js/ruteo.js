@@ -6,6 +6,16 @@
                         url: '/materias',
                         templateUrl: 'pages/alumno/materia/materia.html',
                         controller: 'MateriaCont'
+                    })
+                    .state('profesor', {
+                        url: '/profesores',
+                        templateUrl: 'pages/alumno/profesor/profesor.html',
+                        controller: 'ProfesorCont'
+                    })
+                    .state('alumno', {
+                        url: '/alumnos',
+                        templateUrl: 'pages/alumno/alumno/alumno.html',
+                        controller: 'AlumnoCont'
                     });
 //                    .state('tickettype', {
 //                        url: '/tickettype',

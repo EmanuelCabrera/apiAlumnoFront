@@ -239,6 +239,16 @@
                     <i class="fa fa-book"></i> <span>Materias</span>
                 </a>
             </li>
+            <li class="treeview" permission-hide="['^PROFESOR.*$']" >
+                <a ui-sref="profesor" >
+                    <i class="fa fa-users"></i> <span>Profesores</span>
+                </a>
+            </li>
+            <li class="treeview" permission-hide="['^ALUMNO.*$']" >
+                <a ui-sref="alumno" >
+                    <i class="fa fa-group"></i> <span>Alumnos</span>
+                </a>
+            </li>
             <li class="treeview" permission-hide="['^USER.*$']">
                 <a>
                     <i class="fa fa-lock"></i> <span>Seguridad</span>

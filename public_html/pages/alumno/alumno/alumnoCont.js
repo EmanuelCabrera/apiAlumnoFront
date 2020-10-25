@@ -2,8 +2,8 @@
 (function () {
     var app = angular.module('app');
 
-    app.controller('ProfesorCont', ["$scope", "$rootScope", 'ProfesorServ', function ($scope, $rootScope, ProfesorServ) {
-            $scope.profesorSel = undefined;
+    app.controller('AlumnoCont', ["$scope", "$rootScope", 'AlumnoServ', function ($scope, $rootScope, AlumnoServ) {
+            $scope.alumnoSel = undefined;
             $scope.jconfFiltro = {
                 op: 'NULL',
                 field: 'deletedAt'
@@ -15,25 +15,25 @@
             };
 
             $scope.onSelect = function (d) {
-                if ((!angular.isUndefined($scope.profesorSel) && $scope.profesorSel.id === d.id)) {
-                    $scope.profesorSel = undefined;
+                if ((!angular.isUndefined($scope.alumnoSel) && $scope.alumnoSel.id === d.id)) {
+                    $scope.alumnoSel = undefined;
                 } else {
-                    $scope.profesorSel = $.extend({}, d, true);
+                    $scope.alumnoSel = $.extend({}, d, true);
                 }
             };
 
 
             $scope.onClear = function () {
-                $scope.profesorSel = undefined;
-                if (!angular.isUndefined($scope.profesorSel)) {
-                    $scope.profesorSel.nombre = undefined;
-                    $scope.profesorSel.apellido = undefined;
-                    $scope.profesorSel.contacto = undefined;
+                $scope.alumnoSel = undefined;
+                if (!angular.isUndefined($scope.alumnoSel)) {
+                    $scope.alumnoSel.nombre = undefined;
+                    $scope.alumnoSel.apellido = undefined;
+                    $scope.alumnoSel.contacto = undefined;
                 }
             };
 
             $scope.create = function () {
-                if (angular.isUndefined($scope.profesorSel.nombre) || $scope.profesorSel.nombre.length > $scope.validations.nombre.maxlength) {
+                if (angular.isUndefined($scope.alumnoSel.nombre) || $scope.alumnoSel.nombre.length > $scope.validations.nombre.maxlength) {
                     $.m_sms({
                         error: {
                             sms: "El campo nombre no debe superar los 50 caracteres."
@@ -41,7 +41,7 @@
                     });
                     $scope.saving = false;
                 } else {
-                    ProfesorServ.create($scope.profesorSel).success(function (data) {
+                    AlumnoServ.create($scope.alumnoSel).success(function (data) {
                         $scope.onClear();
                         $scope.init();
                     });
@@ -49,7 +49,7 @@
             };
 
             $scope.update = function () {
-                if (angular.isUndefined($scope.profesorSel.nombre) || $scope.profesorSel.nombre.length > $scope.validations.nombre.maxlength) {
+                if (angular.isUndefined($scope.alumnoSel.nombre) || $scope.alumnoSel.nombre.length > $scope.validations.nombre.maxlength) {
                     $.m_sms({
                         error: {
                             sms: "El campo codigo no debe superar los 50 caracteres."
@@ -57,7 +57,7 @@
                     });
                     $scope.saving = false;
                 } else {
-                    ProfesorServ.update($scope.profesorSel).success(function (data) {
+                    AlumnoServ.update($scope.alumnoSel).success(function (data) {
                         $scope.onClear();
                         $scope.init();
                     });
@@ -72,18 +72,18 @@
             };
             $scope.disable = function (id) {
                 if (angular.isUndefined(id)) {
-                    id = $scope.profesorSel.id;
+                    id = $scope.alumnoSel.id;
                 }
-                ProfesorServ.disable(id).success(function (data) {
+                AlumnoServ.disable(id).success(function (data) {
                     $scope.onClear();
                     $scope.init();
                 });
             };
             $scope.enable = function (id) {
                 if (angular.isUndefined(id)) {
-                    id = $scope.profesorSel.id;
+                    id = $scope.alumnoSel.id;
                 }
-                ProfesorServ.enable(id).success(function (data) {
+                AlumnoServ.enable(id).success(function (data) {
                     $scope.onClear();
                     $scope.init();
                 });
@@ -91,9 +91,9 @@
 
             $scope.remove = function (id) {
                 if (angular.isUndefined(id)) {
-                    id = $scope.profesorSel.id;
+                    id = $scope.alumnoSel.id;
                 }
-                ProfesorServ.remove({
+                AlumnoServ.remove({
                     "id": id
                 }).success(function (data) {
                     $scope.onClear();
@@ -102,18 +102,18 @@
             };
 
             $scope.init = function () {
-                $scope.profesores = [];
-                $scope.profesoresTbl = [];
+                $scope.alumnos = [];
+                $scope.alumnosTbl = [];
 
-                ProfesorServ.load({
+                AlumnoServ.load({
 
-                    "jconf": JSON.stringify($.jconf.cascadeFilter(jconf.profesor.form, $scope.jconfFiltro)),
+                    "jconf": JSON.stringify($.jconf.cascadeFilter(jconf.alumnos.form, $scope.jconfFiltro)),
                     "query": JSON.stringify({
                         orders: ["nombre"]
                     })
                 }).success(function (data) {
-                    $scope.profesores = data;
-                    $scope.profesoresTbl = [].concat(data);
+                    $scope.alumnos = data;
+                    $scope.alumnosTbl = [].concat(data);
                 });
 
 

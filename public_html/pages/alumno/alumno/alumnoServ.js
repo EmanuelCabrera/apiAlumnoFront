@@ -5,10 +5,10 @@
 (function() {
     var app = angular.module('app');
 
-    app.service('ProfesorServ', ['genF', function(genF) {
+    app.service('AlumnoServ', ['genF', function(genF) {
             //heredo de genF
             var s = new genF({
-                urlS: services.profesor,
+                urlS: services.alumno,
                 sendType:{create:'json',update:'json'}
             });
             //implementacion de metodos propios

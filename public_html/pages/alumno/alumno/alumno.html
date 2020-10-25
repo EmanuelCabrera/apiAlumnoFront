@@ -3,7 +3,7 @@
         <section class="content-header">
             <div class="h3">
                 <i class="fa fa-user"></i>
-                Profesores
+                Alumnos
             </div>
             <div class="breadcrumb">
                 <button permission-hide="['ACTION_LOG_LIST']" uib-tooltip="Ver acciones" tooltip-append-to-body="true" ui-sref="actionLog/class ({clazz:'Profesor'})" class="btn bg-olive" > 
@@ -21,17 +21,27 @@
             <div class="callout callout-default">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Gestión de Profesores</h3>
-                        <open-modal-action-log id="profesorSel.id">
+                        <h3 class="box-title">Gestión de Alumnos</h3>
+                        <open-modal-action-log id="alumnoSel.id">
                         </open-modal-action-log>
                     </div>
                     <div class="box-body">
-                        <form ng-submit="!profesorSel.id ? create() : update()" name="pais">
+                        <form ng-submit="!alumnoSel.id ? create() : update()" name="pais">
+                            <div class="form-group">
+                                <label class="control-label">
+                                    <cr/>Matricula</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="matricula" required="" ng-model="alumnoSel.matricula" >
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-font"></i>
+                                    </span>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label">
                                     <cr/>Nombre</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="nombre" required="" ng-model="profesorSel.nombre" ng-maxlength="{{validations.nombre.maxlength}}" maxlength="{{validations.nombre.maxlength}}">
+                                    <input type="text" class="form-control" name="nombre" required="" ng-model="alumnoSel.nombre" ng-maxlength="{{validations.nombre.maxlength}}" maxlength="{{validations.nombre.maxlength}}">
                                     <span class="input-group-addon">
                                         <i class="fa fa-font"></i>
                                     </span>
@@ -42,27 +52,27 @@
                                 <label class="control-label">
                                     <cr/>Apellido</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="apellido" required="" ng-model="profesorSel.apellido">
+                                    <input type="text" class="form-control" name="apellido" required="" ng-model="alumnoSel.apellido">
                                     <span class="input-group-addon">
                                         <i class="fa fa-hashtag"></i>
                                     </span>
                                 </div>
                             </div>
                             <div class="box-body">
-                                <contacto contacto="profesorSel.contacto" required-fields="[]" ></contacto>
+                                <contacto contacto="alumnoSel.contacto" required-fields="[]" ></contacto>
                             </div>
 
                             <div class="btn-group">
-                                <button class="btn btn-default addPais" c-class-hover="dark-green" ng-class="{'c-highlight-default': !profesorSel.id}" ng-disabled="profesorSel.id">
+                                <button class="btn btn-default addPais" c-class-hover="dark-green" ng-class="{'c-highlight-default': !alumnoSel.id}" ng-disabled="alumnoSel.id">
                                     <i class="fa fa-plus-circle"></i> Agregar
                                 </button>
-                                <button class="btn btn-default " c-class-hover="dark-green" ng-class="{'c-highlight-default': profesorSel.id}" ng-disabled="!profesorSel.id">
+                                <button class="btn btn-default " c-class-hover="dark-green" ng-class="{'c-highlight-default': alumnoSel.id}" ng-disabled="!alumnoSel.id">
                                     <i class="fa fa-edit"></i> Modificar
                                 </button>
-                                <span permission-hide="[ 'PROFESOR_REM']" >
-                                    <button c-btnremove="profesorSel" c-service="ProfesorServ" c-name="{{profesorSel.nombre}}"  c-callback="onAction"
-                                            class="btn btn-default" type="button"  c-class-hover="red" ng-disabled="!profesorSel.id"  >
-                                        <i ng-class="!profesorSel.deletedAt ? 'fa fa-trash-o' : 'fa fa-check-circle blue'"></i> <span ng-if="!profesorSel.deletedAt"> Eliminar</span><span ng-if="profesorSel.deletedAt"> Restaurar</span>
+                                <span permission-hide="[ 'ALUMNO_REM']" >
+                                    <button c-btnremove="alumnoSel" c-service="AlumnoServ" c-name="{{alumnoSel.nombre}}"  c-callback="onAction"
+                                            class="btn btn-default" type="button"  c-class-hover="red" ng-disabled="!alumnoSel.id"  >
+                                        <i ng-class="!alumnoSel.deletedAt ? 'fa fa-trash-o' : 'fa fa-check-circle blue'"></i> <span ng-if="!alumnoSel.deletedAt"> Eliminar</span><span ng-if="alumnoSel.deletedAt"> Restaurar</span>
                                     </button>
                                 </span>
                                 <button class="btn btn-default" type="button" ng-click="onClear()">
@@ -79,9 +89,9 @@
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Lista de Profesores</h3>
+                    <h3 class="box-title">Lista de Alumnos</h3>
                 </div>
-                <div class="box-body" st-table="profesoresTbl" st-safe-src="profesores">
+                <div class="box-body" st-table="alumnosTbl" st-safe-src="alumnos">
                     <span class="pull-left">
                         <select class="form-control input-sm" ng-model="jconfFiltro.op" ng-change="init()">
                             <option value="NOT_FILTER">Todos</option>
@@ -96,24 +106,24 @@
                     <table class="table table-hover table-striped table-condensed">
                         <thead>
                             <tr>
+                                <th st-sort="matricula" st-sort-default="true">Matricula</th>
                                 <th st-sort="nombre" st-sort-default="true">Nombre</th>
                                 <th >Apellido</th>
-                                <th >Correo</th>
 
                                 <th style="width: 80px">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="d in profesoresTbl| filter:filtro" ng-click="onSelect(d)" ng-class="{'st-selected':d.id === profesorSel.id}">
+                            <tr ng-repeat="d in alumnosTbl| filter:filtro" ng-click="onSelect(d)" ng-class="{'st-selected':d.id === alumnoSel.id}">
+                                <td>{{d.matricula}}</td>
                                 <td>{{d.nombre}}</td>
                                 <td>{{d.apellido}}</td>
-                                <td>{{d.contacto.correo}}</td>
                                 <td>
-                                    <a  permission-hide="['PROFESOR_REM']" >
+                                    <a  permission-hide="['ALUMNO_REM']" >
                                         <c-btnremoveview  
                                             c-callback="onAction" 
                                             c-obj="d" 
-                                            c-service="ProfesorServ" 
+                                            c-service="AlumnoServ" 
                                             c-name="{{d.nombre}}">
                                         </c-btnremoveview>
                                     </a>
