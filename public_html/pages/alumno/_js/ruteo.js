@@ -16,6 +16,16 @@
                         url: '/alumnos',
                         templateUrl: 'pages/alumno/alumno/alumno.html',
                         controller: 'AlumnoCont'
+                    })
+                    .state('mesaexamen', {
+                        url: '/mesaexamenes',
+                        templateUrl: 'pages/alumno/mesaExamen/mesaExamen.html',
+                        controller: 'MesaExamenCont'
+                    })
+                    .state('mesaexamen/act', {
+                        url: '/mesaexamen/act/:id',
+                        templateUrl: 'pages/alumno/mesaExamen/act/mesaExamenAct.html',
+                        controller: 'MesaExamenActCont'
                     });
 //                    .state('tickettype', {
 //                        url: '/tickettype',

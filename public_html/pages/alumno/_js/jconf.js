@@ -4,6 +4,7 @@ var jconf = typeof jconf == "undefined" ? {} : jconf;
 jconf.materia = {};
 jconf.profesor = {};
 jconf.alumnos = {};
+jconf.mesaExamen = {};
 
 
 jconf.materia.form = {
@@ -32,4 +33,17 @@ jconf.alumnos.form = {
 jconf.alumnos.list = {
     attrs: ['id', 'nombre', 'apellido', 'matricula', 'deletedAt'],
     contacto: jconf.contacto.form
+};
+
+jconf.mesaExamen.form = {
+    attrs: ['id', 'fecha', 'deletedAt'],
+    presidente: jconf.profesor.list,
+    primerVocal: jconf.profesor.list,
+    materia: jconf.materia.list
+};
+jconf.mesaExamen.list = {
+    attrs: ['id', 'fecha', 'deletedAt'],
+    presidente: jconf.profesor.list,
+    primerVocal: jconf.profesor.list,
+    materia: jconf.materia.list
 };

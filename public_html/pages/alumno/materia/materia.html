@@ -54,16 +54,11 @@
                                 </div>
                             </div>
                             <div class="form-group" >
-                                <label class="control-label hidden-xs">Profesor</label>
-                                <ui-select  ng-model="materia.profesorId" theme="bootstrap" sortable="true" close-on-select="true"  >
-                                    <ui-select-match placeholder="Ingrese un profesor" style="padding-left: 4px;"> {{ $item.name}}</ui-select-match>
-                                    <ui-select-choices repeat="e.id as e in profesores | orderBy:'name'| filter:$select.search">
-                                        <div ng-bind-html="e.nombre | highlight: $select.search"></div>
-                                    </ui-select-choices>
-                                    <ui-select-no-choice>
-                                        No se ha encontrado el profesor
-                                    </ui-select-no-choice>
-                                </ui-select>
+                                <select-paginated  config="selectProfesor"  
+                                                   selected-id="materiaSel.profesorId"
+                                                   watch="materiaSel.profesorId"
+                                                   >  
+                                </select-paginated>
                             </div>
                             <div class="btn-group">
                                 <button class="btn btn-default addPais" c-class-hover="dark-green" ng-class="{'c-highlight-default': !materiaSel.id}" ng-disabled="materiaSel.id">
@@ -119,7 +114,7 @@
                             <tr ng-repeat="d in materiasTbl| filter:filtro" ng-click="onSelect(d)" ng-class="{'st-selected':d.id === materiaSel.id}">
                                 <td>{{d.nombre}}</td>
                                 <td>{{d.codigo}}</td>
-                                <td>{{d.profesor.nombre}}</td>
+                                <td>{{d.profesor.nombre}} {{d.profesor.apellido}} </td>
                                 <td>
                                     <a  permission-hide="['MATERIA_REM']" >
                                         <c-btnremoveview  

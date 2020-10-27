@@ -1,0 +1,87 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-lock"></i>
+                Mesa Examen
+                <small>
+                    <span ng-if="!mesaExamen.id">Crear</span>
+                    <span ng-if="mesaExamen.id">Modificar</span>
+                </small>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-default pull-right" back-button="">
+                        <i class="fa fa-arrow-left"></i>
+                        <span class=" hidden-xs">Atrás</span>
+                    </button>
+                    <open-modal-action-log id="mesaExamen.id">
+                    </open-modal-action-log>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <form ng-submit=" mesaExamen.id ? update() : create()">
+            <div class="col-md-12">
+                <div class="box box-primary row">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Datos de la Mesa</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group  no-pad-left col-md-4">
+                            <label class="control-label">Fecha</label>
+                            <div class="input-group">
+                                <input  type="text" placeholder="dd/MM/yyyy" datepicker-options="dateOptionsDesde" class="form-control" uib-datepicker-popup='dd/MM/yyyy'  ng-model="mesaExamen.fecha" is-open="datepickerDesde.opened" close-text="Cerrar" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary" ng-click="openDatepickerDesde()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4" >
+                            <label class="control-label">Presidente</label>
+
+                            <select-paginated  config="selectPresidente"  
+                                               selected-id="mesaExamen.presidenteId"
+                                               watch="mesaExamen.presidenteId"
+                                               >  
+                            </select-paginated>
+                        </div>
+                        <div class="form-group col-md-4" >
+                            <label class="control-label">Primer Vocal</label>
+
+                            <select-paginated  config="selectVocal"  
+                                               selected-id="mesaExamen.primerVocalId"
+                                               watch="mesaExamen.primerVocalId"
+                                               >  
+                            </select-paginated>
+                        </div>
+                        <div class="form-group col-md-4" >
+                            <label class="control-label">Materia</label>
+
+                            <select-paginated  config="selectMateria"  
+                                               selected-id="mesaExamen.materiaId"
+                                               watch="mesaExamen.materiaId"
+                                               >  
+                            </select-paginated>
+                        </div>
+
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="form-group col-md-6" >
+
+                                <button  class="btn btn-success" ng-disabled="saving">
+                                    <i class="glyphicon glyphicon-refresh spinning" ng-show="saving"></i>
+                                    <i class="fa fa-save" ng-hide="saving"></i>
+                                    Guardar
+                                </button>
+                                <button type="button" class="btn btn-default" back-button="">
+                                    <i class="fa fa-arrow-left"></i> Volver
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

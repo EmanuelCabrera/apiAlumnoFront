@@ -1,0 +1,102 @@
+<section class="content">
+    <div class="row">
+        <section class="content-header">
+            <div class="h3">
+                <i class="fa fa-play" aria-hidden="true"></i>
+                <small>Mesa de Examenes</small>
+            </div>
+            <div class="breadcrumb">
+                <button permission-hide="['ACTION_LOG_LIST']" uib-tooltip="Ver acciones" tooltip-append-to-body="true" ui-sref="actionLog/class ({clazz:'MesaExamen'})" class="btn bg-olive" > 
+                    <span class="hidden-xs">Ver acciones</span> <i class="fa fa-list-ol"></i>
+                </button>
+                <button permission-hide="['MESAEXAMEN_ADD']"  class="btn btn-primary" ui-sref="mesaexamen/act">Crear <i class="fa fa-plus-circle"></i></button>
+                <button type="button" class="btn btn-default " back-button="">
+                    <i class="fa fa-arrow-left"></i>
+                    <span class=" hidden-xs">Atrás</span>
+                </button>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary" st-table="mesaExamenes" st-pipe="paginate" expose-state="tableState">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="pull-left"> 
+                                <select class="form-control input-sm" ng-model="jconfFiltro.op" ng-change="paginate()">
+                                    <option value="NOT_FILTER">Todos</option>
+                                    <option value="NULL">Normal</option>
+                                    <option value="NOT_NULL">Eliminados</option>
+                                </select> 
+                            </span>
+                            <span class="form-inline pull-right">  
+                                <ipp-table ipp="pagination.ipp" ></ipp-table>
+
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-filter"></i>
+                                    </span>
+                                    <input class="form-control" type="search" st-search="" placeholder="Filtro">
+                                </div>
+                            </span> 
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table  table-hover table-striped table-condensed" >
+                            <thead>
+                                <tr>
+                                    <th >Materia</th>
+                                    <th st-sort="fecha">Fecha</th>
+                                    <th >Presidente</th>
+                                    <th >Primer Vocal</th>
+                                    <th style="width: 200px;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="mesaExamen in mesaExamenes">
+                                    <td>{{mesaExamen.materia.nombre}}</td>
+                                    <td>{{mesaExamen.fecha}}</td>
+                                    <td>{{mesaExamen.presidente.nombre}}</td>
+                                    <td>{{mesaExamen.primerVocal.nombre}}</td>
+
+                                    <td style="width: 200px; display: flex;">
+                                        <div class="btn-group btn-group-sm">
+                                            <a  uib-tooltip="Editar" tooltip-append-to-body="true"  permission-hide="['MESAEXAMEN_UPD']" ui-sref="mesaexamen/act({id:mesaExamen.id})" class="btn btn-default">
+                                                <i class="fa fa-pencil blue"></i>
+                                            </a> 
+                                        </div>
+                                        <a  permission-hide="['MESAEXAMEN_REM']" >
+                                            <c-btnremoveview  
+                                                c-callback="onAction" 
+                                                c-obj="mesaExamen" 
+                                                c-service="MesaExamenServ" 
+                                                c-nombre="{{mesaExamen.materia}}">
+                                            </c-btnremoveview>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6" class="text-center">  
+                            <count-rows table-state="tableState" items="mesaExamenes.length" total="count"></count-rows>
+                            </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                            <custom-pagination display-pages="10">
+                            </custom-pagination>
+                            </td>
+                            </tr>
+                            </tfoot>
+                        </table>  
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>

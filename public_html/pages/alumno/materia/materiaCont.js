@@ -1,9 +1,12 @@
 
 (function () {
     var app = angular.module('app');
-
-    app.controller('MateriaCont', ["$scope", "$rootScope", 'MateriaServ',  function ($scope, $rootScope,MateriaServ) {
-            $scope.materiaSel = undefined;
+    app.controller('MateriaCont', ["$scope", "$rootScope", 'ProfesorServ', 'MateriaServ', function ($scope, $rootScope, ProfesorServ, MateriaServ) {
+            $scope.materiaSel = {
+                nombre: "",
+                codigo: "",
+                profesorId: ""
+            };
             $scope.jconfFiltro = {
                 op: 'NULL',
                 field: 'deletedAt'
@@ -14,23 +17,23 @@
                 }
             };
 
+
             $scope.onSelect = function (d) {
                 if ((!angular.isUndefined($scope.materiaSel) && $scope.materiaSel.id === d.id)) {
-                    $scope.materiaSel = undefined;
+                    $scope.materiaSel = $scope.onClear();
                 } else {
                     $scope.materiaSel = $.extend({}, d, true);
+                    $scope.materiaSel.profesorId = d.profesor.id;
                 }
             };
-
-
             $scope.onClear = function () {
                 $scope.materiaSel = undefined;
                 if (!angular.isUndefined($scope.materiaSel)) {
-                    $scope.materiaSel.nombre = undefined;
-                    $scope.materiaSel.codigo = undefined;
+                    $scope.materiaSel.nombre = "";
+                    $scope.materiaSel.codigo = "";
+                    $scope.materiaSel.profesorId = "";
                 }
             };
-
             $scope.create = function () {
                 if (angular.isUndefined($scope.materiaSel.nombre) || $scope.materiaSel.nombre.length > $scope.validations.nombre.maxlength) {
                     $.m_sms({
@@ -45,7 +48,6 @@
                     });
                 }
             };
-
             $scope.update = function () {
                 if (angular.isUndefined($scope.materiaSel.nombre) || $scope.materiaSel.nombre.length > $scope.validations.nombre.maxlength) {
                     $.m_sms({
@@ -60,8 +62,6 @@
                     });
                 }
             };
-
-
             $scope.onAction = function (response, action) {
                 response.success(function () {
                     $scope.init();
@@ -85,7 +85,6 @@
                     $scope.init();
                 });
             };
-
             $scope.remove = function (id) {
                 if (angular.isUndefined(id)) {
                     id = $scope.materiaSel.id;
@@ -97,17 +96,12 @@
                     $scope.init();
                 });
             };
-
             $scope.init = function () {
                 $scope.materias = [];
                 $scope.materiasTbl = [];
-
                 MateriaServ.load({
 
-                    "jconf": JSON.stringify({
-                        'attrs': ['id', 'nombre', 'codigo', 'deletedAt'],
-                        '@filters': $scope.jconfFiltro
-                    }),
+                    "jconf": JSON.stringify($.jconf.cascadeFilter(jconf.materia.form, $scope.jconfFiltro)),
                     "query": JSON.stringify({
                         orders: ["nombre"]
                     })
@@ -115,10 +109,9 @@
                     $scope.materias = data;
                     $scope.materiasTbl = [].concat(data);
                 });
-
 //                ProfesorServ.load({
 //                    "jconf": JSON.stringify({
-//                        'attrs': ['id', 'nombre', 'codigo', 'deletedAt'],
+//                        'attrs': ['id', 'nombre', 'apellido', 'deletedAt'],
 //                        '@filters': $scope.jconfFiltro
 //                    }),
 //                    "query": JSON.stringify({
@@ -127,11 +120,28 @@
 //                }).success(function (data) {
 //                    $scope.profesores = data;
 //                });
-            };
 
+            };
             $scope.init();
 
 
-
+            $scope.selectProfesor = {
+                service: "ProfesorServ",
+                serviceSearch: function (data, config) {
+                    console.log(data);
+                    var request = $.extend({}, data);
+                    request.jconf = {
+                        attrs: ['pages', 'count'],
+                        list: config.jconf
+                    };
+                    console.log(request);
+                    return ProfesorServ.load(request);
+                },
+                textName: "Profesor",
+                jconf: {attrs: ['id', 'nombre', 'apellido', 'contacto.correo', 'deletedAt']},
+                parser: function (item) {
+                    return item.nombre + " " + item.apellido;
+                }
+            };
         }]);
 }());
